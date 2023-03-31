@@ -1,9 +1,9 @@
 puts "Seeding data!"
 
-User.destroy.all
-Category.destroy.all
-Comment.destroy.all
-Review.destroy.all
+User.destroy_all
+Category.destroy_all
+Comment.destroy_all
+Review.destroy_all
 
 # User
 josh = User.create!(name: "Josh", username: "Josh1", password: "1234", admin: "true")
@@ -31,4 +31,4 @@ comment3 = Comment.create!(user:eric, comment: "So many suits in this one amazin
 
 puts "Done seeding data!"
 
-#add validations next and also look at that youtube video to see the extionsion that shows the schema
+#look at that youtube video to see the extionsion that shows the schema
