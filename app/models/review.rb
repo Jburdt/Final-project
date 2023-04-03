@@ -1,12 +1,12 @@
 class Review < ApplicationRecord
-  # belongs_to :user
   has_many :categories
   has_many :comments
   has_many :users, through: :comments
+  belongs_to :user
 
   validates :title, presence: true
-  validates :review, numericality: { greater_than: 0 }
+  validates :review, length: { maximum: 500 }
   validates :release_date, presence: true
-  validates :category, presence: true
+  validates :categories, presence: true
   validates :length, presence: true
 end

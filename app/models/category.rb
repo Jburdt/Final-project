@@ -1,5 +1,5 @@
 class Category < ApplicationRecord
-  belongs_to :review
+  has_many :reviews
 
   validates :category, presence: true
 end
