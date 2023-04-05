@@ -20,9 +20,9 @@ josh = User.create!(name: "Josh", username: "Josh1", password: "1234", admin: tr
 eric = User.create!(name: "Eric", username: "Eric1", password: "1234", admin: false)
 
 # Review
-review1 = Review.create!(title: "Iron Man", length: "2hr 6m", categories: [action], user: josh, release_date: "2008", review: "lorem")
-review2 = Review.create!(title: "Iron Man 2", length: "2hr 5m", categories: [action], user: josh, release_date: "2010", review: "lorem")
-review3 = Review.create!(title: "Iron Man 3", length: "2hr 10m", categories: [action], user: josh, release_date: "2013", review: "lorem")
+review1 = Review.create!(title: "Iron Man", length: "2hr 6m", categories: [action], user: josh, release_date: "2008", review: "lorem asdfasdfasdfa")
+review2 = Review.create!(title: "Iron Man 2", length: "2hr 5m", categories: [action], user: josh, release_date: "2010", review: "lorem asdfasdfasdfa")
+review3 = Review.create!(title: "Iron Man 3", length: "2hr 10m", categories: [action], user: josh, release_date: "2013", review: "lorem asdfasdfasdfa")
 
 # Comment
 comment1 = Comment.create!(user: eric, comment: "I agree! This is just the start of a great series!", review: review1)
