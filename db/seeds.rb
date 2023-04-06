@@ -19,14 +19,14 @@ thriller = Category.create!(category: "thriller")
 josh = User.create!(name: "Josh", username: "Josh1", password: "1234", admin: true)
 eric = User.create!(name: "Eric", username: "Eric1", password: "1234", admin: false)
 
-# Review
-review1 = Review.create!(title: "Iron Man", length: "2hr 6m", categories: [action], user: josh, release_date: "2008", review: "lorem asdfasdfasdfa")
-review2 = Review.create!(title: "Iron Man 2", length: "2hr 5m", categories: [action], user: josh, release_date: "2010", review: "lorem asdfasdfasdfa")
-review3 = Review.create!(title: "Iron Man 3", length: "2hr 10m", categories: [action], user: josh, release_date: "2013", review: "lorem asdfasdfasdfa")
+# Comments
+comment1 = Comment.create!(user: eric, comment: "I agree! This is just the start of a great series!")
+comment2 = Comment.create!(user: eric, comment: "I can't wait for the next one this one was so good!!")
+comment3 = Comment.create!(user: eric, comment: "So many suits in this one amazing job Marvel!")
 
-# Comment
-comment1 = Comment.create!(user: eric, comment: "I agree! This is just the start of a great series!", review: review1)
-comment2 = Comment.create!(user: eric, comment: "I can't wait for the next one this one was so good!!", review: review2)
-comment3 = Comment.create!(user: eric, comment: "So many suits in this one amazing job Marvel!", review: review3)
+# Review
+review1 = Review.create!(title: "Iron Man", category: action, user: josh, content: "lorem asdfasdfasdfa", comment: comment1)
+review2 = Review.create!(title: "Iron Man 2", category: action, user: josh, content: "lorem asdfasdfasdfa", comment: comment2)
+review3 = Review.create!(title: "Iron Man 3", category: action, user: josh, content: "lorem asdfasdfasdfa", comment: comment3)
 
 puts "Done seeding data!"
