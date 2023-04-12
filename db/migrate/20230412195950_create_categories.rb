@@ -1,7 +1,8 @@
 class CreateCategories < ActiveRecord::Migration[6.1]
   def change
     create_table :categories do |t|
-      t.string :categories
+      t.string :title
+      t.integer :review_id
 
       t.timestamps
     end
