@@ -29,5 +29,4 @@ comment1 = Comment.create!(user: eric, review: review1, comment: "I agree! This 
 comment2 = Comment.create!(user: eric, review: review2, comment: "I can't wait for the next one this one was so good!!")
 comment3 = Comment.create!(user: eric, review: review3, comment: "So many suits in this one amazing job Marvel!")
 
-
 puts "Done seeding data!"

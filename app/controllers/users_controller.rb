@@ -1,12 +1,11 @@
 class UsersController < ApplicationController
-  skip_before_action :authorize, only: :create
+  skip_before_action :authorize, only: [:create]
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
   # RENDER ALL USERS
   def index
-    byebug
     users = User.all
-    render json: users
+    render json: users, status: :ok
   end
 
   # SIGNUP
@@ -18,15 +17,22 @@ class UsersController < ApplicationController
 
   # SHOW EXISTING USER / KEEPS USER LOGGED IN
   def show
-    @user =  User.find_by(id: session[:user_id])
+    @user = User.find_by(id: session[:user_id])
     render json: @user
   end
 
-  # DELETES USER
+  # UPDATES USER
   def update
     @user = find_user
     @user.update(user_params)
     render json: @user
+  end
+
+  # DELETES USER
+  def destroy
+    @user = find_user
+    @user.destroy
+    head :no_content
   end
 
   private
