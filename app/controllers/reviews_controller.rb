@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
+
 
   # SHOWS ALL REVIEWS
   def index
@@ -57,6 +59,11 @@ class ReviewsController < ApplicationController
   # FINDS ONE REVIEW
   def find_review
     one_review = Review.all.find(params[:id])
+  end
+
+  # INVALID DATA RESPONSE
+  def render_unprocessable_entity_response(invalid)
+    render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
   end
 
 end

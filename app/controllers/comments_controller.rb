@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
   # GETS ALL COMMENTS
   def index
@@ -62,6 +63,11 @@ class CommentsController < ApplicationController
   # FINDS ONE COMMENT
   def find_comment
     comment = Comment.all.find(params[:id])
+  end
+
+  # INVALID DATA RESPONSE
+  def render_unprocessable_entity_response(invalid)
+    render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
   end
 
 end
