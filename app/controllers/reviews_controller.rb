@@ -19,17 +19,32 @@ class ReviewsController < ApplicationController
   end
 
   # DELETES REVIEW TEST OUT STILL
-  def destroy
-    deleted_review = find_review
-    deleted_review.destroy
-    head :no_content
-  end
+  # def destroy
+  #   deleted_review = find_review
+  #   deleted_review.destroy
+  #   head :no_content
+
+    def destroy
+      deleted_review = @current_user.reviews.find(params[:id])
+      if deleted_review
+        deleted_review.destroy
+        head :no_content
+      else
+        render json: { errors: ["Not authorized"] }, status: :unauthorized
+      end
+    end
+
+  # end
 
   # UPDATES REVIEW
-  def update
-    updated_review = find_review
-    updated_review.update(review_params)
-    render json: updated_review, status: :ok
+    def update
+      review = @current_user.reviews.find(params[:id])
+      if review
+        review.update!(review_params)
+        render json: review, status: :ok
+      else
+        render json: { errors: ["Not authorized"] }, status: :unauthorized
+      end
   end
 
   private

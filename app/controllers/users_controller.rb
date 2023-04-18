@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     render json: users, status: :ok
   end
 
-  # SIGNUP
+  # SIGNUP / LOGIN
   def create
     user = User.create!(user_params)
     session[:user_id] = user.id
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     render json: @user
   end
 
-  # DELETES USER
+  # LOGOUT USER
   def destroy
     @user = find_user
     @user.destroy

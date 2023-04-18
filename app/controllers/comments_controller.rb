@@ -23,6 +23,7 @@ class CommentsController < ApplicationController
     comment = find_comment
     comment.update!(comment_params)
     render json: comment, status: :ok
+    
   end
 
   # DELETES ONE COMMENT
@@ -45,3 +46,10 @@ class CommentsController < ApplicationController
   end
 
 end
+
+# post = current_user.posts.find(params[:id])
+#   if post
+#     <do something>
+#   else
+#     <do something else>
+#   end
