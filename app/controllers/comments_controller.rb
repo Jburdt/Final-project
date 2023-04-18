@@ -19,18 +19,37 @@ class CommentsController < ApplicationController
   end
 
   # UPDATES ONE COMMENT
+  # def update
+  #   comment = find_comment
+  #   comment.update!(comment_params)
+  #   render json: comment, status: :ok
+  # end
+
   def update
-    comment = find_comment
-    comment.update!(comment_params)
-    render json: comment, status: :ok
-    
+    comment = @current_user.comments.find(params[:id])
+      if comment
+        comment.update!(comment_params)
+        render json: comment, status: :ok
+      else
+        render json: { errors: ["Not authorized"] }, status: :unauthorized
+      end
   end
 
   # DELETES ONE COMMENT
+  # def destroy
+  #   comment = find_comment
+  #   comment.destroy
+  #   head :no_content
+  # end
+
   def destroy
-    comment = find_comment
-    comment.destroy
-    head :no_content
+    deleted_comment = @current_user.comments.find(params[:id])
+    if deleted_comment
+      deleted_comment.destroy
+      head :no_content
+    else
+      render json: { errors: ["Not authorized"] }, status: :unauthorized
+    end
   end
 
   private
@@ -46,10 +65,3 @@ class CommentsController < ApplicationController
   end
 
 end
-
-# post = current_user.posts.find(params[:id])
-#   if post
-#     <do something>
-#   else
-#     <do something else>
-#   end

@@ -37,8 +37,8 @@ class ReviewsController < ApplicationController
   # end
 
   # UPDATES REVIEW
-    def update
-      review = @current_user.reviews.find(params[:id])
+  def update
+    review = @current_user.reviews.find(params[:id])
       if review
         review.update!(review_params)
         render json: review, status: :ok
