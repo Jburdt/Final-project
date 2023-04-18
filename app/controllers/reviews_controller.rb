@@ -12,16 +12,14 @@ class ReviewsController < ApplicationController
     render json: review
   end
 
-  # CREATE METHOD IS BROKEN BUT HITS BYEBUG
+  # CREATE NEW REVIEW
   def create
-    # byebug
     new_review = Review.create!(review_params)
     render json: new_review, status: :created
   end
 
   # DELETES REVIEW TEST OUT STILL
   def destroy
-    byebug
     deleted_review = find_review
     deleted_review.destroy
     head :no_content
