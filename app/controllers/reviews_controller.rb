@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
+  before_action :find_review, only: [:update, :destroy]
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
-
 
   # SHOWS ALL REVIEWS
   def index
@@ -10,7 +10,7 @@ class ReviewsController < ApplicationController
 
   # SHOWS ONE REVIEW BY ID
   def show
-    review = find_review
+    review = Review.all.find_by(id: params[:id])
     render json: review
   end
 
@@ -22,9 +22,8 @@ class ReviewsController < ApplicationController
 
   # DELETES REVIEW
     def destroy
-      deleted_review = @current_user.reviews.find_by(id: params[:id])
-      if deleted_review
-        deleted_review.destroy
+      if @review
+        @review.destroy
         head :no_content
       else
         render json: { errors: ["Not authorized"] }, status: :unauthorized
@@ -33,10 +32,9 @@ class ReviewsController < ApplicationController
 
   # UPDATES REVIEW
   def update
-    review = @current_user.reviews.find_by(id: params[:id])
-      if review
-        review.update!(review_params)
-        render json: review, status: :ok
+      if @review
+        @review.update!(review_params)
+        render json: @review, status: :ok
       else
         render json: { errors: ["Not authorized"] }, status: :unauthorized
       end
@@ -51,7 +49,7 @@ class ReviewsController < ApplicationController
 
   # FINDS ONE REVIEW
   def find_review
-    one_review = Review.all.find(params[:id])
+    @review = @current_user.reviews.find_by(id: params[:id])
   end
 
   # INVALID DATA RESPONSE

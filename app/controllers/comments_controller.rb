@@ -49,7 +49,8 @@ class CommentsController < ApplicationController
 
   # FINDS ONE COMMENT
   def find_comment
-    @comment = Comment.all.find_by(id: params[:id])
+    # @comment = Comment.all.find_by(id: params[:id])
+    @comment = @current_user.comments.find_by(id: params[:id])
   end
 
   # INVALID DATA RESPONSE
