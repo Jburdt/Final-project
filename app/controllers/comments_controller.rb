@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :find_comment, only: [:update, :destroy]
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
   # GETS ALL COMMENTS
@@ -20,33 +21,19 @@ class CommentsController < ApplicationController
   end
 
   # UPDATES ONE COMMENT
-  # def update
-  #   comment = find_comment
-  #   comment.update!(comment_params)
-  #   render json: comment, status: :ok
-  # end
-
   def update
-    comment = @current_user.comments.find(params[:id])
-      if comment
-        comment.update!(comment_params)
-        render json: comment, status: :ok
+      if @comment
+        @comment.update!(comment_params)
+        render json: @comment, status: :ok
       else
         render json: { errors: ["Not authorized"] }, status: :unauthorized
       end
   end
 
   # DELETES ONE COMMENT
-  # def destroy
-  #   comment = find_comment
-  #   comment.destroy
-  #   head :no_content
-  # end
-
   def destroy
-    deleted_comment = @current_user.comments.find(params[:id])
-    if deleted_comment
-      deleted_comment.destroy
+    if @comment
+      @comment.destroy
       head :no_content
     else
       render json: { errors: ["Not authorized"] }, status: :unauthorized
@@ -62,7 +49,7 @@ class CommentsController < ApplicationController
 
   # FINDS ONE COMMENT
   def find_comment
-    comment = Comment.all.find(params[:id])
+    @comment = Comment.all.find_by(id: params[:id])
   end
 
   # INVALID DATA RESPONSE

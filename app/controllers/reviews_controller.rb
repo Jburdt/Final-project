@@ -20,14 +20,9 @@ class ReviewsController < ApplicationController
     render json: new_review, status: :created
   end
 
-  # DELETES REVIEW TEST OUT STILL
-  # def destroy
-  #   deleted_review = find_review
-  #   deleted_review.destroy
-  #   head :no_content
-
+  # DELETES REVIEW
     def destroy
-      deleted_review = @current_user.reviews.find(params[:id])
+      deleted_review = @current_user.reviews.find_by(id: params[:id])
       if deleted_review
         deleted_review.destroy
         head :no_content
@@ -36,11 +31,9 @@ class ReviewsController < ApplicationController
       end
     end
 
-  # end
-
   # UPDATES REVIEW
   def update
-    review = @current_user.reviews.find(params[:id])
+    review = @current_user.reviews.find_by(id: params[:id])
       if review
         review.update!(review_params)
         render json: review, status: :ok
