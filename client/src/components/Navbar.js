@@ -50,14 +50,15 @@ const ButtonAppBar = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Site name
+            Burd's Movie Blog
           </Typography>
-          <Button href="/" color="inherit" onClick={null}>Home</Button>
-          <Button href="/login" color="inherit" onClick={null}>Login</Button>
-          <Button href="/signup" color="inherit" onClick={null}>Signup</Button>
+            <Button href="/" color="inherit">Home</Button>
+            <Button href="/login" color="inherit">Login</Button>
+            <Button href="/signup" color="inherit">Signup</Button>
         </Toolbar>
       </AppBar>
     </div>
-  );
-}
+  )
+};
+
 export default ButtonAppBar;

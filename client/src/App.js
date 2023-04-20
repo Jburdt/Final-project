@@ -16,7 +16,6 @@ const App = () => {
 
   return (
    <Router>
-    
     <ButtonAppBar />
     <Routes>
       <Route path="/" element={ <Home /> } />
