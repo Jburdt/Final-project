@@ -3,10 +3,14 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { Provider } from 'react-redux'
 import reportWebVitals from './reportWebVitals';
+import { createStore } from 'redux';
+import reviewsReducer from './components/reducers/reviewsReducer';
+
+const store = createStore(reviewsReducer)
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider>
+    <Provider store={ store }>
       <App />
     </Provider>
   </React.StrictMode>,
