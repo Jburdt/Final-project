@@ -91,6 +91,11 @@ const Home = () => {
                     All Reviews
                   </Button>
                 </Grid>
+                <Grid item>
+                  <Button variant="contained" color="primary">
+                    Create Review
+                  </Button>
+                </Grid>
               </Grid>
             </div>
           </Container>
