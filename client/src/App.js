@@ -1,6 +1,7 @@
 import { useSelector  } from "react-redux";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from "./components/navBar";
+import Home from "./components/Home";
+import Navbar from "./components/Navbar";
 
 const App = () => {
   const reduxState = useSelector((store) => store );
@@ -11,7 +12,7 @@ const App = () => {
    <Router>
     <Navbar />
     <Routes>
-      <Route path="/" element={ null } />
+      <Route path="/" element={ <Home /> } />
       <Route path="/" element={ null } />
       <Route path="/" element={ null } />
       <Route path="/" element={ null } />
