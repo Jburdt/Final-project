@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Error from "./components/Error";
 import Home from "./components/Home";
 import Login from "./components/Login";
-import Navbar from "./components/Navbar";
+import ButtonAppBar from "./components/Navbar";
+// import Navbar from "./components/Navbar";
 import NewReviewForm from "./components/NewReviewForm";
 import Reviews from "./components/Reviews";
 import Signup from "./components/Signup";
@@ -15,7 +16,8 @@ const App = () => {
 
   return (
    <Router>
-    <Navbar />
+    
+    <ButtonAppBar />
     <Routes>
       <Route path="/" element={ <Home /> } />
       <Route path="/reviews" element={ <Reviews /> } />
