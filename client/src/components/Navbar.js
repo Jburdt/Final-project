@@ -1,6 +1,6 @@
 import React from 'react';
 import TheatersTwoToneIcon from '@material-ui/icons/TheatersTwoTone';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // const Navbar = () => {
 //   return (
@@ -52,9 +52,9 @@ const ButtonAppBar = () => {
           <Typography variant="h6" className={classes.title}>
             Burd's Movie Blog
           </Typography>
-            <Button href="/" color="inherit">Home</Button>
-            <Button href="/login" color="inherit">Login</Button>
-            <Button href="/signup" color="inherit">Signup</Button>
+            <Button component={ Link } to="/" color="inherit">Home</Button>
+            <Button component={ Link } to="/login" color="inherit">Login</Button>
+            <Button component={ Link } to="/signup" color="inherit">Signup</Button>
         </Toolbar>
       </AppBar>
     </div>

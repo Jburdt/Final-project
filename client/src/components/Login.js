@@ -83,10 +83,6 @@ const Login = () => {
             id="password"
             autoComplete="current-password"
           />
-          {/* <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          /> */}
           <Button
             type="submit"
             fullWidth
@@ -94,16 +90,11 @@ const Login = () => {
             color="primary"
             className={classes.submit}
           >
-            Sign In
+            Login
           </Button>
-          <Grid container>
-            <Grid item xs>
-              {/* <Link href="#" variant="body2">
-                Forgot password?
-              </Link> */}
-            </Grid>
+          <Grid container justifyContent='center'>
             <Grid item>
-              <Link href="/signup" variant="body2">
+              <Link textAlign="center" href="/signup" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>

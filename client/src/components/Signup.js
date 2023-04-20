@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
-function Copyright() {
+const Copyright = () => {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '100%',
     marginTop: theme.spacing(3),
   },
   submit: {
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp() {
+const SignUp = () => {
   const classes = useStyles();
 
   return (
@@ -119,9 +119,9 @@ export default function SignUp() {
           >
             Sign Up
           </Button>
-          <Grid container justifyContent="flex-end">
+          <Grid container justifyContent='center'>
             <Grid item>
-              <Link href="login" variant="body2">
+              <Link href="/login" variant="body2">
                 Already have an account? Login
               </Link>
             </Grid>
@@ -134,3 +134,5 @@ export default function SignUp() {
     </Container>
   );
 }
+
+export default SignUp;
