@@ -1,5 +1,5 @@
 import React from 'react';
-import TheatersIcon from '@material-ui/icons/Theaters';
+import TheatersTwoToneIcon from '@material-ui/icons/TheatersTwoTone';
 // import { Link } from 'react-router-dom';
 
 // const Navbar = () => {
@@ -45,7 +45,7 @@ const ButtonAppBar = () => {
     <div className="Navbar">
       <AppBar position="static">
         <Toolbar>
-          <TheatersIcon />
+          <TheatersTwoToneIcon style={{ fontSize: 40 }} />
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
