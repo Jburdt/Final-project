@@ -50,11 +50,12 @@ const ButtonAppBar = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Burd's Movie Blog
+            Burd's Movie Reviews
           </Typography>
             <Button component={ Link } to="/" color="inherit">Home</Button>
             <Button component={ Link } to="/login" color="inherit">Login</Button>
             <Button component={ Link } to="/signup" color="inherit">Signup</Button>
+            <Button component={ Link } to="/" color="red">Logout</Button>
         </Toolbar>
       </AppBar>
     </div>
