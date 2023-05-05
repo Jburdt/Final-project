@@ -1,5 +1,3 @@
-import React from 'react';
-
 const reviewsReducer = (state = [], action) => {
   switch(action.type) {
     case "LOAD_REVIEWS":

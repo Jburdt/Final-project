@@ -12,6 +12,7 @@ import Container from '@material-ui/core/Container';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Copyright = () => {
   return (
@@ -58,10 +59,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const cards = [1];
 
 const Reviews = () => {
   const classes = useStyles();
+  const reviews = useSelector((store) => store.reviewsReducer);
 
   return (
     <>
@@ -104,6 +106,7 @@ const Reviews = () => {
           <Grid container spacing={4}>
             {cards.map((card) => (
               <Grid item key={card} xs={12} sm={6} md={4}>
+
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
@@ -130,6 +133,7 @@ const Reviews = () => {
                     </IconButton>
                   </CardActions>
                 </Card>
+                
               </Grid>
             ))}
           </Grid>

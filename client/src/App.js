@@ -11,8 +11,7 @@ import { useEffect } from "react";
 import { loadReviews } from "./components/actions/Reviews";
 
 const App = () => {
-  const reviews = useSelector((store) => store.reviewsReducer);
-  console.log(reviews, "state")
+  // const reviews = useSelector((store) => store.reviewsReducer);
   const dispatch = useDispatch();
   
   useEffect(() => {

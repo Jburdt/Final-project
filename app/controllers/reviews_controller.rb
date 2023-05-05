@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
+  skip_before_action :authorize, only: [:index]
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
-
 
   # SHOWS ALL REVIEWS
   def index
@@ -20,12 +20,7 @@ class ReviewsController < ApplicationController
     render json: new_review, status: :created
   end
 
-  # DELETES REVIEW TEST OUT STILL
-  # def destroy
-  #   deleted_review = find_review
-  #   deleted_review.destroy
-  #   head :no_content
-
+  # DELETES REVIEW 
     def destroy
       deleted_review = @current_user.reviews.find(params[:id])
       if deleted_review
@@ -35,8 +30,6 @@ class ReviewsController < ApplicationController
         render json: { errors: ["Not authorized"] }, status: :unauthorized
       end
     end
-
-  # end
 
   # UPDATES REVIEW
   def update
