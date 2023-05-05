@@ -1,4 +1,4 @@
-import { useSelector  } from "react-redux";
+import { useDispatch, useSelector  } from "react-redux";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Error from "./components/Error";
 import Home from "./components/Home";
@@ -7,11 +7,17 @@ import Navbar from "./components/Navbar";
 import NewReviewForm from "./components/NewReviewForm";
 import Reviews from "./components/Reviews";
 import Signup from "./components/Signup";
+import { useEffect } from "react";
+import { loadReviews } from "./components/actions/Reviews";
 
 const App = () => {
-  const reduxState = useSelector((store) => store );
+  const reviews = useSelector((store) => store.reviewsReducer);
+  console.log(reviews, "state")
+  const dispatch = useDispatch();
   
-  console.log(reduxState)
+  useEffect(() => {
+    dispatch(loadReviews())
+  }, [dispatch]);
 
   return (
    <Router>

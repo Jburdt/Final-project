@@ -53,12 +53,12 @@ const Home = () => {
         </Typography>
         <Typography variant="body1">Sticky footer placeholder.</Typography>
       </Container>
-      {/* <footer className={classes.footer}>
+      <footer className={classes.footer}>
         <Container maxWidth="sm">
           <Typography variant="body1">My sticky footer can be found here.</Typography>
           <Copyright />
         </Container>
-      </footer> */}
+      </footer>
     </div>
   );
 }
