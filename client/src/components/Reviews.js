@@ -84,7 +84,7 @@ const Reviews = () => {
               <Grid container spacing={2} justifyContent="center">
                 <Grid item>
                   <Button variant="contained" color="primary">
-                    Yours Reviews
+                    Your Reviews
                   </Button>
                 </Grid>
                 <Grid item>

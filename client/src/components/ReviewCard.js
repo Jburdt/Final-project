@@ -1,7 +1,8 @@
 import { Button, Card, CardActions, CardContent, IconButton, Typography, CardMedia, makeStyles, Container, Grid } from '@material-ui/core';
 import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteReviews } from './actions/Reviews';
 // import reviewsReducer from './reducers/reviewsReducer';
 
 const useStyles = makeStyles((theme) => ({
@@ -39,14 +40,21 @@ const useStyles = makeStyles((theme) => ({
 const cards = [1];
 
 const ReviewCard = () => {
-  const classes = useStyles();
   const reviews  = useSelector(store => store.reviewsReducer);
+  const classes = useStyles();
+  const dispatch = useDispatch();
+
   console.log(reviews, "inside review card")
-  // debugger
+
+  // DELETE REQUEST
+  const handleDelete = () => {
+    // dispatch(deleteReviews(review.id))
+    dispatch(deleteReviews(reviews.id))
+  };
+
 
   return (
-    <Container className={classes.cardGrid} maxWidth="md">
-    {/* End hero unit */}
+    <Container className={classes.cardGrid} maxWidth="lg">
     <Grid container spacing={4}>
       {cards.map((card) => (
         <Grid item key={card} xs={12} sm={6} md={4}>
@@ -58,13 +66,13 @@ const ReviewCard = () => {
             />
             <CardContent className={classes.cardContent}>
                 {reviews.map((review) => 
-                  <Typography key={review
-                  } gutterBottom variant="h5" component="h2">
+                  <Typography key={review.id} 
+                  gutterBottom variant="h5" component="h2">
                     {review.title}
                   </Typography>
                 )}
               <Typography>
-                This is a media card. You can use this section to describe the content.
+                Content goes here
               </Typography>
             </CardContent>
             <CardActions>
@@ -74,7 +82,7 @@ const ReviewCard = () => {
               <Button size="small" color="primary">
                 Edit
               </Button>
-              <IconButton color='secondary' aria-label="delete" className={classes.margin}>
+              <IconButton onClick={handleDelete} color='secondary' aria-label="delete" className={classes.margin}>
                 <DeleteIcon fontSize="small" />
               </IconButton>
             </CardActions>

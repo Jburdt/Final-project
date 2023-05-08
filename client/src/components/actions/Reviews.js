@@ -1,5 +1,7 @@
-export const loadReviews = () => {
+import { headers } from "../../Global";
 
+// Get reviews action
+export const loadReviews = () => {
   return dispatch => {
     fetch("/reviews")
     .then((r) => r.json())
@@ -8,5 +10,21 @@ export const loadReviews = () => {
     dispatch(action)
     })
   };
-  
+};
+
+// Delete Action 
+export const deleteReviews = (id) => {
+  return dispatch => {
+    fetch(`/reviews/${ id }`, {
+      method: "DELETE",
+      headers
+    })
+    .then(r => r.json())
+    .then(data => {
+      const action = { type: "DELETE_REVIEW", 
+      payload: id 
+    }
+    dispatch(action)
+    })
+  };
 };

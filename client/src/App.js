@@ -1,4 +1,4 @@
-import { useDispatch, useSelector  } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Error from "./components/Error";
 import Home from "./components/Home";
@@ -11,7 +11,7 @@ import { useEffect } from "react";
 import { loadReviews } from "./components/actions/Reviews";
 
 const App = () => {
-  // const reviews = useSelector((store) => store.reviewsReducer);
+  const reviews = useSelector((store) => store.reviewsReducer);
   const dispatch = useDispatch();
   
   useEffect(() => {
