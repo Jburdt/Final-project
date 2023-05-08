@@ -1,6 +1,8 @@
 import { Button, Card, CardActions, CardContent, IconButton, Typography, CardMedia, makeStyles, Container, Grid } from '@material-ui/core';
 import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { useSelector } from 'react-redux';
+// import reviewsReducer from './reducers/reviewsReducer';
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -38,7 +40,9 @@ const cards = [1];
 
 const ReviewCard = () => {
   const classes = useStyles();
-
+  const reviews  = useSelector(store => store.reviewsReducer);
+  console.log(reviews, "inside review card")
+  // debugger
 
   return (
     <Container className={classes.cardGrid} maxWidth="md">
@@ -53,9 +57,12 @@ const ReviewCard = () => {
               title="Image title"
             />
             <CardContent className={classes.cardContent}>
-              <Typography gutterBottom variant="h5" component="h2">
-                Heading
-              </Typography>
+                {reviews.map((review) => 
+                  <Typography key={review
+                  } gutterBottom variant="h5" component="h2">
+                    {review.title}
+                  </Typography>
+                )}
               <Typography>
                 This is a media card. You can use this section to describe the content.
               </Typography>
@@ -77,6 +84,6 @@ const ReviewCard = () => {
     </Grid>
   </Container>
   )
-}
+};
 
 export default ReviewCard;
