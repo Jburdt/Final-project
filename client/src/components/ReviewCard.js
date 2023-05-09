@@ -44,7 +44,7 @@ const ReviewCard = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  console.log(reviews, "inside review card")
+  // console.log(reviews, "inside review card")
 
   // DELETE REQUEST
   const handleDelete = () => {

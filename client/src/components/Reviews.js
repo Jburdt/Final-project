@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cards = [1];
+// const cards = [1];
 
 const Reviews = () => {
   const classes = useStyles();

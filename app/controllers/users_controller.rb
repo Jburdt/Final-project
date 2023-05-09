@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :authorize, only: [:create]
+  skip_before_action :authorize, only: [:create, :index]
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
   # RENDER ALL USERS
