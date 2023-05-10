@@ -101,7 +101,7 @@ const Reviews = () => {
             </div>
           </Container>
         </div>
-        { reviews.map((review) => { return <ReviewCard />} )}
+        <ReviewCard />
 
         {/* <Container className={classes.cardGrid} maxWidth="md">
           <Grid container spacing={4}>

@@ -3,7 +3,6 @@ import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteReviews } from './actions/Reviews';
-// import reviewsReducer from './reducers/reviewsReducer';
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -37,8 +36,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cards = [1];
-
 const ReviewCard = () => {
   const reviews  = useSelector(state => state.reviewsReducer);
   const classes = useStyles();
@@ -47,9 +44,8 @@ const ReviewCard = () => {
   // console.log(reviews, "inside review card")
 
   // DELETE REQUEST
-  const handleDelete = () => {
-    // dispatch(deleteReviews(review.id))
-    dispatch(deleteReviews(reviews.id))
+  const handleDelete = (id) => {
+    dispatch(deleteReviews(id))
   };
 
   const handleEdit = () => {
@@ -60,8 +56,8 @@ const ReviewCard = () => {
   return (
     <Container className={classes.cardGrid} maxWidth="lg">
     <Grid container spacing={4}>
-      {cards.map((card) => (
-        <Grid item key={card} xs={12} sm={6} md={4}>
+      {reviews.map((review) => (
+        <Grid item key={review.id} xs={12} sm={6} md={3}>
           <Card className={classes.card}>
             <CardMedia
               className={classes.cardMedia}
@@ -69,14 +65,12 @@ const ReviewCard = () => {
               title="Image title"
             />
             <CardContent className={classes.cardContent}>
-                {reviews.map((review) => 
                   <Typography key={review.id} 
                   gutterBottom variant="h5" component="h2">
                     {review.title}
                   </Typography>
-                )}
               <Typography>
-                Content goes here
+                {review.content}
               </Typography>
             </CardContent>
             <CardActions>
@@ -86,7 +80,7 @@ const ReviewCard = () => {
               <Button onClick={handleEdit} size="small" color="primary">
                 Edit
               </Button>
-              <IconButton onClick={handleDelete} color='secondary' aria-label="delete" className={classes.margin}>
+              <IconButton onClick={() => handleDelete(review.id)} color='secondary' aria-label="delete" className={classes.margin}>
                 <DeleteIcon fontSize="small" />
               </IconButton>
             </CardActions>
