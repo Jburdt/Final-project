@@ -4,7 +4,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom';
-// import Link from '@material-ui/core/Link';
+import MovieAnimation from "../../src/MovieAnimation.json"
+
+import Lottie from "lottie-react"
 
 function Copyright() {
   return (
@@ -45,17 +47,16 @@ const Home = () => {
       <CssBaseline />
       <Container component="main" className={classes.main} maxWidth="sm">
         <Typography variant="h2" component="h1" gutterBottom>
-          Sticky footer
+          Hello Movie Fans!
         </Typography>
         <Typography variant="h5" component="h2" gutterBottom>
-          {'Pin a footer to the bottom of the viewport.'}
-          {'The footer will move as the main element of the page grows.'}
+          This is a place where we can share our thoughts about movies we have seen. Sign up and start 
+          creating reviews to share with the world!
         </Typography>
-        <Typography variant="body1">Sticky footer placeholder.</Typography>
+        <Lottie animationData={MovieAnimation} />
       </Container>
       <footer className={classes.footer}>
         <Container maxWidth="sm">
-          <Typography variant="body1">My sticky footer can be found here.</Typography>
           <Copyright />
         </Container>
       </footer>

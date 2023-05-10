@@ -10,6 +10,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import userReducer from './reducers/userReducer';
 
 function Copyright() {
   return (
@@ -46,6 +48,13 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = () => {
   const classes = useStyles();
+  const users = useSelector(state => state.userReducer)
+
+  console.log(users, "login.js")
+
+  const handleSubmit = () => {
+    console.log("loging submit button")
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -80,7 +89,7 @@ const Login = () => {
             id="password"
             autoComplete="current-password"
           />
-          <Button
+          <Button onClick={handleSubmit}
             type="submit"
             fullWidth
             variant="contained"

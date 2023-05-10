@@ -77,12 +77,10 @@ const NewReviewForm = () => {
                         onChange={null}
                         required
                       >
-                        <MenuItem value="Category">
-                          <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={null}>Ten</MenuItem>
-                        <MenuItem value={null}>Twenty</MenuItem>
-                        <MenuItem value={null}>Thirty</MenuItem>
+                        <MenuItem value="Category"></MenuItem>
+                        <MenuItem value={null}>Action</MenuItem>
+                        <MenuItem value={null}>Drama</MenuItem>
+                        <MenuItem value={null}>Comedy</MenuItem>
                       </Select>
                     </Grid>
                     <Grid xs={12} item>

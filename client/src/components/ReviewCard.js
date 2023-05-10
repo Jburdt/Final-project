@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
 const cards = [1];
 
 const ReviewCard = () => {
-  const reviews  = useSelector(store => store.reviewsReducer);
+  const reviews  = useSelector(state => state.reviewsReducer);
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -50,6 +50,10 @@ const ReviewCard = () => {
   const handleDelete = () => {
     // dispatch(deleteReviews(review.id))
     dispatch(deleteReviews(reviews.id))
+  };
+
+  const handleEdit = () => {
+    console.log('Push to edit form')
   };
 
 
@@ -79,7 +83,7 @@ const ReviewCard = () => {
               <Button size="small" color="primary">
                 View
               </Button>
-              <Button size="small" color="primary">
+              <Button onClick={handleEdit} size="small" color="primary">
                 Edit
               </Button>
               <IconButton onClick={handleDelete} color='secondary' aria-label="delete" className={classes.margin}>
