@@ -5,12 +5,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom';
 import MovieAnimation from "../../src/MovieAnimation.json"
-
 import Lottie from "lottie-react"
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary">
+    <Typography align='center' variant="body2" color="textSecondary">
       {'Copyright © '}
       <Link color="inherit" component={ Link } to="/">
         Burd's Movie Reviews
