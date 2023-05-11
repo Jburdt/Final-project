@@ -41,8 +41,6 @@ const ReviewCard = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  // console.log(reviews, "inside review card")
-
   // DELETE REQUEST
   const handleDelete = (id) => {
     dispatch(deleteReviews(id))
@@ -52,21 +50,18 @@ const ReviewCard = () => {
     console.log('Push to edit form')
   };
 
-
   return (
     <Container className={classes.cardGrid} maxWidth="lg">
     <Grid container spacing={4}>
       {reviews.map((review) => (
         <Grid item key={review.id} xs={12} sm={6} md={3}>
           <Card className={classes.card}>
-            <CardMedia
-              className={classes.cardMedia}
-              image="https://source.unsplash.com/random"
+            <CardMedia className={classes.cardMedia}
+              image="/static/images/cards/paella.jpg"
               title="Image title"
-            />
+            >src={review.image}</CardMedia>
             <CardContent className={classes.cardContent}>
-                  <Typography key={review.id} 
-                  gutterBottom variant="h5" component="h2">
+                  <Typography gutterBottom variant="h5" component="h2">
                     {review.title}
                   </Typography>
               <Typography>
