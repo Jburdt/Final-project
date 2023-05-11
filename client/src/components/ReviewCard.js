@@ -56,10 +56,12 @@ const ReviewCard = () => {
       {reviews.map((review) => (
         <Grid item key={review.id} xs={12} sm={6} md={3}>
           <Card className={classes.card}>
-            <CardMedia className={classes.cardMedia}
+            <CardMedia
+              className={classes.cardMedia}
               image="/static/images/cards/paella.jpg"
               title="Image title"
-            >src={review.image}</CardMedia>
+              src={review.image}
+            />
             <CardContent className={classes.cardContent}>
                   <Typography gutterBottom variant="h5" component="h2">
                     {review.title}

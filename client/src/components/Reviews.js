@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom';
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import ReviewCard from './ReviewCard';
 
 const Copyright = () => {
@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Reviews = () => {
   const classes = useStyles();
-  // const reviews = useSelector((store) => store.reviewsReducer);
+  const reviews = useSelector((store) => store.reviewsReducer);
 
   return (
     <>

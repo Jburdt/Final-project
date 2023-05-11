@@ -12,7 +12,7 @@ import { loadReviews } from "./components/actions/Reviews";
 import { loadUsers } from "./components/actions/User";
 
 const App = () => {
-  // const reviews = useSelector((store) => store.reviewsReducer);
+  const reviews = useSelector((store) => store.reviewsReducer);
   const reduxStore = useSelector((store) => store.userReducer)
   const dispatch = useDispatch();
   

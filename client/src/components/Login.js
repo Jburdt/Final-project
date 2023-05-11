@@ -11,7 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import userReducer from './reducers/userReducer';
+// import userReducer from './reducers/userReducer';
 
 function Copyright() {
   return (
