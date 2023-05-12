@@ -1,5 +1,4 @@
 puts "Seeding data!"
-
 User.destroy_all
 Category.destroy_all
 Comment.destroy_all
