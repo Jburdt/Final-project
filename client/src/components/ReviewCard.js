@@ -3,6 +3,7 @@ import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteReviews } from './actions/Reviews';
+import { useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -37,14 +38,16 @@ const ReviewCard = () => {
   const reviews  = useSelector(state => state.reviewsReducer);
   const classes = useStyles();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // DELETE REQUEST
   const handleDelete = (id) => {
     dispatch(deleteReviews(id))
   };
 
+  // EDIT REQUEST
   const handleEdit = () => {
-    console.log('Push to edit form')
+    navigate('/reviews/:id/edit')
   };
 
   return (

@@ -1,4 +1,4 @@
-import { headers } from "../../Global";
+// import { headers } from "../../Global";
 
 // Get reviews action
 export const loadReviews = () => {
