@@ -46,7 +46,7 @@ class ReviewsController < ApplicationController
 
   # PARAMS FOR REVIEW
   def review_params
-    params.permit(:title, :content, :user_id, :category_id, :image_url)
+    params.permit(:title, :content, :user_id, :category_id, :image)
   end
 
   # FINDS ONE REVIEW
