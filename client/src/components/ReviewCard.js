@@ -66,7 +66,7 @@ const ReviewCard = () => {
                 {review.title}
               </Typography>
               <Typography>
-                {review.content}
+                {review.content.split('').slice(0, 150).join('') + "..."}
               </Typography>
             </CardContent>
             <CardActions>
