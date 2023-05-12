@@ -16,8 +16,7 @@ export const loadReviews = () => {
 export const deleteReviews = (id) => {
   return dispatch => {
     fetch(`/reviews/${ id }`, {
-      method: "DELETE",
-      headers
+      method: "DELETE"
     })
     .then(r => r.json())
     .then(data => {
