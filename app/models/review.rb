@@ -5,5 +5,5 @@ class Review < ApplicationRecord
   belongs_to :author, class_name: "User", foreign_key: "user_id"
 
   validates :title, presence: true
-  validates :content, length: { maximum: 1500 }
+  validates :content, length: { maximum: 2500 }
 end
