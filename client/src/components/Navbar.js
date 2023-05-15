@@ -31,7 +31,7 @@ const Navbar = () => {
             Burd's Movie Reviews
           </Typography>
             <Button component={ Link } to="/" color="inherit">Home</Button>
-            <Button component={ Link } to="" color="inherit">Profile</Button>
+            <Button component={ Link } to="/user/profile" color="inherit">Profile</Button>
             <Button component={ Link } to="/reviews" color="inherit">Reviews</Button>
             <Button component={ Link } to="/signup" color="inherit">Signup</Button>
             <Button component={ Link } to="/login" color="inherit">Login</Button>

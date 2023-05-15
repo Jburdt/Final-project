@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { loadReviews } from "./components/actions/Reviews";
 import { loadUsers } from "./components/actions/User";
 import EditReviewForm from "./components/EditReviewForm";
+import UserProfile from "./components/UserProfile";
 
 const App = () => {
   // const reduxStore = useSelector((store) => store.userReducer)
@@ -39,6 +40,7 @@ const App = () => {
       <Route path="/login" element={ <Login /> } />
       <Route path="*" element={ <Error /> } />
       <Route path="/reviews/:id/edit" element={ <EditReviewForm /> }/>
+      <Route path="/user/profile" element={ <UserProfile /> }/>
     </Routes>
    </Router>
   )
