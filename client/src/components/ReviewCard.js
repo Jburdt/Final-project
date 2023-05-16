@@ -50,7 +50,7 @@ const ReviewCard = () => {
     navigate('/reviews/:id/edit')
   };
 
-
+  // debugger
   return (
     <Container className={classes.cardGrid} maxWidth="lg">
     <Grid container spacing={4}>
@@ -71,6 +71,9 @@ const ReviewCard = () => {
               </Typography>
               <Typography>
                 {review.content.split('').slice(0, 150).join('') + "..."}
+              </Typography>
+              <Typography>
+                Reviewer: {review.author.username}
               </Typography>
             </CardContent>
             <CardActions>
