@@ -8,6 +8,4 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
   post "/signup", to: "sessions#create"
   get "/me", to: "users#show"
-
-  get '/review/categories', to: "reviews#categories"
 end

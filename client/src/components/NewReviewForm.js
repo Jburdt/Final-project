@@ -79,7 +79,7 @@ const NewReviewForm = () => {
                         onChange={null}
                         required
                       >
-                        {categories.map(category => <MenuItem key={category.category}>{category.category}</MenuItem> )}
+                        {categories.map(item => <MenuItem key={item.category}>{item.category}</MenuItem> )}
                       </Select>
                     </Grid>
                     <Grid xs={12} item>

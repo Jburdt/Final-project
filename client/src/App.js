@@ -15,10 +15,7 @@ import UserProfile from "./components/UserProfile";
 import { loadCategories } from "./components/actions/Category";
 
 const App = () => {
-  // const reduxStore = useSelector((store) => store.userReducer)
   const dispatch = useDispatch();
-  
-  // const users = useSelector((store) => store.userReducer);
   
   // LOADS REVIEWS
   useEffect(() => {

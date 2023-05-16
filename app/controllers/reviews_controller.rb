@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  skip_before_action :authorize, only: [:index, :destroy]
+  skip_before_action :authorize, only: [:index]
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
   # SHOWS ALL REVIEWS
@@ -22,7 +22,7 @@ class ReviewsController < ApplicationController
 
   # DELETES REVIEW 
     def destroy
-      deleted_review = @current_user.reviews.find(params[:id])
+      deleted_review = @current_user.reviews.find_by(id: params[:id])
       if deleted_review
         deleted_review.destroy
         head :no_content

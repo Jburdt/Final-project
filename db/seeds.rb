@@ -5,14 +5,14 @@ Comment.destroy_all
 Review.destroy_all
 
 # Category
-action = Category.create!(category: "action")
-comedy = Category.create!(category: "comedy")
-drama = Category.create!(category: "drama")
-fantasy = Category.create!(category: "fantasy")
-horror = Category.create!(category: "horror")
-mystery = Category.create!(category: "mystery")
-romance = Category.create!(category: "romance")
-thriller = Category.create!(category: "thriller")
+action = Category.create!(category: "Action")
+comedy = Category.create!(category: "Comedy")
+drama = Category.create!(category: "Drama")
+fantasy = Category.create!(category: "Fantasy")
+horror = Category.create!(category: "Horror")
+mystery = Category.create!(category: "Mystery")
+romance = Category.create!(category: "Romance")
+thriller = Category.create!(category: "Thriller")
 
 # User
 josh = User.create!(name: "Josh", username: "Josh1", password: "123456", admin: true)

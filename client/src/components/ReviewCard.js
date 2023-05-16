@@ -66,6 +66,9 @@ const ReviewCard = () => {
               <Typography gutterBottom variant="h5" component="h2">
                 {review.title}
               </Typography>
+              <Typography gutterBottom variant="h6" component="h2">
+                {review.category.category}
+              </Typography>
               <Typography>
                 {review.content.split('').slice(0, 150).join('') + "..."}
               </Typography>
