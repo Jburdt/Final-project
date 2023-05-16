@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     render json: users, status: :ok
   end
 
-  # SIGNUP / LOGIN
+  # SIGNUP
   def create
     user = User.create!(user_params)
     session[:user_id] = user.id

@@ -50,7 +50,6 @@ const ReviewCard = () => {
     navigate('/reviews/:id/edit')
   };
 
-  // debugger
   return (
     <Container className={classes.cardGrid} maxWidth="lg">
     <Grid container spacing={4}>

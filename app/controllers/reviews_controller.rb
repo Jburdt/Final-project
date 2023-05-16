@@ -44,6 +44,11 @@ class ReviewsController < ApplicationController
 
   private
 
+  #GETS ON REVIEW
+  def find_review
+    Review.find_by(id: params[:id])
+  end
+
   # PARAMS FOR REVIEW
   def review_params
     params.permit(:title, :content, :user_id, :category_id, :image)
