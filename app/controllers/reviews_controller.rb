@@ -21,21 +21,15 @@ class ReviewsController < ApplicationController
   end
 
   # DELETES REVIEW 
-    def destroy
-      deleted_review = @current_user.reviews.find_by(id: params[:id])
-      if deleted_review
-        deleted_review.destroy
-        head :no_content
-      else
-        render json: { errors: ["Not authorized"] }, status: :unauthorized
-      end
+  def destroy
+    deleted_review = @current_user.reviews.find_by(id: params[:id])
+    if deleted_review
+      deleted_review.destroy
+      head :no_content
+    else
+      render json: { errors: ["Not authorized"] }, status: :unauthorized
     end
-
-  # REVIEW CATEGORIES
-    def categories
-      categories = Review.all.map { |review| review.category }
-      render json: categories, status: :ok
-    end
+  end
 
   # UPDATES REVIEW
   def update
