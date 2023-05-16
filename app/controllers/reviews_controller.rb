@@ -31,6 +31,12 @@ class ReviewsController < ApplicationController
       end
     end
 
+  # REVIEW CATEGORIES
+    def categories
+      categories = Review.all.map { |review| review.category }
+      render json: categories, status: :ok
+    end
+
   # UPDATES REVIEW
   def update
     review = @current_user.reviews.find(params[:id])

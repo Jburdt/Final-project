@@ -8,6 +8,7 @@ import Container from '@material-ui/core/Container';
 import AddIcon from '@material-ui/icons/Add';
 import { Button, Card, CardContent, FormHelperText, Grid, MenuItem, Select, TextField } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function Copyright() {
   return (
@@ -44,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
 
 const NewReviewForm = () => {
   const classes = useStyles();
+  const categories = useSelector(state => state.categoriesReducer);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -66,21 +68,18 @@ const NewReviewForm = () => {
                       <TextField label="Image link" placeholder='Enter Image link' variant='outlined' fullWidth required/>
                     </Grid>
                     <Grid xs={12} item>
-                    <TextField label="Review" multiline rows={10} placeholder='Enter Review' variant='outlined' fullWidth required/>
+                    <TextField label="Review" multiline minRows={10} placeholder='Enter Review' variant='outlined' fullWidth required/>
                     </Grid>
                     <Grid xs={12} item>
                       <FormHelperText>Select a Category</FormHelperText>
                       <Select fullWidth variant='outlined'
                         labelId="demo-simple-select-disabled-label"
                         id="demo-simple-select-filled"
-                        // value={null}
+                        value={''}
                         onChange={null}
                         required
                       >
-                        <MenuItem value="Category"></MenuItem>
-                        <MenuItem value={null}>Action</MenuItem>
-                        <MenuItem value={null}>Drama</MenuItem>
-                        <MenuItem value={null}>Comedy</MenuItem>
+                        {categories.map(category => <MenuItem key={category.category}>{category.category}</MenuItem> )}
                       </Select>
                     </Grid>
                     <Grid xs={12} item>

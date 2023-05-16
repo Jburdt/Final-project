@@ -1,7 +1,16 @@
 import { Button, Card, CardContent, Grid, MenuItem, Select, TextField, Typography } from '@material-ui/core';
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 const EditReviewForm = () => {
+  const reviews = useSelector(state => state.reviewsReducer);
+  console.log('Review Card', reviews)
+
+  reviews.map((review)=> {
+    return console.log(review.category)
+  })
+
+
   return (
     <div className='ReviewEditForm'> 
       <Typography gutterBottom variant='h3' align='center' >
@@ -21,7 +30,7 @@ const EditReviewForm = () => {
                 <TextField label=" Content" placeholder='Enter Content' variant='outlined' fullWidth multiline minRows={10} />
               </Grid>
 
-              <Grid item style={{margin:"10px"}}>
+              {/* <Grid item style={{margin:"10px"}}>
                 <Select
                   variant='outlined' 
                   fullWidth 
@@ -35,6 +44,22 @@ const EditReviewForm = () => {
                 </MenuItem>
                 <MenuItem value={null}>Ten</MenuItem>
                 </Select>
+              </Grid> */}
+              
+              <Grid item style={{margin:"10px"}}>
+                <Select
+                  variant='outlined' 
+                  fullWidth 
+                  id="CategorySelect"
+                  value={''}
+                  onChange={null}
+                  displayEmpty
+                  >
+                  {/* {reviews.map((review) => {
+                    return <MenuItem key={review.id} value={review.category}>{review.category}</MenuItem>
+                  })} */}
+                
+                </Select>
               </Grid>
 
               <Grid item style={{margin:"10px"}}>
@@ -47,6 +72,6 @@ const EditReviewForm = () => {
       </Card>
     </div>
   )
-}
+};
 
 export default EditReviewForm;

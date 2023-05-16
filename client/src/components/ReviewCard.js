@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ReviewCard = () => {
-  const reviews  = useSelector(state => state.reviewsReducer);
+  const reviews = useSelector(state => state.reviewsReducer);
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -49,6 +49,7 @@ const ReviewCard = () => {
   const handleEdit = () => {
     navigate('/reviews/:id/edit')
   };
+
 
   return (
     <Container className={classes.cardGrid} maxWidth="lg">

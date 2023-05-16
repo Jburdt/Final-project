@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Error from "./components/Error";
 import Home from "./components/Home";
@@ -12,6 +12,7 @@ import { loadReviews } from "./components/actions/Reviews";
 import { loadUsers } from "./components/actions/User";
 import EditReviewForm from "./components/EditReviewForm";
 import UserProfile from "./components/UserProfile";
+import { loadCategories } from "./components/actions/Category";
 
 const App = () => {
   // const reduxStore = useSelector((store) => store.userReducer)
@@ -27,6 +28,11 @@ const App = () => {
   // LOADS USERS
   useEffect(() => {
     dispatch(loadUsers())
+  }, [dispatch]);
+
+  // LOAD CATEGORIES
+  useEffect(() => {
+    dispatch(loadCategories())
   }, [dispatch]);
 
   return (
