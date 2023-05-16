@@ -38,7 +38,7 @@ class ReviewsController < ApplicationController
         review.update!(review_params)
         render json: review, status: :ok
       else
-        render json: { errors: ["Not authorized"] }, status: :unauthorized
+        render json: { errors: ["Not authorized"] }, status: :unauthorized 
       end
   end
 

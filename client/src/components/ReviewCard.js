@@ -72,7 +72,7 @@ const ReviewCard = () => {
                 {review.content.split('').slice(0, 150).join('') + "..."}
               </Typography>
               <Typography>
-                Reviewer: {review.author.username}
+                <em style={{color: "red"}}>Published by: {review.author.username}</em>
               </Typography>
             </CardContent>
             <CardActions>

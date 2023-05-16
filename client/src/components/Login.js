@@ -11,7 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-// import userReducer from './reducers/userReducer';
+import userReducer from './reducers/userReducer';
 
 function Copyright() {
   return (
@@ -52,7 +52,8 @@ const Login = () => {
 
   console.log(users, "login.js")
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     console.log("loging submit button")
   };
 
@@ -66,7 +67,7 @@ const Login = () => {
         <Typography component="h1" variant="h5">
           Login
         </Typography>
-        <form className={classes.form} noValidate>
+        <form onSubmit={handleSubmit} className={classes.form} noValidate>
           <TextField
             variant="outlined"
             margin="normal"
@@ -77,6 +78,7 @@ const Login = () => {
             name="username"
             autoComplete="username"
             autoFocus
+            // onChange={(e) => setUsername(e.target.value)}
           />
           <TextField
             variant="outlined"
@@ -88,8 +90,9 @@ const Login = () => {
             type="password"
             id="password"
             autoComplete="current-password"
+            // onChange={(e) => setPassword(e.target.value)}
           />
-          <Button onClick={handleSubmit}
+          <Button 
             type="submit"
             fullWidth
             variant="contained"

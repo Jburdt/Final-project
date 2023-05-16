@@ -3,8 +3,10 @@ export const loadUsers = () => {
     fetch("/users")
     .then(r => r.json())
     .then(users => {
-      const action = { type: "LOAD_USERS",
-      payload: users}
+      const action = { 
+        type: "LOAD_USERS",
+        payload: users
+      }
       dispatch(action)
     })
   }

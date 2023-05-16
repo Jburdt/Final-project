@@ -20,12 +20,13 @@ const App = () => {
   // LOADS REVIEWS
   useEffect(() => {
     dispatch(loadReviews())
+    dispatch(loadUsers())
   }, [dispatch]);
 
   // LOADS USERS
-  useEffect(() => {
-    dispatch(loadUsers())
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(loadUsers())
+  // }, [dispatch]);
 
   // LOAD CATEGORIES
   useEffect(() => {
