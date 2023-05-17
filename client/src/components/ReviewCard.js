@@ -1,4 +1,4 @@
-import { Button, Card, CardActions, CardContent, IconButton, Typography, CardMedia, makeStyles, Container, Grid, Modal } from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, IconButton, Typography, CardMedia, makeStyles, Container, Grid, Modal, Chip } from '@material-ui/core';
 import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useDispatch, useSelector } from 'react-redux';
@@ -87,6 +87,8 @@ const ReviewCard = () => {
       transform: `translate(-${top}%, -${left}%)`,
     };
   };
+
+
   return (
     <Container className={classes.cardGrid} maxWidth="lg">
     <Grid container spacing={4}>
@@ -105,9 +107,7 @@ const ReviewCard = () => {
                 {review.title}
               </Typography>
 
-              <Typography gutterBottom variant="h6" component="h2">
-                {review.category.category}
-              </Typography>
+              <Chip label={review.category.category}></Chip>
 
               <Typography>
                 {review.content.split('').slice(0, 150).join('') + "..."}
