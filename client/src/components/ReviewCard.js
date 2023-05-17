@@ -1,4 +1,4 @@
-import { Button, Card, CardActions, CardContent, IconButton, Typography, CardMedia, makeStyles, Container, Grid, Modal, Chip } from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, IconButton, Typography, CardMedia, makeStyles, Container, Grid, Modal, Chip, Accordion } from '@material-ui/core';
 import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useDispatch, useSelector } from 'react-redux';
@@ -42,6 +42,18 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
+  root: {
+    width: '100%',
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    flexBasis: '33.33%',
+    flexShrink: 0,
+  },
+  secondaryHeading: {
+    fontSize: theme.typography.pxToRem(15),
+    color: theme.palette.text.secondary,
+  },
 }));
 
 const ReviewCard = () => {
@@ -51,8 +63,7 @@ const ReviewCard = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [modalStyle] = useState(getModalStyle);
-
-
+  const [expanded, setExpanded] = useState(false);
 
   // DELETE REQUEST
   const handleDelete = (id) => {
@@ -88,6 +99,10 @@ const ReviewCard = () => {
     };
   };
 
+  const handleChange = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
+  };
+
 
   return (
     <Container className={classes.cardGrid} maxWidth="lg">
@@ -103,7 +118,7 @@ const ReviewCard = () => {
             />
             <CardContent className={classes.cardContent}>
 
-              <Typography gutterBottom variant="h5" component="h2">
+              <Typography variant="h5" component="h2">
                 {review.title}
               </Typography>
 
@@ -134,6 +149,8 @@ const ReviewCard = () => {
                   <em style={{color: "red"}}>Published by: {review.author.username}</em>
                   </div>
               </Modal>
+
+              {/* <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1') /> */}
 
               <Button variant="outlined" onClick={handleEdit} size="small" color="primary">
                 Edit
