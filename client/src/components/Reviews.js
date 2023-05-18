@@ -7,6 +7,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom';
 import ReviewCard from './ReviewCard';
+import { useSelector } from 'react-redux';
+// import { TextField } from '@material-ui/core';
+import commentsReducer from './reducers/CommentsReducer';
 
 const Copyright = () => {
   return (
@@ -55,6 +58,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Reviews = () => {
   const classes = useStyles();
+
+  const {comments} = useSelector(store => store.commentsReducer)
 
   return (
     <>

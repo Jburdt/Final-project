@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
+  skip_before_action :authorize, only: :index
 
   # GETS ALL COMMENTS
   def index

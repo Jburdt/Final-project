@@ -1,10 +1,11 @@
-import { Button, Card, CardActions, CardContent, IconButton, Typography, CardMedia, makeStyles, Container, Grid, Modal, Chip, Accordion } from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, IconButton, Typography, CardMedia, makeStyles, Container, Grid, Modal, Chip, Accordion, AccordionDetails, AccordionSummary } from '@material-ui/core';
 import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteReviews } from './actions/Reviews';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -57,13 +58,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ReviewCard = () => {
-  const reviews = useSelector(state => state.reviewsReducer);
+  const {reviews, comments} = useSelector(state => state.reviewsReducer);
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [modalStyle] = useState(getModalStyle);
   const [expanded, setExpanded] = useState(false);
+  
+  console.log(comments, "comments", reviews, "reviews")
+
+  // const comment = comments.map((comment, index) => (<Typography key={index}>{comment}</Typography>))
 
   // DELETE REQUEST
   const handleDelete = (id) => {
@@ -145,12 +150,31 @@ const ReviewCard = () => {
                 onClose={handleClose}>
                   <div style={modalStyle} className={classes.paper}>
                   <h2 id="simple-modal-title">{review.title}</h2>
-                  <p id="simple-modal-description">{review.content}</p>
+                  <p id="simple-modal-description">{review.content}
+                  <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon />}
+                      aria-controls="panel1bh-content"
+                      id="panel1bh-header"
+                    >
+                      <Typography className={classes.heading}>Comments:</Typography>
+                      <Typography className={classes.secondaryHeading}>I am an accordion</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      
+                    <Typography>
+                      Blah blah 
+                    </Typography>
+
+
+                    </AccordionDetails>
+                  </Accordion>
+                  </p>
                   <em style={{color: "red"}}>Published by: {review.author.username}</em>
                   </div>
               </Modal>
 
-              {/* <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1') /> */}
+              
 
               <Button variant="outlined" onClick={handleEdit} size="small" color="primary">
                 Edit

@@ -13,20 +13,17 @@ import { loadUsers } from "./components/actions/User";
 import EditReviewForm from "./components/EditReviewForm";
 import UserProfile from "./components/UserProfile";
 import { loadCategories } from "./components/actions/Category";
+import { loadComments } from "./components/actions/Comments";
 
 const App = () => {
   const dispatch = useDispatch();
   
-  // LOADS REVIEWS
+  // LOADS REVIEWS/ USERS
   useEffect(() => {
     dispatch(loadReviews())
     dispatch(loadUsers())
+    dispatch(loadComments())
   }, [dispatch]);
-
-  // LOADS USERS
-  // useEffect(() => {
-  //   dispatch(loadUsers())
-  // }, [dispatch]);
 
   // LOAD CATEGORIES
   useEffect(() => {
