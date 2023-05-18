@@ -21,14 +21,8 @@ class CommentsController < ApplicationController
   end
 
   # UPDATES ONE COMMENT
-  # def update
-  #   comment = find_comment
-  #   comment.update!(comment_params)
-  #   render json: comment, status: :ok
-  # end
-
   def update
-    comment = @current_user.comments.find(params[:id])
+    comment = @current_user.comments.find_by(:id params[:id])
       if comment
         comment.update!(comment_params)
         render json: comment, status: :ok
@@ -38,14 +32,8 @@ class CommentsController < ApplicationController
   end
 
   # DELETES ONE COMMENT
-  # def destroy
-  #   comment = find_comment
-  #   comment.destroy
-  #   head :no_content
-  # end
-
   def destroy
-    deleted_comment = @current_user.comments.find(params[:id])
+    deleted_comment = @current_user.comments.find_by(:id params[:id])
     if deleted_comment
       deleted_comment.destroy
       head :no_content

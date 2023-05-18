@@ -7,9 +7,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom';
 import ReviewCard from './ReviewCard';
-import { useSelector } from 'react-redux';
-// import { TextField } from '@material-ui/core';
-import commentsReducer from './reducers/CommentsReducer';
 
 const Copyright = () => {
   return (
@@ -59,8 +56,6 @@ const useStyles = makeStyles((theme) => ({
 const Reviews = () => {
   const classes = useStyles();
 
-  const {comments} = useSelector(store => store.commentsReducer)
-
   return (
     <>
       <CssBaseline />
@@ -71,9 +66,7 @@ const Reviews = () => {
               Movie Reviews
             </Typography>
             <Typography variant="h5" align="center" color="textSecondary" paragraph>
-              Something short and leading about the collection below—its contents, the creator, etc.
-              Make it short and sweet, but not too short so folks dont simply skip over it
-              entirely.
+              Don't be afraid to speak your mind. These reviews are judgement free!
             </Typography>
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justifyContent="center">
