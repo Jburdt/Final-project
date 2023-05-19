@@ -9,9 +9,14 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import userReducer from './reducers/userReducer';
+import { setErrors } from './actions/Errors';
+import { headers } from '../Global';
+import { useState } from 'react';
+import { login } from './actions/Login';
+import { useEffect } from 'react';
 
 function Copyright() {
   return (
@@ -48,13 +53,25 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = () => {
   const classes = useStyles();
-  const users = useSelector(state => state.userReducer)
+  const {loggedIn} = useSelector(store => store.userReducer);
+  const [username, setuserName] = useState('');
+  const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  console.log(users, "login.js")
+  console.log(loggedIn, "login.js")
+
+  useEffect(() => {
+    if(loggedIn) {
+      navigate("/")
+    }
+  }, [navigate, loggedIn])
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("loging submit button")
+    const user = {username, password}
+    dispatch(login(user));
+
   };
 
   return (
@@ -78,7 +95,8 @@ const Login = () => {
             name="username"
             autoComplete="username"
             autoFocus
-            // onChange={(e) => setUsername(e.target.value)}
+            value={username}
+            onChange={(e) => setuserName(e.target.value)}
           />
           <TextField
             variant="outlined"
@@ -90,7 +108,8 @@ const Login = () => {
             type="password"
             id="password"
             autoComplete="current-password"
-            // onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <Button 
             type="submit"

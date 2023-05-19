@@ -22,6 +22,17 @@ const useStyles = makeStyles((theme) => ({
 const Navbar = () => {
   const classes = useStyles();
 
+  // const loggedInLinks = () => {
+  //   <Button component={ Link } to="/user/profile" color="inherit">Profile</Button>
+  //   <Button component={ Link } to="/reviews" color="inherit">Reviews</Button>
+  //   <Button component={ Link } to="/" color="secondary">Logout</Button>
+  // };
+
+  // const loggedOutLinks = () => {
+  //   <Button component={ Link } to="/signup" color="inherit">Signup</Button>
+  //   <Button component={ Link } to="/login" color="inherit">Login</Button>
+  // }
+
   return (
     <div className="Navbar">
       <AppBar position="static">
@@ -30,6 +41,7 @@ const Navbar = () => {
           <Typography variant="h6" className={classes.title}>
             Burd's Movie Reviews
           </Typography>
+            {/* {loggedIn ? loggedInLinks() : loggedOutLinks()} */}
             <Button component={ Link } to="/" color="inherit">Home</Button>
             <Button component={ Link } to="/user/profile" color="inherit">Profile</Button>
             <Button component={ Link } to="/reviews" color="inherit">Reviews</Button>

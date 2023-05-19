@@ -163,7 +163,7 @@ const ReviewCard = () => {
                     <AccordionDetails>
                       
                     <Typography>
-                      Blah blah 
+                      Blah blah
                     </Typography>
 
 

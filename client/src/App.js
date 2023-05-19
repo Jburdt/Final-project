@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Error from "./components/Error";
 import Home from "./components/Home";
@@ -14,15 +14,22 @@ import EditReviewForm from "./components/EditReviewForm";
 import UserProfile from "./components/UserProfile";
 import { loadCategories } from "./components/actions/Category";
 import { loadComments } from "./components/actions/Comments";
+import { useState } from "react";
+import { setErrors } from "./components/actions/Errors";
+
 
 const App = () => {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
+  const users = useSelector(state => state.userReducer)
+  console.log(users, "users")
   
   // LOADS REVIEWS/ USERS
   useEffect(() => {
     dispatch(loadReviews())
     dispatch(loadUsers())
     dispatch(loadComments())
+    dispatch(setErrors())
   }, [dispatch]);
 
   // LOAD CATEGORIES
