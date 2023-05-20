@@ -1,10 +1,10 @@
-import { Button, Card, CardContent, Grid, MenuItem, Select, TextField, Typography } from '@material-ui/core';
+import { Button, Card, CardContent, Grid, Select, TextField, Typography } from '@material-ui/core';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
 const EditReviewForm = () => {
   const reviews = useSelector(state => state.reviewsReducer);
-  console.log('Review Card', reviews)
+  console.log('Review Card', reviews, "edit review form")
 
   reviews.map((review)=> {
     return console.log(review.category)

@@ -58,15 +58,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ReviewCard = () => {
-  const {reviews, comments} = useSelector(state => state.reviewsReducer);
+  const {reviews} = useSelector(state => state.reviewsReducer);
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [modalStyle] = useState(getModalStyle);
   const [expanded, setExpanded] = useState(false);
-  
-  console.log(comments, "comments", reviews, "reviews")
 
   // const comment = comments.map((comment, index) => (<Typography key={index}>{comment}</Typography>))
 

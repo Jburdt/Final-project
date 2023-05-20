@@ -9,11 +9,10 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import userReducer from './reducers/userReducer';
-import { setErrors } from './actions/Errors';
-import { headers } from '../Global';
+// import userReducer from './reducers/userReducer';
+// import { clearErrors } from './actions/Errors';
 import { useState } from 'react';
 import { login } from './actions/Login';
 import { useEffect } from 'react';
@@ -59,11 +58,10 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  console.log(loggedIn, "login.js")
-
   useEffect(() => {
     if(loggedIn) {
       navigate("/")
+      // dispatch(clearErrors());
     }
   }, [navigate, loggedIn])
 
@@ -71,7 +69,6 @@ const Login = () => {
     e.preventDefault();
     const user = {username, password}
     dispatch(login(user));
-
   };
 
   return (
