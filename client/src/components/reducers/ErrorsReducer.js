@@ -1,5 +1,5 @@
 
-const errosReducer = (state = [], action) => {
+const errorsReducer = (state = [], action) => {
   switch(action.type) {
     case "SET_ERRORS":
       return action.payload;
@@ -10,4 +10,4 @@ const errosReducer = (state = [], action) => {
   };
 };
 
-export default errosReducer;
+export default errorsReducer;

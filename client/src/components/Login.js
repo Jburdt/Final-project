@@ -11,10 +11,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-// import userReducer from './reducers/userReducer';
 import { clearErrors } from './actions/Errors';
 import { useState } from 'react';
-// import { login } from './actions/Login';
 import { useEffect } from 'react';
 import { login } from './actions/User';
 
@@ -53,13 +51,16 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = () => {
   const classes = useStyles();
-  const loggedIn  = useSelector(store => store.userReducer.loggedIn);
+  const {loggedIn}  = useSelector(store => store.userReducer);
+  const errors = useSelector(store => store.errorsReducer)
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [ admin, setAdmin] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   console.log(loggedIn, 'login.js')
+  // console.log(errors, 'login.js')
 
   useEffect(() => {
     if(loggedIn === true) {
@@ -70,7 +71,7 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const user = {username, password}
+    const user = {username, password, admin}
     dispatch(login(user, navigate));
   };
 
@@ -111,6 +112,20 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             required={true}
           />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            name="admin"
+            label="admin"
+            type="admin"
+            id="admin"
+            autoComplete="current-admin"
+            value={admin}
+            onChange={(e) => setAdmin(e.target.value)}
+            required={true}
+            disabled
+          />
           <Button 
             type="submit"
             fullWidth
@@ -128,6 +143,10 @@ const Login = () => {
             </Grid>
           </Grid>
         </form>
+        
+      </div>
+      <div style={{ color: "red" }}>
+          {errors}
       </div>
       <Box mt={8}>
         <Copyright />

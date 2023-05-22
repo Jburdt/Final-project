@@ -43,6 +43,7 @@ export const login = (user, navigate) => {
       if(data.errors) {
         dispatch(setErrors(data.errors))
       } else {
+        console.log(data, "login action")
         const action = {
           type: "LOGIN_USER",
           payload: data
