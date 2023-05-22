@@ -118,7 +118,7 @@ const Login = () => {
             fullWidth
             name="admin"
             label="admin"
-            type="admin"
+            type="checked"
             id="admin"
             autoComplete="current-admin"
             value={admin}
