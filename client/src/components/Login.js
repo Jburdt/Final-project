@@ -12,7 +12,7 @@ import Container from '@material-ui/core/Container';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 // import userReducer from './reducers/userReducer';
-// import { clearErrors } from './actions/Errors';
+import { clearErrors } from './actions/Errors';
 import { useState } from 'react';
 import { login } from './actions/Login';
 import { useEffect } from 'react';
@@ -61,9 +61,9 @@ const Login = () => {
   useEffect(() => {
     if(loggedIn) {
       navigate("/")
-      // dispatch(clearErrors());
+      dispatch(clearErrors());
     }
-  }, [navigate, loggedIn])
+  }, [navigate, loggedIn, dispatch])
 
   const handleSubmit = (e) => {
     e.preventDefault();
