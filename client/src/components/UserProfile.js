@@ -7,8 +7,8 @@ const UserProfile = () => {
 
   return (
     <div>UserProfile
-      {currentUser.map((user) => {
-        return <h1>{user.name}</h1>
+      {currentUser.map((user, idx) => {
+        return <h1 key={idx}>{user.name}</h1>
       })}
       
     </div>

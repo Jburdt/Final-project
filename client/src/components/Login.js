@@ -14,8 +14,9 @@ import { useDispatch, useSelector } from 'react-redux';
 // import userReducer from './reducers/userReducer';
 import { clearErrors } from './actions/Errors';
 import { useState } from 'react';
-import { login } from './actions/Login';
+// import { login } from './actions/Login';
 import { useEffect } from 'react';
+import { login } from './actions/User';
 
 function Copyright() {
   return (
@@ -52,15 +53,17 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = () => {
   const classes = useStyles();
-  const {loggedIn} = useSelector(store => store.userReducer);
-  const [username, setuserName] = useState('');
+  const loggedIn  = useSelector(store => store.userReducer.loggedIn);
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  console.log(loggedIn, 'login.js')
+
   useEffect(() => {
-    if(loggedIn) {
-      navigate("/")
+    if(loggedIn === true) {
+      navigate("/reviews")
       dispatch(clearErrors());
     }
   }, [navigate, loggedIn, dispatch])
@@ -68,7 +71,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const user = {username, password}
-    dispatch(login(user));
+    dispatch(login(user, navigate));
   };
 
   return (
@@ -85,7 +88,7 @@ const Login = () => {
           <TextField
             variant="outlined"
             margin="normal"
-            required
+            required={true}
             fullWidth
             id="username"
             label="Username"
@@ -93,12 +96,11 @@ const Login = () => {
             autoComplete="username"
             autoFocus
             value={username}
-            onChange={(e) => setuserName(e.target.value)}
+            onChange={(e) => setUsername(e.target.value)}
           />
           <TextField
             variant="outlined"
             margin="normal"
-            required
             fullWidth
             name="password"
             label="Password"
@@ -107,6 +109,7 @@ const Login = () => {
             autoComplete="current-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required={true}
           />
           <Button 
             type="submit"

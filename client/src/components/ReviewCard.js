@@ -172,8 +172,6 @@ const ReviewCard = () => {
                   </div>
               </Modal>
 
-              
-
               <Button variant="outlined" onClick={handleEdit} size="small" color="primary">
                 Edit
               </Button>

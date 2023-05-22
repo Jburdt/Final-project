@@ -8,7 +8,7 @@ import Reviews from "./components/Reviews";
 import Signup from "./components/Signup";
 import { useEffect } from "react";
 import { loadReviews } from "./components/actions/Reviews";
-import { loadUsers } from "./components/actions/User";
+import { loadCurrentUser, loadUsers } from "./components/actions/User";
 import EditReviewForm from "./components/EditReviewForm";
 import UserProfile from "./components/UserProfile";
 import { loadCategories } from "./components/actions/Category";
@@ -16,15 +16,18 @@ import { loadComments } from "./components/actions/Comments";
 import { setErrors } from "./components/actions/Errors";
 
 const App = () => {
-  const users = useSelector(state => state.userReducer)
+  const allState = useSelector(store => store)
   const dispatch = useDispatch();
+
+  console.log(allState, "in app.ja")
   
   // LOADS REVIEWS/ USERS
   useEffect(() => {
     dispatch(loadReviews())
     dispatch(loadUsers())
+    dispatch(loadCurrentUser())
     dispatch(loadComments())
-    dispatch(setErrors())
+    // dispatch(setErrors())
   }, [dispatch]);
 
   // LOAD CATEGORIES

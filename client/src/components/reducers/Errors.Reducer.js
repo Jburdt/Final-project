@@ -1,8 +1,5 @@
-const initialState = {
-  erros: [],
-};
 
-const errosReducer = (state = initialState, action) => {
+const errosReducer = (state = [], action) => {
   switch(action.type) {
     case "SET_ERRORS":
       return action.payload;
