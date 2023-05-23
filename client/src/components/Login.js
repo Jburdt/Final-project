@@ -55,23 +55,20 @@ const Login = () => {
   const errors = useSelector(store => store.errorsReducer)
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [ admin, setAdmin] = useState(null);
+  // const [ admin, setAdmin] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  console.log(loggedIn, 'login.js')
-  // console.log(errors, 'login.js')
-
   useEffect(() => {
     if(loggedIn === true) {
-      navigate("/reviews")
+      navigate("/")
       dispatch(clearErrors());
     }
   }, [navigate, loggedIn, dispatch])
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const user = {username, password, admin}
+    const user = {username, password}
     dispatch(login(user, navigate));
   };
 
@@ -112,7 +109,7 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             required={true}
           />
-          <TextField
+          {/* <TextField
             variant="outlined"
             margin="normal"
             fullWidth
@@ -125,7 +122,8 @@ const Login = () => {
             onChange={(e) => setAdmin(e.target.value)}
             required={true}
             disabled
-          />
+          /> */}
+
           <Button 
             type="submit"
             fullWidth

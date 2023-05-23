@@ -1,4 +1,4 @@
-import { Button, Card, CardActions, CardContent, IconButton, Typography, CardMedia, makeStyles, Container, Grid, Modal, Chip, Accordion, AccordionDetails, AccordionSummary } from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, IconButton, Typography, CardMedia, makeStyles, Container, Grid, Modal, Chip, Accordion, AccordionDetails, AccordionSummary, Divider, ListItem, ListItemAvatar, Avatar, ListItemText, List } from '@material-ui/core';
 import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useDispatch, useSelector } from 'react-redux';
@@ -148,27 +148,48 @@ const ReviewCard = () => {
                 onClose={handleClose}>
                   <div style={modalStyle} className={classes.paper}>
                   <h2 id="simple-modal-title">{review.title}</h2>
-                  <p id="simple-modal-description">{review.content}
-                  <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+                  <p id="simple-modal-description">{review.content}</p>
+                  {/* <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                     <AccordionSummary
                       expandIcon={<ExpandMoreIcon />}
                       aria-controls="panel1bh-content"
                       id="panel1bh-header"
                     >
                       <Typography className={classes.heading}>Comments:</Typography>
-                      <Typography className={classes.secondaryHeading}>I am an accordion</Typography>
+                      <Typography className={classes.secondaryHeading}>Click to see comments</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                       
                     <Typography>
-                      Blah blah
+                      comments should go here {review.comments}
                     </Typography>
 
-
                     </AccordionDetails>
-                  </Accordion>
-                  </p>
+                  </Accordion> */}
                   <em style={{color: "red"}}>Published by: {review.author.username}</em>
+                <List className={classes.root}>
+                  <ListItem alignItems="flex-start">
+                    <ListItemAvatar>
+                      <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="Brunch this weekend?"
+                      secondary={
+                        <React.Fragment>
+                          <Typography
+                            component="span"
+                            variant="body2"
+                            className={classes.inline}
+                            color="textPrimary"
+                          >
+                            Ali Connors
+                          </Typography>
+                          {" — I'll be in your neighborhood doing errands this…"}
+                        </React.Fragment>
+                      }
+                    />
+                  </ListItem>
+                </List>
                   </div>
               </Modal>
 
