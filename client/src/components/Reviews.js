@@ -93,7 +93,7 @@ const Reviews = () => {
       </main>
       <footer className={classes.footer}>
         <Typography variant="h6" align="center" gutterBottom>
-          Change this to something in reviews comp
+          End of Reviews
         </Typography>
         <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
           Thank you for supporting the page!
