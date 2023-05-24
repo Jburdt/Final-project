@@ -1,8 +1,7 @@
 const initialState = {
   users: [],
   currentUser: null,
-  loggedIn: false,
-  admin: null
+  loggedIn: false
 }
 
 const userReducer = (state = initialState, action) => {
@@ -15,6 +14,12 @@ const userReducer = (state = initialState, action) => {
         currentUser: action.payload,
         loggedIn: true,
         admin: null,
+      }
+    case "LOGOUT_USER":
+      return{
+        ...state,
+        currentUser: null,
+        loggedIn: false,
       }
       default: 
         return state

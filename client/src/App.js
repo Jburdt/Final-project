@@ -19,7 +19,7 @@ const App = () => {
   const allState = useSelector(store => store)
   const dispatch = useDispatch();
 
-  console.log(allState, "in app.js")
+  // console.log(allState, "in app.js")
   
   // LOADS REVIEWS/ USERS
   useEffect(() => {
