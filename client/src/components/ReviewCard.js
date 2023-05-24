@@ -66,8 +66,6 @@ const ReviewCard = () => {
   const [modalStyle] = useState(getModalStyle);
   const [expanded, setExpanded] = useState(false);
 
-  // const comment = comments.map((comment, index) => (<Typography key={index}>{comment}</Typography>))
-
   // DELETE REQUEST
   const handleDelete = (id) => {
     dispatch(deleteReviews(id))
@@ -149,7 +147,7 @@ const ReviewCard = () => {
                   <div style={modalStyle} className={classes.paper}>
                   <h2 id="simple-modal-title">{review.title}</h2>
                   <p id="simple-modal-description">{review.content}</p>
-                  {/* <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+                  <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                     <AccordionSummary
                       expandIcon={<ExpandMoreIcon />}
                       aria-controls="panel1bh-content"
@@ -165,7 +163,7 @@ const ReviewCard = () => {
                     </Typography>
 
                     </AccordionDetails>
-                  </Accordion> */}
+                  </Accordion>
                   <em style={{color: "red"}}>Published by: {review.author.username}</em>
               
                   </div>

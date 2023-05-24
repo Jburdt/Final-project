@@ -2,15 +2,13 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 const UserProfile = () => {
-  const currentUser = useSelector(state => state.userReducer);
-  console.log(currentUser)
+  const users = useSelector(store => store.userReducer);
+  console.log(users, "userprof")
 
   return (
     <div>UserProfile
-      {currentUser.map((user, idx) => {
-        return <h1 key={idx}>{user.name}</h1>
-      })}
-      
+      <ul>
+      </ul>
     </div>
   )
 }

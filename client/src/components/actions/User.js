@@ -89,10 +89,3 @@ export const logout = () => {
 //       })
 //   }
 // }
-
-// export const logoutUser = () => {
-//   // not using thunk because of no fetch in this action
-//   return {
-//     type: "LOGOUT_USER"
-//   }
-// }

@@ -39,7 +39,7 @@ const Navbar = () => {
   const loggedInLinks = () => {
     return (
       <>
-        <h1>Hello {currentUser.username}</h1>
+        <h2>Hello {currentUser.username}</h2>
         <Button component={ Link } to="/" color="inherit">Home</Button>
         <Button component={ Link } to="/reviews" color="inherit">Reviews</Button>
         <Button component={ Link } to="/user/profile" color="inherit">Profile</Button>
@@ -51,14 +51,13 @@ const Navbar = () => {
   const loggedOutLinks = () => {
     return (
       <>
-      <Button component={ Link } to="/signup" color="inherit">Signup</Button>
-      <Button component={ Link } to="/login" color="inherit">Login</Button>
+        <Button component={ Link } to="/signup" color="inherit">Signup</Button>
+        <Button component={ Link } to="/login" color="inherit">Login</Button>
       </>
     )
   };
 
   return (
-    
     <div className="Navbar">
       <AppBar position="static">
         <Toolbar>
@@ -67,12 +66,6 @@ const Navbar = () => {
             Burd's Movie Reviews
           </Typography>
             {loggedIn ? loggedInLinks() : loggedOutLinks()}
-            {/* <Button component={ Link } to="/" color="inherit">Home</Button>
-            <Button component={ Link } to="/user/profile" color="inherit">Profile</Button>
-            <Button component={ Link } to="/reviews" color="inherit">Reviews</Button>
-            <Button component={ Link } to="/signup" color="inherit">Signup</Button>
-            <Button component={ Link } to="/login" color="inherit">Login</Button>
-            <Button component={ Link } to="/" color="secondary" onClick={logoutUser}>Logout</Button> */}
         </Toolbar>
       </AppBar>
     </div>

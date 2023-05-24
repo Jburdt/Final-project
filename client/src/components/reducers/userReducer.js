@@ -13,7 +13,6 @@ const userReducer = (state = initialState, action) => {
         ...state,
         currentUser: action.payload,
         loggedIn: true,
-        admin: null,
       }
     case "LOGOUT_USER":
       return{
