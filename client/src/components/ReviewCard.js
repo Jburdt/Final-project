@@ -1,12 +1,10 @@
-import { Button, Card, CardActions, CardContent, IconButton, Typography, CardMedia, makeStyles, Container, Grid, Modal, Chip, Accordion, AccordionDetails, AccordionSummary, Divider, ListItem, ListItemAvatar, Avatar, ListItemText, List } from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, IconButton, Typography, CardMedia, makeStyles, Container, Grid, Modal, Chip, Accordion, AccordionDetails, AccordionSummary, Divider, List, ListItem, ListItemAvatar, Avatar, ListItemText, ListItemSecondaryAction } from '@material-ui/core';
 import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteReviews } from './actions/Reviews';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
 const useStyles = makeStyles((theme) => ({
   icon: {
     marginRight: theme.spacing(2),
@@ -64,7 +62,6 @@ const ReviewCard = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [modalStyle] = useState(getModalStyle);
-  const [expanded, setExpanded] = useState(false);
   
   // DELETE REQUEST
   const handleDelete = (id) => {
@@ -85,24 +82,20 @@ const ReviewCard = () => {
     setOpen(false);
   };
 
-  function rand() {
-    return Math.round(Math.random() * 20) - 10;
-  };
-
   function getModalStyle() {
-    const top = 50 + rand();
-    const left = 50 + rand();
-  
     return {
-      top: `${top}%`,
-      left: `${left}%`,
-      transform: `translate(-${top}%, -${left}%)`,
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      maxWidth: '90%',
+      maxHeight: '90%',
+      overflow: 'auto',
     };
   };
 
-  const handleChange = (panel) => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
-  };
+  // const handleChange = (panel) => (event, isExpanded) => {
+  //   setExpanded(isExpanded ? panel : false);
+  // };
 
   return (
     <Container className={classes.cardGrid} maxWidth="lg">
@@ -135,9 +128,13 @@ const ReviewCard = () => {
                 open={open}
                 onClose={handleClose}>
                   <div style={modalStyle} className={classes.paper}>
-                  <h2 id="simple-modal-title">{review.title}</h2>
-                  <p id="simple-modal-description">{review.content}</p>
-                  <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+                  <Typography variant='h4' id="simple-modal-title">{review.title}</Typography>
+                  <Typography><em style={{color: "red"}}>Published by: {review.author.username}</em></Typography>
+                  <Divider />
+                  <Typography variant='subtitle2' id="simple-modal-description">{review.content}</Typography>
+                  <Divider />
+                  <Typography variant='body1'>{null}</Typography>
+                  {/* <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                     <AccordionSummary
                       expandIcon={<ExpandMoreIcon />}
                       aria-controls="panel1bh-content"
@@ -147,12 +144,11 @@ const ReviewCard = () => {
                       <Typography className={classes.secondaryHeading}>Click to see comments</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
-                    <Typography>
-                      comments should go here
+                    <Typography className={classes.secondaryHeading}>
+                      <p>{review.comments.comment}</p>
                     </Typography>
                     </AccordionDetails>
-                  </Accordion>
-                  <em style={{color: "red"}}>Published by: {review.author.username}</em>
+                  </Accordion> */}
                   </div>
               </Modal>
               <Button variant="outlined" onClick={() => handleEdit(review.id)} size="small" color="primary">
