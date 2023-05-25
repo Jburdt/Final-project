@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 
 const NewReviewForm = () => {
   const classes = useStyles();
-  const categories = useSelector(state => state.categoriesReducer);
+  // const categories = useSelector(state => state.categoriesReducer);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -79,7 +79,7 @@ const NewReviewForm = () => {
                         onChange={null}
                         required
                       >
-                        {categories.map(item => <MenuItem key={item.category}>{item.category}</MenuItem> )}
+                        {/* {categories.map(item => <MenuItem key={item.category}>{item.category}</MenuItem> )} */}
                       </Select>
                     </Grid>
                     <Grid xs={12} item>

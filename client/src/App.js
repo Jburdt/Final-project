@@ -11,7 +11,6 @@ import { loadReviews } from "./components/actions/Reviews";
 import { loadCurrentUser, loadUsers } from "./components/actions/User";
 import EditReviewForm from "./components/EditReviewForm";
 import UserProfile from "./components/UserProfile";
-import { loadCategories } from "./components/actions/Category";
 import { loadComments } from "./components/actions/Comments";
 // import { setErrors } from "./components/actions/Errors";
 
@@ -19,7 +18,7 @@ const App = () => {
   const allState = useSelector(store => store)
   const dispatch = useDispatch();
 
-  // console.log(allState, "in app.js")
+  console.log(allState, "in app.js")
   
   // LOADS REVIEWS/ USERS
   useEffect(() => {
@@ -28,11 +27,6 @@ const App = () => {
     dispatch(loadCurrentUser())
     dispatch(loadComments())
     // dispatch(setErrors())
-  }, [dispatch]);
-
-  // LOAD CATEGORIES
-  useEffect(() => {
-    dispatch(loadCategories())
   }, [dispatch]);
 
   return (

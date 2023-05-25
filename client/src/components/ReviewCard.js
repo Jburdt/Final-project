@@ -65,14 +65,7 @@ const ReviewCard = () => {
   const [open, setOpen] = useState(false);
   const [modalStyle] = useState(getModalStyle);
   const [expanded, setExpanded] = useState(false);
-  console.log(reviews, 'rev card')
-
-  const comments = reviews.map(review => review.comments)
-  console.log(comments, "comments")
-
-  const oneComment = comments.map(c => c.comment)
-  console.log(oneComment, "one comment")
-
+  
   // DELETE REQUEST
   const handleDelete = (id) => {
     dispatch(deleteReviews(id))
@@ -111,72 +104,34 @@ const ReviewCard = () => {
     setExpanded(isExpanded ? panel : false);
   };
 
-  // const modal = () => {
-  //   return (
-  //     <Modal
-  //       open={open}
-  //       onClose={handleClose}>
-  //         <div style={modalStyle} className={classes.paper}>
-  //         <h2 id="simple-modal-title">{review.title}</h2>
-  //         <p id="simple-modal-description">{review.content}</p>
-  //         <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-  //           <AccordionSummary
-  //             expandIcon={<ExpandMoreIcon />}
-  //             aria-controls="panel1bh-content"
-  //             id="panel1bh-header"
-  //           >
-  //             <Typography className={classes.heading}>Comments:</Typography>
-  //             <Typography className={classes.secondaryHeading}>Click to see comments</Typography>
-  //           </AccordionSummary>
-  //           <AccordionDetails>
-  //           <Typography>
-  //             comments should go here
-  //           </Typography>
-  //           </AccordionDetails>
-  //         </Accordion>
-  //         <em style={{color: "red"}}>Published by: {review.author.username}</em>
-  //         </div>
-  //     </Modal>
-  //   )
-  // }
-
   return (
     <Container className={classes.cardGrid} maxWidth="lg">
     <Grid container spacing={4}>
       {reviews.map((review) => (
         <Grid item key={review.id} xs={12} sm={6} md={4}>
           <Card className={classes.card}>
-
             <CardMedia
               className={classes.cardMedia}
               image={review.image}
               title="Image title"
             />
             <CardContent className={classes.cardContent}>
-
               <Typography variant="h5" component="h2">
                 {review.title}
               </Typography>
-
               <Chip label={review.category.category}></Chip>
-
               <Typography>
                 {review.content.split('').slice(0, 150).join('') + "..."}
               </Typography>
-
               <Typography>
                 <em style={{color: "red"}}>Published by: {review.author.username}</em>
               </Typography>
-
             </CardContent>
-
             <CardActions>
-
               <Button onClick={ handleOpen } variant="outlined" size="small" color="primary">
                 View Full Review
               </Button>
-
-              {/* <Modal
+              <Modal
                 open={open}
                 onClose={handleClose}>
                   <div style={modalStyle} className={classes.paper}>
@@ -192,27 +147,21 @@ const ReviewCard = () => {
                       <Typography className={classes.secondaryHeading}>Click to see comments</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
-                      
                     <Typography>
                       comments should go here
                     </Typography>
-
                     </AccordionDetails>
                   </Accordion>
                   <em style={{color: "red"}}>Published by: {review.author.username}</em>
-              
                   </div>
-              </Modal> */}
+              </Modal>
               <Button variant="outlined" onClick={() => handleEdit(review.id)} size="small" color="primary">
                 Edit
               </Button>
-
               <IconButton onClick={() => handleDelete(review.id)} color='secondary' aria-label="delete" className={classes.margin}>
                 <DeleteIcon fontSize="small" />
               </IconButton>
-
             </CardActions>
-
           </Card>
         </Grid>
       ))}
