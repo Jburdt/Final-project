@@ -11,7 +11,6 @@ import { loadReviews } from "./components/actions/Reviews";
 import { loadCurrentUser, loadUsers } from "./components/actions/User";
 import EditReviewForm from "./components/EditReviewForm";
 import UserProfile from "./components/UserProfile";
-import { loadComments } from "./components/actions/Comments";
 // import { setErrors } from "./components/actions/Errors";
 
 const App = () => {
@@ -25,7 +24,6 @@ const App = () => {
     dispatch(loadReviews())
     dispatch(loadUsers())
     dispatch(loadCurrentUser())
-    dispatch(loadComments())
     // dispatch(setErrors())
   }, [dispatch]);
 
@@ -39,8 +37,8 @@ const App = () => {
       <Route path="/signup" element={ <Signup /> } />
       <Route path="/login" element={ <Login /> } />
       <Route path="*" element={ null } />
-      <Route path="/reviews/:id/edit" element={ <EditReviewForm /> }/>
-      <Route path="/user/profile" element={ <UserProfile /> }/>
+      <Route path="/reviews/:id/edit" element={ <EditReviewForm /> } />
+      <Route path="/user/profile" element={ <UserProfile /> } />
     </Routes>
    </Router>
   )
