@@ -65,6 +65,13 @@ const ReviewCard = () => {
   const [open, setOpen] = useState(false);
   const [modalStyle] = useState(getModalStyle);
   const [expanded, setExpanded] = useState(false);
+  console.log(reviews, 'rev card')
+
+  const comments = reviews.map(review => review.comments)
+  console.log(comments, "comments")
+
+  const oneComment = comments.map(c => c.comment)
+  console.log(oneComment, "one comment")
 
   // DELETE REQUEST
   const handleDelete = (id) => {
@@ -72,8 +79,8 @@ const ReviewCard = () => {
   };
 
   // EDIT REQUEST
-  const handleEdit = () => {
-    navigate('/reviews/:id/edit')
+  const handleEdit = (id) => {
+    navigate(`/reviews/${id}/edit`)
   };
 
   // SHOW FULL REVIEW CODE
@@ -104,6 +111,34 @@ const ReviewCard = () => {
     setExpanded(isExpanded ? panel : false);
   };
 
+  // const modal = () => {
+  //   return (
+  //     <Modal
+  //       open={open}
+  //       onClose={handleClose}>
+  //         <div style={modalStyle} className={classes.paper}>
+  //         <h2 id="simple-modal-title">{review.title}</h2>
+  //         <p id="simple-modal-description">{review.content}</p>
+  //         <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+  //           <AccordionSummary
+  //             expandIcon={<ExpandMoreIcon />}
+  //             aria-controls="panel1bh-content"
+  //             id="panel1bh-header"
+  //           >
+  //             <Typography className={classes.heading}>Comments:</Typography>
+  //             <Typography className={classes.secondaryHeading}>Click to see comments</Typography>
+  //           </AccordionSummary>
+  //           <AccordionDetails>
+  //           <Typography>
+  //             comments should go here
+  //           </Typography>
+  //           </AccordionDetails>
+  //         </Accordion>
+  //         <em style={{color: "red"}}>Published by: {review.author.username}</em>
+  //         </div>
+  //     </Modal>
+  //   )
+  // }
 
   return (
     <Container className={classes.cardGrid} maxWidth="lg">
@@ -141,7 +176,7 @@ const ReviewCard = () => {
                 View Full Review
               </Button>
 
-              <Modal
+              {/* <Modal
                 open={open}
                 onClose={handleClose}>
                   <div style={modalStyle} className={classes.paper}>
@@ -159,7 +194,7 @@ const ReviewCard = () => {
                     <AccordionDetails>
                       
                     <Typography>
-                      comments should go here {review.comments}
+                      comments should go here
                     </Typography>
 
                     </AccordionDetails>
@@ -167,9 +202,8 @@ const ReviewCard = () => {
                   <em style={{color: "red"}}>Published by: {review.author.username}</em>
               
                   </div>
-              </Modal>
-
-              <Button variant="outlined" onClick={handleEdit} size="small" color="primary">
+              </Modal> */}
+              <Button variant="outlined" onClick={() => handleEdit(review.id)} size="small" color="primary">
                 Edit
               </Button>
 

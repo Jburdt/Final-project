@@ -14,6 +14,11 @@ const reviewsReducer = (state = initialState, action) => {
         ...state, 
         reviews: state.reviews.filter(review => review.id !== action.payload)
       }
+    case "EDIT_REVIEW":
+      return {
+        ...state,
+        reviews: state.reviews.map(review => review.id === action.payload.id ? action.payload : review)
+      }
     default: 
       return state
   };

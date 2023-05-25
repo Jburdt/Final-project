@@ -26,7 +26,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const {loggedIn, currentUser} = useSelector(store => store.userReducer);
 
-  console.log("navbar.js", loggedIn)
+  // console.log("navbar.js", loggedIn)
 
   // LOGOUT USER
   const logoutUser = () => {

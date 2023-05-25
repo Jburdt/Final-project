@@ -1,13 +1,16 @@
 const initialState = {
   users: [],
   currentUser: null,
-  loggedIn: false
+  loggedIn: false,
 }
 
-const userReducer = (state = initialState, action) => {
+const userReducer = (state=initialState, action) => {
   switch(action.type) {
     case "LOAD_USERS":
-      return action.payload
+      return {
+        ...state,
+      users: action.payload
+      }
     case "LOGIN_USER":
       return {
         ...state,

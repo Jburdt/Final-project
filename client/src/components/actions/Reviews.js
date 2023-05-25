@@ -1,3 +1,5 @@
+import { headers } from "../../Global";
+
 // Get reviews action
 export const loadReviews = () => {
   return dispatch => {
@@ -26,3 +28,23 @@ export const deleteReviews = (id) => {
     })
   }
 };
+
+// EDIT ACTION
+export const editReviews = (id, formData, navigate) => {
+  return dispatch => {
+    fetch(`/reviews/${id}`, {
+      method: "PATCH",
+      headers,
+      body: JSON.stringify(formData)
+    })
+      .then(resp => resp.json())
+      .then(data => {
+        const action = {
+          type: "EDIT_REVIEW",
+          payload: data
+        }
+        dispatch(action);
+        navigate('/reviews')
+      })
+  }
+}
