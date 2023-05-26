@@ -1,10 +1,12 @@
-import { Button, Card, CardActions, CardContent, IconButton, Typography, CardMedia, makeStyles, Container, Grid, Modal, Chip, Accordion, AccordionDetails, AccordionSummary, Divider, List, ListItem, ListItemAvatar, Avatar, ListItemText, ListItemSecondaryAction } from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, IconButton, Typography, CardMedia, makeStyles, Container, Grid, Modal, Chip, Divider } from '@material-ui/core';
 import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteReviews } from './actions/Reviews';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+
+// STYLES
 const useStyles = makeStyles((theme) => ({
   icon: {
     marginRight: theme.spacing(2),
@@ -56,13 +58,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ReviewCard = () => {
-  const {reviews} = useSelector(state => state.reviewsReducer);
+  const reviews = useSelector(state => state.reviewsReducer.reviews);
+  // const {reviews} = useSelector(state => state.reviewsReducer);
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [modalStyle] = useState(getModalStyle);
-  
+
   // DELETE REQUEST
   const handleDelete = (id) => {
     dispatch(deleteReviews(id))
@@ -93,15 +96,11 @@ const ReviewCard = () => {
     };
   };
 
-  // const handleChange = (panel) => (event, isExpanded) => {
-  //   setExpanded(isExpanded ? panel : false);
-  // };
-
   return (
     <Container className={classes.cardGrid} maxWidth="lg">
     <Grid container spacing={4}>
-      {reviews.map((review) => (
-        <Grid item key={review.id} xs={12} sm={6} md={4}>
+      {reviews.map((review, idx) => (
+        <Grid item key={idx} xs={12} sm={6} md={4}>
           <Card className={classes.card}>
             <CardMedia
               className={classes.cardMedia}
@@ -133,22 +132,8 @@ const ReviewCard = () => {
                   <Divider />
                   <Typography variant='subtitle2' id="simple-modal-description">{review.content}</Typography>
                   <Divider />
-                  <Typography variant='body1'>{null}</Typography>
-                  {/* <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-                    <AccordionSummary
-                      expandIcon={<ExpandMoreIcon />}
-                      aria-controls="panel1bh-content"
-                      id="panel1bh-header"
-                    >
-                      <Typography className={classes.heading}>Comments:</Typography>
-                      <Typography className={classes.secondaryHeading}>Click to see comments</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                    <Typography className={classes.secondaryHeading}>
-                      <p>{review.comments.comment}</p>
-                    </Typography>
-                    </AccordionDetails>
-                  </Accordion> */}
+                  <Typography variant='body1'>Comments:</Typography>
+                  {review.comments.map((review, idx) => {return <Typography key={idx} variant='subtitle2'>{review.user.name}- {review.comment}<Divider /></Typography>})}
                   </div>
               </Modal>
               <Button variant="outlined" onClick={() => handleEdit(review.id)} size="small" color="primary">
