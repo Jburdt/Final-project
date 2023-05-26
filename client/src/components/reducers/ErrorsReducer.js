@@ -1,4 +1,3 @@
-
 const errorsReducer = (state = [], action) => {
   switch(action.type) {
     case "SET_ERRORS":

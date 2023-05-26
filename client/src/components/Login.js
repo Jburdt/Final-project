@@ -109,21 +109,6 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             required={true}
           />
-          {/* <TextField
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            name="admin"
-            label="admin"
-            type="checked"
-            id="admin"
-            autoComplete="current-admin"
-            value={admin}
-            onChange={(e) => setAdmin(e.target.value)}
-            required={true}
-            disabled
-          /> */}
-
           <Button 
             type="submit"
             fullWidth
