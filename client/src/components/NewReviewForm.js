@@ -6,9 +6,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import AddIcon from '@material-ui/icons/Add';
-import { Button, Card, CardContent, FormHelperText, Grid, MenuItem, Select, TextField } from '@material-ui/core';
+import { Button, Card, CardContent, Grid, TextField } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 
 function Copyright() {
   return (
@@ -45,7 +45,6 @@ const useStyles = makeStyles((theme) => ({
 
 const NewReviewForm = () => {
   const classes = useStyles();
-  // const categories = useSelector(state => state.categoriesReducer);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -65,22 +64,13 @@ const NewReviewForm = () => {
                       <TextField label="Title" placeholder='Enter Title' variant='outlined' fullWidth required/>
                     </Grid>
                     <Grid xs={12} sm={6} item>
-                      <TextField label="Image link" placeholder='Enter Image link' variant='outlined' fullWidth required/>
+                      <TextField label="Image link" variant='outlined' fullWidth required/>
                     </Grid>
                     <Grid xs={12} item>
-                    <TextField label="Review" multiline minRows={10} placeholder='Enter Review' variant='outlined' fullWidth required/>
+                    <TextField label="Review" multiline minRows={10} variant='outlined' fullWidth required/>
                     </Grid>
                     <Grid xs={12} item>
-                      <FormHelperText>Select a Category</FormHelperText>
-                      <Select fullWidth variant='outlined'
-                        labelId="demo-simple-select-disabled-label"
-                        id="demo-simple-select-filled"
-                        value={''}
-                        onChange={null}
-                        required
-                      >
-                        {/* {categories.map(item => <MenuItem key={item.category}>{item.category}</MenuItem> )} */}
-                      </Select>
+                    <TextField label="Category" multiline variant='outlined' fullWidth required/>
                     </Grid>
                     <Grid xs={12} item>
                     <Button type='submit' variant='contained' color='primary' fullWidth >Submit Review</Button>

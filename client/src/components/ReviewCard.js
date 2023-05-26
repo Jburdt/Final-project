@@ -59,7 +59,6 @@ const useStyles = makeStyles((theme) => ({
 
 const ReviewCard = () => {
   const reviews = useSelector(state => state.reviewsReducer.reviews);
-  // const {reviews} = useSelector(state => state.reviewsReducer);
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
