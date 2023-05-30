@@ -7,6 +7,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom';
 import ReviewCard from './ReviewCard';
+import { useSelector } from 'react-redux';
+import { useState } from 'react';
 
 const Copyright = () => {
   return (
@@ -55,6 +57,17 @@ const useStyles = makeStyles((theme) => ({
 
 const Reviews = () => {
   const classes = useStyles();
+  const {reviews} = useSelector(store => store.reviewsReducer);
+  const [showMyReviews, setShowMyReviews] = useState(false);
+
+  console.log('revi', reviews)
+
+  const handleButtonClick = () => {
+    setShowMyReviews(!showMyReviews);
+  };
+
+  // const filteredReviews = showMyReviews ? reviews.filter((review) => review.users === `${reviews.author.username}`) : reviews;
+
 
   return (
     <>
@@ -71,8 +84,8 @@ const Reviews = () => {
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justifyContent="center">
                 <Grid item>
-                  <Button variant="contained" color="primary">
-                    Your Reviews
+                  <Button variant="contained" color="primary" onClick={() => handleButtonClick()}>
+                  {showMyReviews ? 'Show All Reviews' : 'Show My Reviews'}
                   </Button>
                 </Grid>
                 <Grid item>
