@@ -57,17 +57,16 @@ const useStyles = makeStyles((theme) => ({
 
 const Reviews = () => {
   const classes = useStyles();
-  const {reviews} = useSelector(store => store.reviewsReducer);
+  const {reviews, currentUser} = useSelector(store => store.reviewsReducer);
   const [showMyReviews, setShowMyReviews] = useState(false);
 
-  console.log('revi', reviews)
+  console.log('revi', reviews, currentUser)
 
   const handleButtonClick = () => {
     setShowMyReviews(!showMyReviews);
   };
 
-  // const filteredReviews = showMyReviews ? reviews.filter((review) => review.users === `${reviews.author.username}`) : reviews;
-
+  const filteredReviews = showMyReviews ? reviews.filter((review) => review.author.username === currentUser.username) : reviews;
 
   return (
     <>
@@ -97,6 +96,11 @@ const Reviews = () => {
                   <Button component={ Link } to="/reviews/new" variant="contained" color="inherit">
                     Create Review
                   </Button>
+                  {/* <ul>
+                    {filteredReviews.map((review) => (
+                      <li key={review.id}>{review.content}<em style={{color: "red"}}>Published by: {review.author.username}</em></li>
+                    ))}
+                  </ul> */}
                 </Grid>
               </Grid>
             </div>

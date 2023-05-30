@@ -48,3 +48,23 @@ export const editReviews = (id, formData, navigate) => {
       })
   }
 }
+
+// ADD REVIEW
+export const addReview = (formData, navigate) => {
+  return dispatch => {
+    fetch('/reviews', {
+      method: "POST",
+      headers,
+      body: JSON.stringify(formData)
+    })
+    .then(r => r.json())
+    .then(data => {
+      const action = {
+        type: "ADD_REVIEW",
+        payload: data
+      }
+      dispatch(action)
+      navigate('/reviews')
+    })
+  }
+};

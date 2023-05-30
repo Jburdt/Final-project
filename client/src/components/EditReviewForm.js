@@ -8,7 +8,7 @@ import { editReviews } from './actions/Reviews';
 
  const initialState = {
     title: "",
-    category: "",
+    category: {category: ''},
     content: ""
   }
 

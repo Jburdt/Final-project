@@ -61,31 +61,28 @@ export const logout = () => {
   }
 };
 
-
-
-
-// export const signupUser = (user, navigate) => {
-//   return dispatch => {
-//     fetch("/signup", {
-//       method: "POST",
-//       headers,
-//       body: JSON.stringify(user)
-//     })
-//       .then(resp => resp.json())
-//       .then(data => {
-//         if(data.errors) {
-//           dispatch(setErrors(data.errors));
-//         } else {
-//           dispatch({
-//             type: "LOGIN_USER",
-//             payload: data
-//           })
-//           dispatch({
-//             type: "ADD_USER",
-//             payload: data
-//           })
-//           navigate("/blogs")
-//         }
-//       })
-//   }
-// }
+export const signupUser = (user, navigate) => {
+  return dispatch => {
+    fetch("/signup", {
+      method: "POST",
+      headers,
+      body: JSON.stringify(user)
+    })
+      .then(resp => resp.json())
+      .then(data => {
+        if(data.errors) {
+          dispatch(setErrors(data.errors));
+        } else {
+          dispatch({
+            type: "LOGIN_USER",
+            payload: data
+          })
+          dispatch({
+            type: "ADD_USER",
+            payload: data
+          })
+          navigate("/reviews")
+        }
+      })
+  }
+}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -9,7 +9,10 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { signupUser } from './actions/User';
+import { clearErrors, setErrors } from './actions/Errors';
 
 const Copyright = () => {
   return (
@@ -46,6 +49,26 @@ const useStyles = makeStyles((theme) => ({
 
 const SignUp = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
+  const {loggedIn}  = useSelector(store => store.userReducer);
+
+  useEffect(() => {
+    if(loggedIn === true) {
+      navigate("/")
+      dispatch(clearErrors());
+    }
+  }, [navigate, loggedIn, dispatch])
+
+  const handleSubmit = (e) => {
+    e.prevetDefault();
+    const user = { username, password, name };
+    console.log(user, "new user")
+    dispatch(signupUser(user, navigate))
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -57,33 +80,26 @@ const SignUp = () => {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
-                autoComplete="fname"
-                name="firstName"
+                onChange={(e) => setName(e.target.value)}
+                value={name}
+                autoComplete="name"
+                name="Name"
                 variant="outlined"
                 required
                 fullWidth
-                id="firstName"
-                label="First Name"
+                id="Name"
+                label="Name"
                 autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
+                onChange={(e) => setUsername(e.target.value)}
+                value={username}
                 variant="outlined"
                 required
                 fullWidth
@@ -95,6 +111,8 @@ const SignUp = () => {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
                 variant="outlined"
                 required
                 fullWidth
@@ -125,6 +143,9 @@ const SignUp = () => {
             </Grid>
           </Grid>
         </form>
+      </div>
+      <div style={{ color: "red" }}>
+          {setErrors}
       </div>
       <Box mt={5}>
         <Copyright />

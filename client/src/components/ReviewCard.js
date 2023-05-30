@@ -115,7 +115,9 @@ const ReviewCard = () => {
               <Typography variant="h5" component="h2">
                 {review.title}
               </Typography>
-              <Chip label={review.category.category}></Chip>
+              <Typography>
+              Category: {review.category.category}
+              </Typography>
               <Typography>
                 {review.content.split('').slice(0, 150).join('') + "..."}
               </Typography>
