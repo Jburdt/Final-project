@@ -57,10 +57,12 @@ const useStyles = makeStyles((theme) => ({
 
 const Reviews = () => {
   const classes = useStyles();
-  const {reviews, currentUser} = useSelector(store => store.reviewsReducer);
+  const { currentUser} = useSelector(store => store.reviewsReducer);
+  const reviews = useSelector(store => store.reviewsReducer.reviews);
   const [showMyReviews, setShowMyReviews] = useState(false);
 
-  console.log('revi', reviews, currentUser)
+  // console.log( currentUser)
+  console.log('in review', reviews)
 
   const handleButtonClick = () => {
     setShowMyReviews(!showMyReviews);
@@ -106,7 +108,7 @@ const Reviews = () => {
             </div>
           </Container>
         </div>
-        <ReviewCard />
+        {reviews.map((review, idx) =>  {return <ReviewCard key={idx} review={review} />})}
       </main>
       <footer className={classes.footer}>
         <Typography variant="h6" align="center" gutterBottom>

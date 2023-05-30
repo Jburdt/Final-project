@@ -1,4 +1,4 @@
-import { Button, Card, CardActions, CardContent, IconButton, Typography, CardMedia, makeStyles, Container, Grid, Modal, Chip, Divider } from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, IconButton, Typography, CardMedia, makeStyles, Container, Grid, Modal, Divider } from '@material-ui/core';
 import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useDispatch, useSelector } from 'react-redux';
@@ -57,13 +57,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ReviewCard = () => {
+const ReviewCard = ({review}) => {
   const reviews = useSelector(state => state.reviewsReducer.reviews);
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [modalStyle] = useState(getModalStyle);
+
+  console.log(review)
 
   // DELETE REQUEST
   const handleDelete = (id) => {
@@ -103,7 +105,6 @@ const ReviewCard = () => {
   return (
     <Container className={classes.cardGrid} maxWidth="lg">
     <Grid container spacing={4}>
-      {reviews.map((review) => (
         <Grid item key={review.id} xs={12} sm={6} md={4}>
           <Card className={classes.card}>
             <CardMedia
@@ -140,7 +141,8 @@ const ReviewCard = () => {
                     <Typography variant='subtitle2' id="simple-modal-description">{review.content}</Typography>
                     <Divider />
                     <Typography variant='body1'>Comments:</Typography>
-                    {review.comments.map((review, idx) => {return <Typography key={idx} variant='subtitle2'>{review.user.name}- {review.comment}<Divider /></Typography>})}
+                    {review.comments.map((comment, idx) => {return <Typography key={idx} variant='subtitle2'>{comment.user.name}- {comment.comment}{comment.comment}</Typography>})}
+                    
                     </div>
                 </Modal>
                 <Button variant="outlined" onClick={() => handleEdit(review.id)} size="small" color="primary">
@@ -156,10 +158,71 @@ const ReviewCard = () => {
             </div>
           </Card>
         </Grid>
-      ))}
     </Grid>
   </Container>
   )
 };
+//   return (
+//     <Container className={classes.cardGrid} maxWidth="lg">
+//     <Grid container spacing={4}>
+//       {reviews.map((review) => (
+//         <Grid item key={review.id} xs={12} sm={6} md={4}>
+//           <Card className={classes.card}>
+//             <CardMedia
+//               className={classes.cardMedia}
+//               image={review.image}
+//               title="Image title"
+//             />
+//             <CardContent className={classes.cardContent}>
+//               <Typography variant="h5" component="h2">
+//                 {review.title}
+//               </Typography>
+//               <Typography>
+//               Category: {review.category.category}
+//               </Typography>
+//               <Typography>
+//                 {review.content.split('').slice(0, 150).join('') + "..."}
+//               </Typography>
+//               <Typography>
+//                 <em style={{color: "red"}}>Published by: {review.author.username}</em>
+//               </Typography>
+//             </CardContent>
+//             <div className='button-container' style={{ display: 'flex', justifyContent: 'center' }}>
+//               <CardActions>
+//                 <Button onClick={ handleOpen } variant="outlined" size="small" color="primary">
+//                   View Full Review
+//                 </Button>
+//                 <Modal
+//                   open={open}
+//                   onClose={handleClose}>
+//                     <div style={modalStyle} className={classes.paper}>
+//                     <Typography variant='h4' id="simple-modal-title">{review.title}</Typography>
+//                     <Typography><em style={{color: "red"}}>Published by: {review.author.username}</em></Typography>
+//                     <Divider />
+//                     <Typography variant='subtitle2' id="simple-modal-description">{review.content}</Typography>
+//                     <Divider />
+//                     <Typography variant='body1'>Comments:</Typography>
+//                     {review.comments.map((comment, idx) => {return <Typography key={idx} variant='subtitle2'>{comment.user.name}- {comment.comment}{comment.comment}</Typography>})}
+                    
+//                     </div>
+//                 </Modal>
+//                 <Button variant="outlined" onClick={() => handleEdit(review.id)} size="small" color="primary">
+//                   Edit
+//                 </Button>
+//                 <Button variant="outlined" onClick={() => handleComment('')} size="small" color="primary">
+//                   Comment
+//                 </Button>
+//                 <IconButton onClick={() => handleDelete(review.id)} color='secondary' aria-label="delete" className={classes.margin}>
+//                   <DeleteIcon fontSize="small" />
+//                 </IconButton>
+//               </CardActions>
+//             </div>
+//           </Card>
+//         </Grid>
+//       ))}
+//     </Grid>
+//   </Container>
+//   )
+// };
 
 export default ReviewCard;
