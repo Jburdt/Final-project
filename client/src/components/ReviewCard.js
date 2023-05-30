@@ -95,6 +95,11 @@ const ReviewCard = () => {
     };
   };
 
+  // ADD COMMENT
+  const handleComment = () => {
+    console.log("adding comment")
+  };
+
   return (
     <Container className={classes.cardGrid} maxWidth="lg">
     <Grid container spacing={4}>
@@ -118,6 +123,7 @@ const ReviewCard = () => {
                 <em style={{color: "red"}}>Published by: {review.author.username}</em>
               </Typography>
             </CardContent>
+            <div className='button-container' style={{ display: 'flex', justifyContent: 'center' }}>
             <CardActions>
               <Button onClick={ handleOpen } variant="outlined" size="small" color="primary">
                 View Full Review
@@ -138,10 +144,14 @@ const ReviewCard = () => {
               <Button variant="outlined" onClick={() => handleEdit(review.id)} size="small" color="primary">
                 Edit
               </Button>
+              <Button variant="outlined" onClick={() => handleComment('')} size="small" color="primary">
+                Comment
+              </Button>
               <IconButton onClick={() => handleDelete(review.id)} color='secondary' aria-label="delete" className={classes.margin}>
                 <DeleteIcon fontSize="small" />
               </IconButton>
             </CardActions>
+            </div>
           </Card>
         </Grid>
       ))}
