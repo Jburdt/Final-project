@@ -16,17 +16,18 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(8, 0, 6),
   },
   cardGrid: {
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
   },
   card: {
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
+    padding: "10px",
   },
   cardMedia: {
     height: '450',
-    paddingTop: '140%', // 1:1,
+    paddingTop: '140%', // 1:1
   },
   cardContent: {
     flexGrow: 1,
@@ -104,8 +105,6 @@ const ReviewCard = ({review}) => {
 
   return (
     <Container className={classes.cardGrid} maxWidth="lg">
-    <Grid container spacing={4}>
-        <Grid item key={review.id} xs={12} sm={6} md={4}>
           <Card className={classes.card}>
             <CardMedia
               className={classes.cardMedia}
@@ -135,14 +134,13 @@ const ReviewCard = ({review}) => {
                   open={open}
                   onClose={handleClose}>
                     <div style={modalStyle} className={classes.paper}>
-                    <Typography variant='h4' id="simple-modal-title">{review.title}</Typography>
-                    <Typography><em style={{color: "red"}}>Published by: {review.author.username}</em></Typography>
-                    <Divider />
-                    <Typography variant='subtitle2' id="simple-modal-description">{review.content}</Typography>
-                    <Divider />
-                    <Typography variant='body1'>Comments:</Typography>
-                    {review.comments.map((comment, idx) => {return <Typography key={idx} variant='subtitle2'>{comment.user.name}- {comment.comment}{comment.comment}</Typography>})}
-                    
+                      <Typography variant='h4' id="simple-modal-title">{review.title}</Typography>
+                      <Typography><em style={{color: "red"}}>Published by: {review.author.username}</em></Typography>
+                      <Divider />
+                      <Typography variant='subtitle2' id="simple-modal-description">{review.content}</Typography>
+                      <Divider />
+                      <Typography variant='body1'>Comments:</Typography>
+                      {review.comments.map((comment, idx) => { return <Typography key={idx} variant='subtitle2'>{comment.user.name}- {comment.comment}{comment.comment}</Typography>})}
                     </div>
                 </Modal>
                 <Button variant="outlined" onClick={() => handleEdit(review.id)} size="small" color="primary">
@@ -157,16 +155,15 @@ const ReviewCard = ({review}) => {
               </CardActions>
             </div>
           </Card>
-        </Grid>
-    </Grid>
   </Container>
   )
 };
+
 //   return (
 //     <Container className={classes.cardGrid} maxWidth="lg">
 //     <Grid container spacing={4}>
 //       {reviews.map((review) => (
-//         <Grid item key={review.id} xs={12} sm={6} md={4}>
+//         <Grid item key={review.id} xs={12} sm={6} md={6}>
 //           <Card className={classes.card}>
 //             <CardMedia
 //               className={classes.cardMedia}

@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
+// import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import ReviewCard from './ReviewCard';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
+import { Grid } from '@material-ui/core';
 
 const Copyright = () => {
   return (
@@ -29,10 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
   heroContent: {
     backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
-  },
-  heroButtons: {
-    marginTop: theme.spacing(4),
+    padding: theme.spacing(4, 0, 6)
   },
   cardGrid: {
     paddingTop: theme.spacing(8),
@@ -44,7 +42,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   cardMedia: {
-    paddingTop: '56.25%', // 16:9
+    height: '450',
+    paddingTop: '140%', // 1:1,
   },
   cardContent: {
     flexGrow: 1,
@@ -52,6 +51,26 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
+  },
+  paper: {
+    position: 'absolute',
+    width: 400,
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+  root: {
+    width: '100%',
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    flexBasis: '33.33%',
+    flexShrink: 0,
+  },
+  secondaryHeading: {
+    fontSize: theme.typography.pxToRem(15),
+    color: theme.palette.text.secondary,
   },
 }));
 
@@ -75,7 +94,7 @@ const Reviews = () => {
       <CssBaseline />
       <main>
         <div className={classes.heroContent}>
-          <Container maxWidth="sm">
+          <Container maxWidth="lg">
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
               Movie Reviews
             </Typography>
@@ -108,7 +127,10 @@ const Reviews = () => {
             </div>
           </Container>
         </div>
-        {reviews.map((review, idx) =>  {return <ReviewCard key={idx} review={review} />})}
+        {reviews.map((review, idx) => 
+        {return <Grid container spacing={4} justifyContent="center">
+          <Grid lg={4} md={6} sm={12}><ReviewCard key={idx} review={review} /></Grid></Grid>  
+        })}
       </main>
       <footer className={classes.footer}>
         <Typography variant="h6" align="center" gutterBottom>
