@@ -1,7 +1,7 @@
 import { Button, Card, CardActions, CardContent, IconButton, Typography, CardMedia, makeStyles, Container, Grid, Modal, Divider } from '@material-ui/core';
 import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { deleteReviews } from './actions/Reviews';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
@@ -59,7 +59,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ReviewCard = ({review}) => {
-  const reviews = useSelector(state => state.reviewsReducer.reviews);
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -104,7 +103,9 @@ const ReviewCard = ({review}) => {
   };
 
   return (
-    <Container className={classes.cardGrid} maxWidth="lg">
+    <Container className={classes.cardGrid} maxWidth="md">
+      <Grid container spacing={4}>
+              <Grid item md={3} xs={12} sm={6}></Grid>
           <Card className={classes.card}>
             <CardMedia
               className={classes.cardMedia}
@@ -138,23 +139,29 @@ const ReviewCard = ({review}) => {
                       <Typography><em style={{color: "red"}}>Published by: {review.author.username}</em></Typography>
                       <Divider />
                       <Typography variant='subtitle2' id="simple-modal-description">{review.content}</Typography>
+                      <div style={{ display: 'flex', justifyContent: 'center' }}>
+                      <Button variant="outlined" onClick={() => handleComment()} size="small" color="primary">
+                        Comment
+                      </Button>
+                      </div>
                       <Divider />
-                      <Typography variant='body1'>Comments:</Typography>
-                      {review.comments.map((comment, idx) => { return <Typography key={idx} variant='subtitle2'>{comment.user.name}- {comment.comment}{comment.comment}</Typography>})}
+                      <Typography variant='body1' color="primary">Comments:</Typography>
+                      {review.comments.map((comment, idx) => { return <Typography key={idx} variant='subtitle2'>{comment.user.name}- {comment.comment}</Typography>})}
                     </div>
                 </Modal>
                 <Button variant="outlined" onClick={() => handleEdit(review.id)} size="small" color="primary">
                   Edit
                 </Button>
-                <Button variant="outlined" onClick={() => handleComment('')} size="small" color="primary">
+                {/* <Button variant="outlined" onClick={() => handleComment()} size="small" color="primary">
                   Comment
-                </Button>
+                </Button> */}
                 <IconButton onClick={() => handleDelete(review.id)} color='secondary' aria-label="delete" className={classes.margin}>
                   <DeleteIcon fontSize="small" />
                 </IconButton>
               </CardActions>
             </div>
           </Card>
+          </Grid>
   </Container>
   )
 };
@@ -163,7 +170,7 @@ const ReviewCard = ({review}) => {
 //     <Container className={classes.cardGrid} maxWidth="lg">
 //     <Grid container spacing={4}>
 //       {reviews.map((review) => (
-//         <Grid item key={review.id} xs={12} sm={6} md={6}>
+//         <Grid item md={4} xs={12} sm={6}>
 //           <Card className={classes.card}>
 //             <CardMedia
 //               className={classes.cardMedia}
@@ -199,7 +206,7 @@ const ReviewCard = ({review}) => {
 //                     <Typography variant='subtitle2' id="simple-modal-description">{review.content}</Typography>
 //                     <Divider />
 //                     <Typography variant='body1'>Comments:</Typography>
-//                     {review.comments.map((comment, idx) => {return <Typography key={idx} variant='subtitle2'>{comment.user.name}- {comment.comment}{comment.comment}</Typography>})}
+//                     {review.comments.map((comment, idx) => {return <Typography key={idx} variant='subtitle2'>{comment.user.name}-{comment.comment}</Typography>})}
                     
 //                     </div>
 //                 </Modal>
