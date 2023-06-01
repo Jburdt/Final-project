@@ -65,7 +65,7 @@ const ReviewCard = ({review}) => {
   const [open, setOpen] = useState(false);
   const [modalStyle] = useState(getModalStyle);
 
-  console.log(review)
+  // console.log(review)
 
   // DELETE REQUEST
   const handleDelete = (id) => {
@@ -152,9 +152,6 @@ const ReviewCard = ({review}) => {
                 <Button variant="outlined" onClick={() => handleEdit(review.id)} size="small" color="primary">
                   Edit
                 </Button>
-                {/* <Button variant="outlined" onClick={() => handleComment()} size="small" color="primary">
-                  Comment
-                </Button> */}
                 <IconButton onClick={() => handleDelete(review.id)} color='secondary' aria-label="delete" className={classes.margin}>
                   <DeleteIcon fontSize="small" />
                 </IconButton>

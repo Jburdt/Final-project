@@ -1,5 +1,6 @@
 const initialState = {
   reviews: [],
+  category: [],
 }
 
 const reviewsReducer = (state = initialState, action) => {

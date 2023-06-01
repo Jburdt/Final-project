@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from "./components/Home";
 import Login from "./components/Login";
@@ -11,13 +11,11 @@ import { loadReviews } from "./components/actions/Reviews";
 import { loadCurrentUser, loadUsers } from "./components/actions/User";
 import EditReviewForm from "./components/EditReviewForm";
 import UserProfile from "./components/UserProfile";
+import NotFound from "./components/NotFound";
 // import { setErrors } from "./components/actions/Errors";
 
 const App = () => {
-  const allState = useSelector(store => store)
   const dispatch = useDispatch();
-
-  console.log(allState, "in app.js")
   
   // LOADS REVIEWS/ USERS
   useEffect(() => {
@@ -36,7 +34,7 @@ const App = () => {
       <Route path="/reviews/new" element={ <NewReviewForm /> } />
       <Route path="/signup" element={ <Signup /> } />
       <Route path="/login" element={ <Login /> } />
-      <Route path="*" element={ null } />
+      <Route path="*" element={ <NotFound /> } />
       <Route path="/reviews/:id/edit" element={ <EditReviewForm /> } />
       <Route path="/user/profile" element={ <UserProfile /> } />
     </Routes>

@@ -8,16 +8,18 @@ import { editReviews } from './actions/Reviews';
 
  const initialState = {
     title: "",
-    category: {category: ''},
+    category: "",
     content: ""
   }
 
   const EditReviewForm = () => {
-    const {reviews} = useSelector(store => store.reviewsReducer);
+    const {reviews, category} = useSelector(store => store.reviewsReducer);
     const [formData, setFormData] = useState(initialState);
     const {id} = useParams();
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    console.log(category, "edit form")
   
     useEffect(() => {
       if(reviews.length > 0) {
@@ -25,7 +27,7 @@ import { editReviews } from './actions/Reviews';
           setFormData({
             title: review.title,
             content: review.content,
-            category: review.category
+            category: review.category.category
           })
         }
       }, [id, reviews, navigate])
@@ -51,12 +53,12 @@ import { editReviews } from './actions/Reviews';
       <Card style={{maxWidth:450, margin:"0 auto", padding:"20px 5px" }} variant="outlined">
         <CardContent align="center">
           <form onSubmit={ handleSubmit }>
-            <Grid contatiner='true' spaceing={1}>
+            <Grid spaceing={1}>
               <Grid item style={{margin:"10px"}}>
                 <TextField onChange={ handleChange } name='title' value={formData.title} variant='outlined' fullWidth  />
               </Grid>
               <Grid item style={{margin:"10px"}}>
-                <TextField onChange={ handleChange } name='category' value={formData.category.category} variant='outlined' fullWidth />
+                <TextField onChange={ handleChange } name='category' value={formData.category} variant='outlined' fullWidth />
               </Grid>
               <Grid item style={{margin:"10px"}}>
                 <TextField onChange={ handleChange } name='content' value={formData.content} variant='outlined' fullWidth multiline minRows={10} />
