@@ -105,7 +105,7 @@ const ReviewCard = ({review}) => {
   return (
     <Container className={classes.cardGrid} maxWidth="md">
       <Grid container spacing={4}>
-              <Grid item md={3} xs={12} sm={6}></Grid>
+        <Grid item md={6} xs={12} sm={4} key={review.id}>
           <Card className={classes.card}>
             <CardMedia
               className={classes.cardMedia}
@@ -159,6 +159,7 @@ const ReviewCard = ({review}) => {
             </div>
           </Card>
           </Grid>
+        </Grid>
   </Container>
   )
 };

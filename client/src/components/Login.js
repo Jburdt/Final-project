@@ -56,7 +56,6 @@ const Login = () => {
   const errors = useSelector(store => store.errorsReducer)
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  // const [ admin, setAdmin] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

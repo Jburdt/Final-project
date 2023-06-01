@@ -79,13 +79,13 @@ const Reviews = () => {
   const [showMyReviews, setShowMyReviews] = useState(false);
 
   // console.log( currentUser)
-  console.log('in review', reviews)
+  // console.log('in review', reviews)
 
   const handleButtonClick = () => {
     setShowMyReviews(!showMyReviews);
   };
 
-  const filteredReviews = showMyReviews ? reviews.filter((review) => review.author.username === currentUser.username) : reviews;
+  // const filteredReviews = showMyReviews ? reviews.filter((review) => review.author.username === currentUser.username) : reviews;
 
   return (
     <>
@@ -115,11 +115,6 @@ const Reviews = () => {
                   <Button component={ Link } to="/reviews/new" variant="contained" color="inherit">
                     Create Review
                   </Button>
-                  {/* <ul>
-                    {filteredReviews.map((review) => (
-                      <li key={review.id}>{review.content}<em style={{color: "red"}}>Published by: {review.author.username}</em></li>
-                    ))}
-                  </ul> */}
                 </Grid>
               </Grid>
             </div>
@@ -128,10 +123,6 @@ const Reviews = () => {
         {reviews.map((review, idx) => 
         {return <ReviewCard key={idx} review={review} />  
         })}
-        {/* {reviews.map((review, idx) => 
-        {return <div><Grid key={idx} item container spacing={4} justifyContent="center">
-           <Grid item md={3} xs={12} sm={6}><ReviewCard  review={review} /></Grid></Grid></div>   
-        })} */}
       </main>
       <footer className={classes.footer}>
         <Typography variant="h6" align="center" gutterBottom>
