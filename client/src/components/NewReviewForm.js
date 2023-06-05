@@ -9,9 +9,8 @@ import AddIcon from '@material-ui/icons/Add';
 import { Button, Card, CardContent, Grid, TextField } from '@material-ui/core';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addReview } from './actions/Reviews';
-// import { useSelector } from 'react-redux';
 
 function Copyright() {
   return (
@@ -54,8 +53,9 @@ const initialState = {
 }
 
 const NewReviewForm = () => {
-  const classes = useStyles();
   const [formData, setFormData] = useState(initialState);
+  const errors = useSelector(store => store.errorsReducer);
+  const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -105,6 +105,13 @@ const NewReviewForm = () => {
               </form>
               </CardContent>
             </Card>
+      </div>
+      <div>
+           <ul>
+            <li>
+              {errors}
+            </li>
+           </ul>
       </div>
       <Box mt={8}>
         <Copyright />

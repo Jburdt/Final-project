@@ -12,7 +12,8 @@ import Container from '@material-ui/core/Container';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { signupUser } from './actions/User';
-import { clearErrors, setErrors } from './actions/Errors';
+import { clearErrors } from './actions/Errors';
+
 
 const Copyright = () => {
   return (
@@ -55,11 +56,14 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const {loggedIn}  = useSelector(store => store.userReducer);
+  const errors = useSelector(store => store.errorsReducer)
 
   useEffect(() => {
-    if(loggedIn === true) {
+    if(loggedIn) {
       navigate("/")
-      dispatch(clearErrors());
+    }
+    return () => {
+      dispatch(clearErrors())
     }
   }, [navigate, loggedIn, dispatch])
 
@@ -71,6 +75,7 @@ const SignUp = () => {
   };
 
   return (
+    <>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -145,12 +150,13 @@ const SignUp = () => {
         </form>
       </div>
       <div style={{ color: "red" }}>
-          {setErrors}
+              {errors}
       </div>
       <Box mt={5}>
         <Copyright />
       </Box>
     </Container>
+    </>
   );
 }
 

@@ -44,16 +44,16 @@ const Home = () => {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Container component="main" className={classes.main} maxWidth="sm">
-        <Typography variant="h2" component="h1" gutterBottom>
-          Hello Movie Fans!
-        </Typography>
-        <Typography variant="h5" component="h2" gutterBottom>
-          This is a place where we can share our thoughts about movies we have seen. Sign up and start 
-          creating reviews to share with the world!
-        </Typography>
-        <Lottie animationData={MovieAnimation} />
-      </Container>
+        <Container component="main" className={classes.main} maxWidth="sm">
+          <Typography variant="h2" component="h1" gutterBottom>
+            Hello Movie Fans!
+          </Typography>
+          <Typography variant="h5" component="h2" gutterBottom>
+            This is a place where we can share our thoughts about movies we have seen. Sign up and start 
+            creating reviews to share with the world!
+          </Typography>
+          <Lottie animationData={MovieAnimation} />
+        </Container>
       <footer className={classes.footer}>
         <Container maxWidth="sm">
           <Copyright />

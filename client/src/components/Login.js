@@ -15,7 +15,6 @@ import { clearErrors } from './actions/Errors';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { login } from './actions/User';
-import Alert from '@material-ui/lab/Alert';
 
 function Copyright() {
   return (
@@ -128,7 +127,7 @@ const Login = () => {
         </form>
       </div>
       <div style={{ color: "red" }}>
-           <Alert severity="error">{errors}</Alert>
+           {errors}
       </div>
       <Box mt={8}>
         <Copyright />

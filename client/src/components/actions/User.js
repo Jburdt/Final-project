@@ -81,7 +81,7 @@ export const signupUser = (user, navigate) => {
             type: "ADD_USER",
             payload: data
           })
-          navigate("/reviews")
+          navigate("/")
         }
       })
   }

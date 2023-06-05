@@ -12,22 +12,24 @@ import { loadCurrentUser, loadUsers } from "./components/actions/User";
 import EditReviewForm from "./components/EditReviewForm";
 import UserProfile from "./components/UserProfile";
 import NotFound from "./components/NotFound";
-// import { setErrors } from "./components/actions/Errors";
+import { setErrors } from "./components/actions/Errors";
+import Errors from "./components/Errors";
 
 const App = () => {
   const dispatch = useDispatch();
   
   // LOADS REVIEWS/ USERS
   useEffect(() => {
-    dispatch(loadReviews())
     dispatch(loadUsers())
     dispatch(loadCurrentUser())
+    dispatch(loadReviews())
     // dispatch(setErrors())
   }, [dispatch]);
 
   return (
    <Router>
     <Navbar />
+    {/* <Errors /> */}
     <Routes>
       <Route path="/" element={ <Home /> } />
       <Route path="/reviews" element={ <Reviews /> } />
