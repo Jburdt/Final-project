@@ -49,7 +49,7 @@ export const login = (user, navigate) => {
         }
         dispatch(action)
         dispatch(clearErrors())
-        navigate("/reviews")
+        navigate("/")
       }
     })
   };

@@ -1,7 +1,7 @@
 import { Button, Card, CardActions, CardContent, IconButton, Typography, CardMedia, makeStyles, Container, Grid, Modal, Divider } from '@material-ui/core';
 import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteReviews } from './actions/Reviews';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
@@ -64,8 +64,42 @@ const ReviewCard = ({review}) => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [modalStyle] = useState(getModalStyle);
+  // const { currentUser} = useSelector(store => store.userReducer);
 
-  // console.log(review)
+  // const usableButtons = () => {
+  //   <>
+  //    <Button variant="outlined" onClick={() => handleEdit(review.id)} size="small" color="primary">
+  //       Edit
+  //     </Button>
+  //     <IconButton onClick={() => handleDelete(review.id)} color='secondary' aria-label="delete" className={classes.margin}>
+  //       <DeleteIcon fontSize="small" />
+  //     </IconButton>
+  //   </>
+  // };
+  // const disabledButtons = () => {
+  //   <>
+  //    <Button disabled variant="outlined" onClick={() => handleEdit(review.id)} size="small" color="primary">
+  //       Edit
+  //     </Button>
+  //     <IconButton disabled onClick={() => handleDelete(review.id)} color='secondary' aria-label="delete" className={classes.margin}>
+  //       <DeleteIcon fontSize="small" />
+  //     </IconButton>
+  //   </>
+  // };
+
+  // BUTTONS TO SEE
+  // const shownButtons = () => {
+  //   const user = currentUser.username
+  //   const reviewId = review.author.username
+  //   if( user === reviewId ) {
+  //     usableButtons()
+  //   } else {
+  //     disabledButtons()
+  //   }
+  // };
+
+  // const user = review.author.username === currentUser.username
+  // console.log(user, reviewId, "user")
 
   // DELETE REQUEST
   const handleDelete = (id) => {
@@ -131,6 +165,9 @@ const ReviewCard = ({review}) => {
                 <Button onClick={ handleOpen } variant="outlined" size="small" color="primary">
                   View Full Review
                 </Button>
+                <Button variant="outlined" onClick={() => handleComment()} size="small" color="primary">
+                  Comment
+                </Button>
                 <Modal
                   open={open}
                   onClose={handleClose}>
@@ -140,9 +177,6 @@ const ReviewCard = ({review}) => {
                       <Divider />
                       <Typography variant='subtitle2' id="simple-modal-description">{review.content}</Typography>
                       <div style={{ display: 'flex', justifyContent: 'center' }}>
-                      <Button variant="outlined" onClick={() => handleComment()} size="small" color="primary">
-                        Comment
-                      </Button>
                       </div>
                       <Divider />
                       <Typography variant='body1' color="primary">Comments:</Typography>

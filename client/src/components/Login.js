@@ -12,8 +12,7 @@ import Container from '@material-ui/core/Container';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearErrors } from './actions/Errors';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { login } from './actions/User';
 
 function Copyright() {
@@ -52,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
 const Login = () => {
   const classes = useStyles();
   const {loggedIn}  = useSelector(store => store.userReducer);
-  const errors = useSelector(store => store.errorsReducer)
+  const errors = useSelector(store => store.errorsReducer);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
