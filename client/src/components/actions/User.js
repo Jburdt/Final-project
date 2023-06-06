@@ -86,3 +86,20 @@ export const signupUser = (user, navigate) => {
       })
   }
 }
+
+export const deleteUser = (id, navigate) => {
+  return dispatch => {
+    fetch(`/users/${ id }`, {
+      method: "DELETE",
+      headers: {
+        "Accept": "application/json"
+      }
+    })
+    .then(r => {
+      if(r.ok) {
+      dispatch({type: "DELETE_USER", payload: id })
+      navigate('/signup')
+      }
+    })
+  }
+};

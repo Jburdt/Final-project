@@ -22,7 +22,7 @@ export const deleteReviews = (id) => {
       }
     })
     .then(r => {
-      if( r.ok) {
+      if(r.ok) {
       dispatch({type: "DELETE_REVIEW", payload: id })
       }
     })

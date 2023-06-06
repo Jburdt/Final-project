@@ -91,7 +91,7 @@ const Reviews = () => {
     <>
       <CssBaseline />
       <main>
-        <div className={classes.heroContent}>
+        <div className={classes.heroContent} >
           <Container maxWidth="lg">
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
               Movie Reviews
