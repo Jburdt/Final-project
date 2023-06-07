@@ -191,10 +191,11 @@ const ReviewCard = ({review}) => {
                 </IconButton>
               </CardActions>
             </div>
-
-            
-              <TextField id="outlined-basic" label="Add comment" variant="outlined" /> 
-              <Button type='submit' variant="outlined" size="small" color="primary">submit</Button>
+            <Divider />
+            <form className='comment-section' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }} > 
+              <TextField id="outlined-basic" label="Add comment" variant="outlined" multiline/> 
+              <Button style={{marginLeft: "5px"}} type='submit' variant="outlined" size="small" color="primary">submit</Button>
+            </form>
           </Card>
           </Grid>
         </Grid>

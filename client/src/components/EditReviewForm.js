@@ -46,13 +46,6 @@ import { editReviews } from './actions/Reviews';
       dispatch(editReviews(id, formData, navigate))
     };
 
-    // bring in categories from the store
-    // map over the categories and create a select option for each one
-    // set the value of the select to the category id
-    // set the default value of the select to the category of the review
-    // when the form is submitted, dispatch the editReview action creator
-    // redirect to the review show page
-    
 
   return (
     <div className='ReviewEditForm'> 
@@ -69,7 +62,6 @@ import { editReviews } from './actions/Reviews';
               <Grid item style={{margin:"10px"}}>
                 <TextField onChange={ handleChange } name='category' value={formData.category} variant='outlined' fullWidth />
               </Grid>
-                {/* <div><select onChange={ handleChange } name='category' value={formData.category} variant='outlined' fullWidth /></div> */}
               <Grid item style={{margin:"10px"}}>
                 <TextField onChange={ handleChange } name='content' value={formData.content} variant='outlined' fullWidth multiline minRows={10} />
               </Grid>
