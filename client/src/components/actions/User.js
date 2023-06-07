@@ -98,6 +98,7 @@ export const deleteUser = (id, navigate) => {
     .then(r => {
       if(r.ok) {
       dispatch({type: "DELETE_USER", payload: id })
+      dispatch({type: "LOGOUT_USER"})
       navigate('/signup')
       }
     })

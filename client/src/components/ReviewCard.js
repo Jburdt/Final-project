@@ -1,4 +1,4 @@
-import { Button, Card, CardActions, CardContent, IconButton, Typography, CardMedia, makeStyles, Container, Grid, Modal, Divider } from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, IconButton, Typography, CardMedia, makeStyles, Container, Grid, Modal, Divider, TextField } from '@material-ui/core';
 import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useDispatch, useSelector } from 'react-redux';
@@ -139,7 +139,7 @@ const ReviewCard = ({review}) => {
   return (
     <Container className={classes.cardGrid} maxWidth="md">
       <Grid container spacing={4}>
-        <Grid item md={6} xs={12} sm={4} key={review.id}>
+        <Grid item md={6} xs={12} sm={6} key={review.id}>
           <Card className={classes.card}>
             <CardMedia
               className={classes.cardMedia}
@@ -191,6 +191,10 @@ const ReviewCard = ({review}) => {
                 </IconButton>
               </CardActions>
             </div>
+
+            
+              <TextField id="outlined-basic" label="Add comment" variant="outlined" /> 
+              <Button type='submit' variant="outlined" size="small" color="primary">submit</Button>
           </Card>
           </Grid>
         </Grid>

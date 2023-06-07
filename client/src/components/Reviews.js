@@ -74,24 +74,24 @@ const useStyles = makeStyles((theme) => ({
 
 const Reviews = () => {
   const classes = useStyles();
-  const { currentUser} = useSelector(store => store.reviewsReducer);
+  const currentUser = useSelector(store => store.usersReducer);
   const reviews = useSelector(store => store.reviewsReducer.reviews);
   const [showMyReviews, setShowMyReviews] = useState(false);
-
-  // console.log( currentUser)
-  // console.log('in review', reviews)
-
+  console.log('in review', reviews)
+  
+  
+  //make a function that will filter the reviews based on the current user
   const handleButtonClick = () => {
-    setShowMyReviews(!showMyReviews);
+    return (reviews.filter((review) => review.author.username === currentUser.username))
   };
 
-  // const filteredReviews = showMyReviews ? reviews.filter((review) => review.author.username === currentUser.username) : reviews;
 
+  
   return (
     <>
       <CssBaseline />
       <main>
-        <div className={classes.heroContent} >
+        <div>
           <Container maxWidth="lg">
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
               Movie Reviews
@@ -120,8 +120,8 @@ const Reviews = () => {
             </div>
           </Container>
         </div>
-        {reviews.map((review, idx) => 
-        {return <ReviewCard key={idx} review={review} />  
+        {reviews.map((review, idx) => {
+        return <ReviewCard key={idx} review={review} />  
         })}
       </main>
       <footer className={classes.footer}>

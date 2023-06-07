@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  skip_before_action :authorize, only: [:create, :index]
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
+  skip_before_action :authorize, only: [:create, :index]
 
   # RENDER ALL USERS
   def index
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     render json: @user
   end
 
-  # LOGOUT USER
+  # DELETE USER
   def destroy
     @user = find_user
     @user.destroy
@@ -39,12 +39,12 @@ class UsersController < ApplicationController
 
   # GETS USER BY ID
   def find_user
-    @user = User.all.find(params[:id])
+    @user = User.all.find_by(id: params[:id])
   end
 
   # USER STRONG PARAMS
   def user_params
-    params.permit(:name, :username, :password, :admin)
+    params.permit(:name, :username, :password)
   end
 
    # INVALID DATA RESPONSE

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_12_200143) do
+ActiveRecord::Schema.define(version: 2023_06_01_182435) do
 
   create_table "categories", force: :cascade do |t|
     t.string "category"
@@ -40,7 +40,6 @@ ActiveRecord::Schema.define(version: 2023_04_12_200143) do
     t.string "username"
     t.string "name"
     t.string "password_digest"
-    t.boolean "admin"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

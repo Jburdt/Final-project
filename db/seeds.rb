@@ -15,8 +15,8 @@ romance = Category.create!(category: "Romance")
 thriller = Category.create!(category: "Thriller")
 
 # User
-josh = User.create!(name: "Josh", username: "Josh1", password: "123456", admin: true)
-eric = User.create!(name: "Eric", username: "Eric1", password: "123456", admin: false)
+josh = User.create!(name: "Josh", username: "Josh1", password: "123456")
+eric = User.create!(name: "Eric", username: "Eric1", password: "123456")
 
 # Review
 review1 = Review.create!(title: "Iron Man", category: action, author: josh, content: "Iron Man is a thrilling and visually stunning superhero film that kick-started the Marvel Cinematic Universe (MCU) with a bang. Directed by Jon Favreau, this 2008 blockbuster introduces us to the charismatic billionaire genius, Tony Stark, brilliantly portrayed by Robert Downey Jr.
@@ -30,6 +30,12 @@ However, Downey Jr.'s magnetic performance as Tony Stark remains a highlight, ca
 While Iron Man 2 may not reach the heights of its predecessor, it still delivers entertaining action sequences and continues to build the foundation for the expanding MCU. Fans of the first film and the Marvel universe will find enjoyment in this second installment, despite its narrative shortcomings.", image: "https://m.media-amazon.com/images/M/MV5BZGVkNDAyM2EtYzYxYy00ZWUxLTgwMjgtY2VmODE5OTk3N2M5XkEyXkFqcGdeQXVyNTgzMDMzMTg@._V1_.jpg")
 
 review3 = Review.create!(title: "Iron Man 3", category: action, author: josh, content: "Iron Man 3 takes a bold and unexpected approach to the beloved superhero franchise. Directed by Shane Black, the film delves into the aftermath of The Avengers and explores Tony Stark's vulnerability and resilience in the face of a new threat.
+Robert Downey Jr. once again shines in his role as Tony Stark, delivering a nuanced performance that showcases both the character's wit and inner turmoil. The film cleverly deconstructs the hero, stripping away his suits and forcing him to rely on his ingenuity and resourcefulness.
+Iron Man 3 offers a fresh take on the action genre, blending intense and thrilling set pieces with a more character-driven narrative. The film explores themes of identity, redemption, and the consequences of one's actions.
+While some fans may have mixed feelings about certain plot twists and character choices, the film ultimately succeeds in delivering an emotionally charged and satisfying conclusion to the trilogy.
+With its dynamic performances, sharp dialogue, and impressive visual effects, Iron Man 3 proves to be an engaging and thought-provoking entry in the Marvel Cinematic Universe. It serves as a testament to the enduring appeal of Tony Stark and his journey as a superhero.", image: "https://m.media-amazon.com/images/M/MV5BMjE5MzcyNjk1M15BMl5BanBnXkFtZTcwMjQ4MjcxOQ@@._V1_.jpg")
+
+review4 = Review.create!(title: "Iron Man 3", category: action, author: eric, content: "Iron Man 3 takes a bold and unexpected approach to the beloved superhero franchise. Directed by Shane Black, the film delves into the aftermath of The Avengers and explores Tony Stark's vulnerability and resilience in the face of a new threat.
 Robert Downey Jr. once again shines in his role as Tony Stark, delivering a nuanced performance that showcases both the character's wit and inner turmoil. The film cleverly deconstructs the hero, stripping away his suits and forcing him to rely on his ingenuity and resourcefulness.
 Iron Man 3 offers a fresh take on the action genre, blending intense and thrilling set pieces with a more character-driven narrative. The film explores themes of identity, redemption, and the consequences of one's actions.
 While some fans may have mixed feelings about certain plot twists and character choices, the film ultimately succeeds in delivering an emotionally charged and satisfying conclusion to the trilogy.

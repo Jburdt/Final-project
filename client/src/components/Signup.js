@@ -68,7 +68,7 @@ const SignUp = () => {
   }, [navigate, loggedIn, dispatch])
 
   const handleSubmit = (e) => {
-    e.prevetDefault();
+    e.preventDefault();
     const user = { username, password, name };
     console.log(user, "new user")
     dispatch(signupUser(user, navigate))

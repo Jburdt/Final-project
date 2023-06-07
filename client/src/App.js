@@ -12,7 +12,6 @@ import { loadCurrentUser, loadUsers } from "./components/actions/User";
 import EditReviewForm from "./components/EditReviewForm";
 import UserProfile from "./components/UserProfile";
 import NotFound from "./components/NotFound";
-import { setErrors } from "./components/actions/Errors";
 import Errors from "./components/Errors";
 
 const App = () => {
@@ -23,7 +22,6 @@ const App = () => {
     dispatch(loadUsers())
     dispatch(loadCurrentUser())
     dispatch(loadReviews())
-    // dispatch(setErrors())
   }, [dispatch]);
 
   return (

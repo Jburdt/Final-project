@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
-  skip_before_action :authorize, only: [:index]
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
+  skip_before_action :authorize, only: [:index]
 
   # SHOWS ALL REVIEWS
   def index
@@ -33,9 +33,10 @@ class ReviewsController < ApplicationController
 
   # UPDATES REVIEW
   def update
-    review = @current_user.reviews.find(params[:id])
+    review = @current_user.reviews.find_by(id: params[:id])
       if review
-        review.update!(review_params)
+        category = Category.find_or_create_by(category: params["category"])
+        review.update!(review_params.merge(category: category))
         render json: review, status: :ok
       else
         render json: { errors: ["Not authorized"] }, status: :unauthorized 
@@ -49,7 +50,7 @@ class ReviewsController < ApplicationController
     Review.find_by(id: params[:id])
   end
 
-  # PARAMS FOR REVIEW
+  # PERMMITTED PARAMS
   def review_params
     params.permit(:title, :content, :user_id, :category_id, :image)
   end
