@@ -1,13 +1,12 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import ReviewCard from './ReviewCard';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
-import { Container, Grid } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 
 const Copyright = () => {
   return (
@@ -89,10 +88,8 @@ const Reviews = () => {
   
   return (
     <>
-      <CssBaseline />
       <main>
-        <div>
-          <Container maxWidth="lg">
+        <div id='test'>
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
               Movie Reviews
             </Typography>
@@ -100,7 +97,7 @@ const Reviews = () => {
               Don't be afraid to speak your mind. These reviews are judgement free!
             </Typography>
             <div className={classes.heroButtons}>
-              <Grid item  container spacing={2} justifyContent="center">
+              <Grid item container spacing={2} justifyContent="center">
                 <Grid item>
                   <Button variant="contained" color="primary" onClick={() => handleButtonClick()}>
                   {showMyReviews ? 'Show All Reviews' : 'Show My Reviews'}
@@ -118,12 +115,12 @@ const Reviews = () => {
                 </Grid>
               </Grid>
             </div>
-          </Container>
         </div>
-        {reviews.map((review, idx) => {
-        return <ReviewCard key={idx} review={review} />  
-        })}
       </main>
+      <div style={{ 
+        flexGrow: 1
+      }}>
+      </div>
       <footer className={classes.footer}>
         <Typography variant="h6" align="center" gutterBottom>
           End of Reviews
@@ -133,6 +130,13 @@ const Reviews = () => {
         </Typography>
         <Copyright />
       </footer>
+      <Grid container alignItems='center'>
+          <Grid item xs={12} md={6} lg={4}>
+          {reviews.map((review, idx) => {
+        return <ReviewCard key={idx} review={review} />  
+        })}
+          </Grid>
+        </Grid>
     </>
   );
 }

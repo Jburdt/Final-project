@@ -13,14 +13,11 @@ import { editReviews } from './actions/Reviews';
   }
 
   const EditReviewForm = () => {
-    const {reviews, category} = useSelector(store => store.reviewsReducer);
+    const {reviews} = useSelector(store => store.reviewsReducer);
     const [formData, setFormData] = useState(initialState);
     const {id} = useParams();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
-    console.log(category, "edit form");
-    console.log(reviews, "edit form");
   
     useEffect(() => {
       if(reviews.length > 0) {

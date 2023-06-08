@@ -1,4 +1,5 @@
 import { headers } from "../../Global";
+import { setErrors } from "./Errors";
 
 // Get reviews action
 export const loadReviews = () => {
@@ -49,7 +50,6 @@ export const editReviews = (id, formData, navigate) => {
   }
 }
 
-
 // ADD REVIEW
 export const addReview = (formData, navigate) => {
   return dispatch => {
@@ -66,6 +66,32 @@ export const addReview = (formData, navigate) => {
       }
       dispatch(action)
       navigate('/reviews')
+    })
+  }
+};
+
+// ADD COMMENT
+export const addComment = (review_id, comment, setErrors) => {
+  debugger
+  console.log(comment)
+  return dispatch => {
+    fetch('/comments', {
+      method: "POST",
+      headers,
+      body: JSON.stringify(comment)
+    })
+    .then(r => r.json())
+    .then(data => {
+      if (data.error) {
+        dispatch(setErrors(data.error))
+      } else {
+        const action = {
+        type: "ADD_COMMENT",
+        payload: data
+      }
+      dispatch(action)
+      // navigate('/reviews')
+      }
     })
   }
 };

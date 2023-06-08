@@ -1,10 +1,12 @@
 import { Button, Card, CardActions, CardContent, IconButton, Typography, CardMedia, makeStyles, Container, Grid, Modal, Divider, TextField } from '@material-ui/core';
 import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { deleteReviews } from './actions/Reviews';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { addComment } from './actions/Reviews';
+import { setErrors } from './actions/Errors';
 
 // STYLES
 const useStyles = makeStyles((theme) => ({
@@ -38,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     position: 'absolute',
-    width: 400,
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
@@ -64,42 +65,7 @@ const ReviewCard = ({review}) => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [modalStyle] = useState(getModalStyle);
-  // const { currentUser} = useSelector(store => store.userReducer);
-
-  // const usableButtons = () => {
-  //   <>
-  //    <Button variant="outlined" onClick={() => handleEdit(review.id)} size="small" color="primary">
-  //       Edit
-  //     </Button>
-  //     <IconButton onClick={() => handleDelete(review.id)} color='secondary' aria-label="delete" className={classes.margin}>
-  //       <DeleteIcon fontSize="small" />
-  //     </IconButton>
-  //   </>
-  // };
-  // const disabledButtons = () => {
-  //   <>
-  //    <Button disabled variant="outlined" onClick={() => handleEdit(review.id)} size="small" color="primary">
-  //       Edit
-  //     </Button>
-  //     <IconButton disabled onClick={() => handleDelete(review.id)} color='secondary' aria-label="delete" className={classes.margin}>
-  //       <DeleteIcon fontSize="small" />
-  //     </IconButton>
-  //   </>
-  // };
-
-  // BUTTONS TO SEE
-  // const shownButtons = () => {
-  //   const user = currentUser.username
-  //   const reviewId = review.author.username
-  //   if( user === reviewId ) {
-  //     usableButtons()
-  //   } else {
-  //     disabledButtons()
-  //   }
-  // };
-
-  // const user = review.author.username === currentUser.username
-  // console.log(user, reviewId, "user")
+  const [comment, setComment] = useState('');
 
   // DELETE REQUEST
   const handleDelete = (id) => {
@@ -132,14 +98,14 @@ const ReviewCard = ({review}) => {
   };
 
   // ADD COMMENT
-  const handleComment = () => {
-    console.log("adding comment")
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(addComment(review.id, comment, navigate, setErrors))
+    console.log(comment)
+    setComment('')
   };
 
   return (
-    <Container className={classes.cardGrid} maxWidth="md">
-      <Grid container spacing={4}>
-        <Grid item md={6} xs={12} sm={6} key={review.id}>
           <Card className={classes.card}>
             <CardMedia
               className={classes.cardMedia}
@@ -160,13 +126,10 @@ const ReviewCard = ({review}) => {
                 <em style={{color: "red"}}>Published by: {review.author.username}</em>
               </Typography>
             </CardContent>
-            <div className='button-container' style={{ display: 'flex', justifyContent: 'center' }}>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
               <CardActions>
                 <Button onClick={ handleOpen } variant="outlined" size="small" color="primary">
                   View Full Review
-                </Button>
-                <Button variant="outlined" onClick={() => handleComment()} size="small" color="primary">
-                  Comment
                 </Button>
                 <Modal
                   open={open}
@@ -192,78 +155,21 @@ const ReviewCard = ({review}) => {
               </CardActions>
             </div>
             <Divider />
-            <form className='comment-section' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }} > 
-              <TextField id="outlined-basic" label="Add comment" variant="outlined" multiline/> 
+            <form onSubmit={handleSubmit} className='comment-section' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }} > 
+              <TextField 
+                onChange={e => setComment(e.target.value)}
+                value={ comment }
+                name='comment'
+                helperText="Comments are show in the full review." 
+                id="outlined-basic" 
+                label="Add comment" 
+                variant="outlined"
+                multiline
+                /> 
               <Button style={{marginLeft: "5px"}} type='submit' variant="outlined" size="small" color="primary">submit</Button>
             </form>
           </Card>
-          </Grid>
-        </Grid>
-  </Container>
   )
 };
-
-//   return (
-//     <Container className={classes.cardGrid} maxWidth="lg">
-//     <Grid container spacing={4}>
-//       {reviews.map((review) => (
-//         <Grid item md={4} xs={12} sm={6}>
-//           <Card className={classes.card}>
-//             <CardMedia
-//               className={classes.cardMedia}
-//               image={review.image}
-//               title="Image title"
-//             />
-//             <CardContent className={classes.cardContent}>
-//               <Typography variant="h5" component="h2">
-//                 {review.title}
-//               </Typography>
-//               <Typography>
-//               Category: {review.category.category}
-//               </Typography>
-//               <Typography>
-//                 {review.content.split('').slice(0, 150).join('') + "..."}
-//               </Typography>
-//               <Typography>
-//                 <em style={{color: "red"}}>Published by: {review.author.username}</em>
-//               </Typography>
-//             </CardContent>
-//             <div className='button-container' style={{ display: 'flex', justifyContent: 'center' }}>
-//               <CardActions>
-//                 <Button onClick={ handleOpen } variant="outlined" size="small" color="primary">
-//                   View Full Review
-//                 </Button>
-//                 <Modal
-//                   open={open}
-//                   onClose={handleClose}>
-//                     <div style={modalStyle} className={classes.paper}>
-//                     <Typography variant='h4' id="simple-modal-title">{review.title}</Typography>
-//                     <Typography><em style={{color: "red"}}>Published by: {review.author.username}</em></Typography>
-//                     <Divider />
-//                     <Typography variant='subtitle2' id="simple-modal-description">{review.content}</Typography>
-//                     <Divider />
-//                     <Typography variant='body1'>Comments:</Typography>
-//                     {review.comments.map((comment, idx) => {return <Typography key={idx} variant='subtitle2'>{comment.user.name}-{comment.comment}</Typography>})}
-                    
-//                     </div>
-//                 </Modal>
-//                 <Button variant="outlined" onClick={() => handleEdit(review.id)} size="small" color="primary">
-//                   Edit
-//                 </Button>
-//                 <Button variant="outlined" onClick={() => handleComment('')} size="small" color="primary">
-//                   Comment
-//                 </Button>
-//                 <IconButton onClick={() => handleDelete(review.id)} color='secondary' aria-label="delete" className={classes.margin}>
-//                   <DeleteIcon fontSize="small" />
-//                 </IconButton>
-//               </CardActions>
-//             </div>
-//           </Card>
-//         </Grid>
-//       ))}
-//     </Grid>
-//   </Container>
-//   )
-// };
 
 export default ReviewCard;

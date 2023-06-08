@@ -16,6 +16,7 @@ class CommentsController < ApplicationController
 
   # CREATES NEW COMMENT
   def create
+    # byebug
     comment = Comment.create!(comment_params)
     render json: comment, status: :created
   end
@@ -46,7 +47,8 @@ class CommentsController < ApplicationController
 
   # COMMENT PARAMS
   def comment_params
-    params.permit(:comment, :user_id, :review_id)
+    # params.permit(:comment, :user_id, :review_id)
+    params.require(:comment).permit(:comment, :user_id, :review_id)
   end
 
   # FINDS ONE COMMENT

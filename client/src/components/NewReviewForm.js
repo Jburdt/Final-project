@@ -99,19 +99,15 @@ const NewReviewForm = () => {
                       <TextField onChange={handleChange} name='category'value={formData.category} label="Category" multiline variant='outlined' fullWidth required/>
                     </Grid>
                     <Grid xs={12} item>
-                      <Button type='submit' variant='contained' color='primary' fullWidth >Submit Review</Button>
+                      <Button type='submit' variant='contained' color='primary' fullWidth>Submit Review</Button>
                     </Grid>
                   </Grid>
               </form>
               </CardContent>
             </Card>
       </div>
-      <div>
-           <ul>
-            <li>
-              {errors}
-            </li>
-           </ul>
+      <div style={{ color: "red" }}>
+           {errors}
       </div>
       <Box mt={8}>
         <Copyright />
