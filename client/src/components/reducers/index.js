@@ -6,5 +6,5 @@ import errorsReducer from "./ErrorsReducer";
 export default combineReducers({
   reviewsReducer,
   userReducer,
-  errorsReducer
+  errorsReducer,
 });

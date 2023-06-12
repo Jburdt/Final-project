@@ -15,11 +15,16 @@ class ReviewsController < ApplicationController
   end
 
   # CREATE NEW REVIEW
+  # def create
+  #   review = Review.find_or_create_by(category: params["category"])
+  #   new_review = Review.create!(review_params.merge(category: category))
+  #   render json: new_review, status: :created
+  # end
+
+  # CREATE NEW REVIEW
   def create
-    # byebug
-    category = Category.find_or_create_by(category: params["category"])
-    new_review = Review.create!(review_params.merge(category: category))
-    render json: new_review, status: :created
+    review = Review.create!(review_params)
+    render json: review, status: :created
   end
 
   # DELETES REVIEW 

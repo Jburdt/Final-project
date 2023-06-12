@@ -4,7 +4,13 @@ Category.destroy_all
 Comment.destroy_all
 Review.destroy_all
 
+# User
+puts "Creating users!"
+josh = User.create!(name: "Josh", username: "Josh1", password: "123456")
+eric = User.create!(name: "Eric", username: "Eric1", password: "123456")
+
 # Category
+puts "Creating categories!"
 action = Category.create!(category: "Action")
 comedy = Category.create!(category: "Comedy")
 drama = Category.create!(category: "Drama")
@@ -14,11 +20,14 @@ mystery = Category.create!(category: "Mystery")
 romance = Category.create!(category: "Romance")
 thriller = Category.create!(category: "Thriller")
 
-# User
-josh = User.create!(name: "Josh", username: "Josh1", password: "123456")
-eric = User.create!(name: "Eric", username: "Eric1", password: "123456")
+# Comments
+puts "Creating comments!"
+comment1 = Comment.create!(user: eric, review: review1, comment: "I agree! This is just the start of a great series!")
+comment2 = Comment.create!(user: eric, review: review2, comment: "I can't wait for the next one this one was so good!!")
+comment3 = Comment.create!(user: eric, review: review3, comment: "So many suits in this one amazing job Marvel!")
 
-# Review
+# Review 
+puts "Creating reviews!"
 review1 = Review.create!(title: "Iron Man", category: action, author: josh, content: "Iron Man is a thrilling and visually stunning superhero film that kick-started the Marvel Cinematic Universe (MCU) with a bang. Directed by Jon Favreau, this 2008 blockbuster introduces us to the charismatic billionaire genius, Tony Stark, brilliantly portrayed by Robert Downey Jr.
 The film expertly balances action, humor, and a compelling origin story. Tony Stark's transformation from a reckless arms dealer to a selfless hero is captivating to watch. The witty dialogue and Downey Jr.'s charismatic performance add depth and charm to the character, making him instantly iconic.
 The visual effects are top-notch, especially the breathtaking Iron Man suit sequences. The film's blend of practical and CGI effects seamlessly brings the armored superhero to life. The exhilarating action scenes, complemented by a fitting score, keep audiences on the edge of their seats.
@@ -40,10 +49,5 @@ Robert Downey Jr. once again shines in his role as Tony Stark, delivering a nuan
 Iron Man 3 offers a fresh take on the action genre, blending intense and thrilling set pieces with a more character-driven narrative. The film explores themes of identity, redemption, and the consequences of one's actions.
 While some fans may have mixed feelings about certain plot twists and character choices, the film ultimately succeeds in delivering an emotionally charged and satisfying conclusion to the trilogy.
 With its dynamic performances, sharp dialogue, and impressive visual effects, Iron Man 3 proves to be an engaging and thought-provoking entry in the Marvel Cinematic Universe. It serves as a testament to the enduring appeal of Tony Stark and his journey as a superhero.", image: "https://m.media-amazon.com/images/M/MV5BMjE5MzcyNjk1M15BMl5BanBnXkFtZTcwMjQ4MjcxOQ@@._V1_.jpg")
-
-# Comments
-comment1 = Comment.create!(user: eric, review: review1, comment: "I agree! This is just the start of a great series!")
-comment2 = Comment.create!(user: eric, review: review2, comment: "I can't wait for the next one this one was so good!!")
-comment3 = Comment.create!(user: eric, review: review3, comment: "So many suits in this one amazing job Marvel!")
 
 puts "Done seeding data!"

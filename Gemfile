@@ -15,6 +15,11 @@ gem 'sqlite3', '~> 1.4'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# Use postgresql as the database for Active Record
+gem 'pg', '~> 1.1'
+# Use Puma as the app server
+gem 'puma', '~> 5.0'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

@@ -1,97 +1,100 @@
 import { headers } from "../../Global";
-import { setErrors } from "./Errors";
+import { clearErrors, setErrors } from "./Errors";
 
 // Get reviews action
 export const loadReviews = () => {
-  return dispatch => {
+  return (dispatch) => {
     fetch("/reviews")
-    .then((r) => r.json())
-    .then(reviews => {
-    const action = { type: "LOAD_REVIEWS", payload: reviews }
-    dispatch(action)
-    })
+      .then((r) => r.json())
+      .then((data) => {
+        console.log(data);
+        const action = { type: "LOAD_REVIEWS", payload: data };
+        dispatch(action);
+      });
   };
 };
 
-// Delete Action 
+// Delete Action
 export const deleteReviews = (id) => {
-  return dispatch => {
-    fetch(`/reviews/${ id }`, {
+  return (dispatch) => {
+    fetch(`/reviews/${id}`, {
       method: "DELETE",
       headers: {
-        "Accept": "application/json"
+        Accept: "application/json",
+      },
+    }).then((r) => {
+      if (r.ok) {
+        dispatch({ type: "DELETE_REVIEW", payload: id });
       }
-    })
-    .then(r => {
-      if(r.ok) {
-      dispatch({type: "DELETE_REVIEW", payload: id })
-      }
-    })
-  }
+    });
+  };
 };
 
 // EDIT ACTION
 export const editReviews = (id, formData, navigate) => {
-  return dispatch => {
+  return (dispatch) => {
     fetch(`/reviews/${id}`, {
       method: "PATCH",
       headers,
-      body: JSON.stringify(formData)
+      body: JSON.stringify(formData),
     })
-      .then(resp => resp.json())
-      .then(data => {
-        const action = {
-          type: "EDIT_REVIEW",
-          payload: data
+      .then((resp) => resp.json())
+      .then((data) => {
+        if (data.errors) {
+          dispatch(setErrors(data.errors));
+          console.log(data.errors);
+        } else {
+          const action = {
+            type: "EDIT_REVIEW",
+            payload: data,
+          };
+          dispatch(action);
+          dispatch(clearErrors());
+          navigate("/reviews");
         }
-        dispatch(action);
-        navigate('/reviews')
-      })
-  }
-}
+      });
+  };
+};
 
 // ADD REVIEW
 export const addReview = (formData, navigate) => {
-  return dispatch => {
-    fetch('/reviews', {
+  return (dispatch) => {
+    fetch("/reviews", {
       method: "POST",
       headers,
-      body: JSON.stringify(formData)
+      body: JSON.stringify(formData),
     })
-    .then(r => r.json())
-    .then(data => {
-      const action = {
-        type: "ADD_REVIEW",
-        payload: data
-      }
-      dispatch(action)
-      navigate('/reviews')
-    })
-  }
+      .then((r) => r.json())
+      .then((data) => {
+        const action = {
+          type: "ADD_REVIEW",
+          payload: data,
+        };
+        dispatch(action);
+        navigate("/reviews");
+      });
+  };
 };
 
 // ADD COMMENT
 export const addComment = (review_id, comment, setErrors) => {
-  debugger
-  console.log(comment)
-  return dispatch => {
-    fetch('/comments', {
+  return (dispatch) => {
+    fetch("/comments", {
       method: "POST",
       headers,
-      body: JSON.stringify(comment)
+      body: JSON.stringify({ comment, review_id }),
     })
-    .then(r => r.json())
-    .then(data => {
-      if (data.error) {
-        dispatch(setErrors(data.error))
-      } else {
-        const action = {
-        type: "ADD_COMMENT",
-        payload: data
-      }
-      dispatch(action)
-      // navigate('/reviews')
-      }
-    })
-  }
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.errors) {
+          setErrors(data.errors);
+        } else {
+          const action = {
+            type: "ADD_COMMENT",
+            payload: data,
+          };
+          dispatch(action);
+        }
+      });
+  };
 };

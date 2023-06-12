@@ -1,12 +1,12 @@
 export const setErrors = (errors) => {
-  return { 
+  return {
     type: "SET_ERRORS",
-    payload: errors
-  }
-}; 
+    payload: errors,
+  };
+};
 
 export const clearErrors = () => {
-  return { 
-    type: 'CLEAR_ERRORS'
-  }
+  return {
+    type: "CLEAR_ERRORS",
+  };
 };

@@ -15,10 +15,16 @@ class CommentsController < ApplicationController
   end
 
   # CREATES NEW COMMENT
+  # def create
+  #   comment = Comment.create!(comment_params)
+  #   render json: comment, status: :created
+  # end
+
   def create
     # byebug
-    comment = Comment.create!(comment_params)
-    render json: comment, status: :created
+    comment = Comment.find_or_create_by(comments: params["comment"])
+    new_comment = Review.create!(comment_params.merge(comment: comment))
+    render json: new_comment, status: :created
   end
 
   # UPDATES ONE COMMENT
@@ -47,8 +53,8 @@ class CommentsController < ApplicationController
 
   # COMMENT PARAMS
   def comment_params
-    # params.permit(:comment, :user_id, :review_id)
-    params.require(:comment).permit(:comment, :user_id, :review_id)
+    params.permit(:comment, :user_id, :review_id)
+    # params.require(:comment).permit(:comment, :user_id, :review_id)
   end
 
   # FINDS ONE COMMENT
