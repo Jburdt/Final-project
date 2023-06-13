@@ -25,32 +25,6 @@ class ReviewsController < ApplicationController
     end
   end
 
-  # def create
-  #     review = @current_user.reviews.find_or_create_by(review_params.merge(category: category))
-  #     byebug
-  #   if review.valid?
-  #     render json: review, status: :created
-  #   else
-  #     render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
-  #   end
-  # end
-
-
-  # def create
-  #   review = Review.find_or_create_by!(review_params)
-  #   byebug
-  #   new_review = Review.create!(review_params.merge(category: category))
-  #   byebug
-  #   render json: new_review, status: :created
-  #   byebug
-  # end
-
-  # CREATE NEW REVIEW
-  # def create
-  #   review = Review.create!(review_params)
-  #   render json: review, status: :created
-  # end
-
   # DELETES REVIEW 
   def destroy
     deleted_review = @current_user.reviews.find_by(id: params[:id])

@@ -17,6 +17,7 @@ const initialState = {
   title: "",
   category: "",
   content: "",
+  image: "",
 };
 
 const EditReviewForm = () => {
@@ -35,6 +36,7 @@ const EditReviewForm = () => {
       setFormData({
         title: review.title,
         content: review.content,
+        image: review.image,
         category: review.category.category,
       });
     }
@@ -79,6 +81,15 @@ const EditReviewForm = () => {
                   onChange={handleChange}
                   name="category"
                   value={formData.category}
+                  variant="outlined"
+                  fullWidth
+                />
+              </Grid>
+              <Grid item style={{ margin: "10px" }}>
+                <TextField
+                  onChange={handleChange}
+                  name="image"
+                  value={formData.image}
                   variant="outlined"
                   fullWidth
                 />
