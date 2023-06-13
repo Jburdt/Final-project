@@ -15,17 +15,41 @@ class ReviewsController < ApplicationController
   end
 
   # CREATE NEW REVIEW
+  def create
+    category = Category.find_or_create_by(category: params["category"])
+    review = @current_user.reviews.find_or_create_by(review_params.merge(category: category))
+    if review.valid?
+      render json: review, status: :created
+    else
+      render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
   # def create
-  #   review = Review.find_or_create_by(category: params["category"])
+  #     review = @current_user.reviews.find_or_create_by(review_params.merge(category: category))
+  #     byebug
+  #   if review.valid?
+  #     render json: review, status: :created
+  #   else
+  #     render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
+  #   end
+  # end
+
+
+  # def create
+  #   review = Review.find_or_create_by!(review_params)
+  #   byebug
   #   new_review = Review.create!(review_params.merge(category: category))
+  #   byebug
   #   render json: new_review, status: :created
+  #   byebug
   # end
 
   # CREATE NEW REVIEW
-  def create
-    review = Review.create!(review_params)
-    render json: review, status: :created
-  end
+  # def create
+  #   review = Review.create!(review_params)
+  #   render json: review, status: :created
+  # end
 
   # DELETES REVIEW 
   def destroy
@@ -39,23 +63,6 @@ class ReviewsController < ApplicationController
   end
 
   # UPDATES REVIEW
-  # def update
-  #   review = @current_user.reviews.find_by(id: params[:id])
-  #   byebug
-  #     if review.invalid?
-  #       render json: { errors: ["Review not found"] }, status: :not_found
-  #     end
-
-  #     if category = Category.find_or_create_by(category: params["category"])
-  #       byebug
-  #       category.valid?
-  #       review.update!(review_params.merge(category: category))
-  #       render json: review, status: :ok
-  #     else
-  #       render json: { errors: ["Invalid category"] }, status: :unprocessable_entity
-  #     end
-  # end
-
   def update
     review = @current_user.reviews.find_by(id: params[:id])
     if review 
