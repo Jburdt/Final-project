@@ -116,7 +116,7 @@ const ReviewCard = ({ review }) => {
     dispatch(addComment(review.id, comment));
     setComment("");
   };
-  
+
   return (
     <Card className={classes.card}>
       <CardMedia
@@ -125,11 +125,10 @@ const ReviewCard = ({ review }) => {
         title="Image title"
       />
       <CardContent className={classes.cardContent}>
-        <Typography variant="h5" component="h2">
+        <Typography variant="h5" component="h2" style={{ textDecoration: 'underline' }}>
           {review.title}
         </Typography>
-        {/* <Typography>Category: {category.category}</Typography> */}
-        <Typography>Category: {review.category.category}</Typography>
+        <Typography style={{ color: "blue" }}>Category: {review.category.category}</Typography>
         <Typography>
           {review.content.split("").slice(0, 150).join("") + "..."}
         </Typography>
@@ -214,10 +213,11 @@ const ReviewCard = ({ review }) => {
           id="outlined-basic"
           label="Add comment"
           variant="outlined"
+          size="small"
           multiline
         />
         <Button
-          style={{ marginLeft: "5px" }}
+          style={{ marginLeft: "5px", marginBottom: "25px" }}
           type="submit"
           variant="outlined"
           size="small"

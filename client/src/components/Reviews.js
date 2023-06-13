@@ -136,7 +136,7 @@ const Reviews = () => {
           flexGrow: 1,
         }}
       ></div>
-      {/* <Grid container alignItems="center">
+      <Grid container alignItems="center">
         <Grid item xs={12} md={6} lg={4}>
           {reviews.map((review, idx) => {
             return (
@@ -148,7 +148,7 @@ const Reviews = () => {
             );
           })}
         </Grid>
-      </Grid> */}
+      </Grid>
       <footer className={classes.footer}>
         <Typography variant="h6" align="center" gutterBottom>
           End of Reviews
@@ -163,21 +163,6 @@ const Reviews = () => {
         </Typography>
         <Copyright />
       </footer>
-      <div id="delete-this-when-done">
-      <Grid container alignItems="center">
-        <Grid item xs={12} md={6} lg={4}>
-          {reviews.map((review, idx) => {
-            return (
-              <ReviewCard
-                key={idx}
-                review={review}
-                category={review.category}
-              />
-            );
-          })}
-        </Grid>
-      </Grid>
-      </div>
     </>
   );
 };

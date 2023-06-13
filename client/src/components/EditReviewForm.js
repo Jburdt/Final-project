@@ -28,8 +28,6 @@ const EditReviewForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  console.log(reviews, "reviews");
-
   useEffect(() => {
     if (reviews.length > 0) {
       const review = reviews.find((review) => review.id === parseInt(id, 10));
