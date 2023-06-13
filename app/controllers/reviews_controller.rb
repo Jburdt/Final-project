@@ -39,15 +39,33 @@ class ReviewsController < ApplicationController
   end
 
   # UPDATES REVIEW
+  # def update
+  #   review = @current_user.reviews.find_by(id: params[:id])
+  #   byebug
+  #     if review.invalid?
+  #       render json: { errors: ["Review not found"] }, status: :not_found
+  #     end
+
+  #     if category = Category.find_or_create_by(category: params["category"])
+  #       byebug
+  #       category.valid?
+  #       review.update!(review_params.merge(category: category))
+  #       render json: review, status: :ok
+  #     else
+  #       render json: { errors: ["Invalid category"] }, status: :unprocessable_entity
+  #     end
+  # end
+
   def update
     review = @current_user.reviews.find_by(id: params[:id])
-      if review
-        category = Category.find_or_create_by(category: params["category"])
-        review.update!(review_params.merge(category: category))
-        render json: review, status: :ok
-      else
-        render json: { errors: ["Not authorized"] }, status: :unauthorized 
-      end
+    if review 
+      category = Category.find_or_create_by(category: params["category"])
+      category.valid?
+      review.update!(review_params.merge(category: category))
+      render json: review, status: :ok
+    else
+      render json: { errors: ["Invalid data"] }, status: :unprocessable_entity
+    end
   end
 
   private

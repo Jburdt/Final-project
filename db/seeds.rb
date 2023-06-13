@@ -20,11 +20,6 @@ mystery = Category.create!(category: "Mystery")
 romance = Category.create!(category: "Romance")
 thriller = Category.create!(category: "Thriller")
 
-# Comments
-puts "Creating comments!"
-comment1 = Comment.create!(user: eric, review: review1, comment: "I agree! This is just the start of a great series!")
-comment2 = Comment.create!(user: eric, review: review2, comment: "I can't wait for the next one this one was so good!!")
-comment3 = Comment.create!(user: eric, review: review3, comment: "So many suits in this one amazing job Marvel!")
 
 # Review 
 puts "Creating reviews!"
@@ -49,5 +44,11 @@ Robert Downey Jr. once again shines in his role as Tony Stark, delivering a nuan
 Iron Man 3 offers a fresh take on the action genre, blending intense and thrilling set pieces with a more character-driven narrative. The film explores themes of identity, redemption, and the consequences of one's actions.
 While some fans may have mixed feelings about certain plot twists and character choices, the film ultimately succeeds in delivering an emotionally charged and satisfying conclusion to the trilogy.
 With its dynamic performances, sharp dialogue, and impressive visual effects, Iron Man 3 proves to be an engaging and thought-provoking entry in the Marvel Cinematic Universe. It serves as a testament to the enduring appeal of Tony Stark and his journey as a superhero.", image: "https://m.media-amazon.com/images/M/MV5BMjE5MzcyNjk1M15BMl5BanBnXkFtZTcwMjQ4MjcxOQ@@._V1_.jpg")
+
+# Comments
+puts "Creating comments!"
+comment1 = Comment.create!(user: eric, review: review1, comment: "I agree! This is just the start of a great series!")
+comment2 = Comment.create!(user: eric, review: review2, comment: "I can't wait for the next one this one was so good!!")
+comment3 = Comment.create!(user: eric, review: review3, comment: "So many suits in this one amazing job Marvel!")
 
 puts "Done seeding data!"

@@ -1,6 +1,5 @@
 const initialState = {
   reviews: [],
-  category: [],
 };
 
 const reviewsReducer = (state = initialState, action) => {
@@ -10,7 +9,6 @@ const reviewsReducer = (state = initialState, action) => {
       return {
         ...state,
         reviews: action.payload,
-        category: initialState.category,
       };
     case "DELETE_REVIEW":
       return {

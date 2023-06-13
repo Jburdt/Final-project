@@ -20,7 +20,7 @@ const initialState = {
 };
 
 const EditReviewForm = () => {
-  const reviews = useSelector((store) => store.reviewsReducer);
+  const {reviews} = useSelector((store) => store.reviewsReducer);
   const [formData, setFormData] = useState(initialState);
   // const errors = useSelector(store => store.reviewsReducer);
   const { id } = useParams();
@@ -35,7 +35,7 @@ const EditReviewForm = () => {
       setFormData({
         title: review.title,
         content: review.content,
-        category: review.category,
+        category: review.category.category,
       });
     }
   }, [id, reviews, navigate]);

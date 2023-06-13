@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ReviewCard = ({ review, category }) => {
+const ReviewCard = ({ review }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -116,9 +116,7 @@ const ReviewCard = ({ review, category }) => {
     dispatch(addComment(review.id, comment));
     setComment("");
   };
-
-  console.log(category);
-
+  
   return (
     <Card className={classes.card}>
       <CardMedia
@@ -131,7 +129,7 @@ const ReviewCard = ({ review, category }) => {
           {review.title}
         </Typography>
         {/* <Typography>Category: {category.category}</Typography> */}
-        {/* <Typography>Category: {review.category.category}</Typography> */}
+        <Typography>Category: {review.category.category}</Typography>
         <Typography>
           {review.content.split("").slice(0, 150).join("") + "..."}
         </Typography>
