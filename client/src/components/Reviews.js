@@ -69,25 +69,39 @@ const useStyles = makeStyles((theme) => ({
     fontSize: theme.typography.pxToRem(15),
     color: theme.palette.text.secondary,
   },
+  container: {
+    display: "grid",
+    gridTemplateColumns: "repeat(12, 1fr)",
+    gridGap: theme.spacing(3),
+  },
+  divider: {
+    margin: theme.spacing(2, 0),
+  },
 }));
 
 const Reviews = () => {
   const classes = useStyles();
-  const currentUser = useSelector((store) => store.usersReducer);
   const reviews = useSelector((store) => store.reviewsReducer.reviews);
-  const [showMyReviews, setShowMyReviews] = useState(false);
+  const [orderByTitle, setOrderByTitle] = useState(false);
 
-  //make a function that will filter the reviews based on the current user
+  // Sorts reviews by title
   const handleButtonClick = () => {
-    return reviews.filter(
-      (review) => review.author.username === currentUser.username
-    );
+    setOrderByTitle(!orderByTitle);
+    return reviews.sort((a, b) => {
+      if (a.title.toLowerCase() < b.title.toLowerCase()) {
+        return -1;
+      } else if (a.title.toLowerCase() > b.title.toLowerCase()) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
   };
 
   return (
     <>
       <main>
-        <div id="test">
+        <div id="card-page" className={classes.cardContent}>
           <Typography
             component="h1"
             variant="h2"
@@ -112,9 +126,9 @@ const Reviews = () => {
                 <Button
                   variant="contained"
                   color="primary"
-                  onClick={() => handleButtonClick()}
+                  onClick={handleButtonClick}
                 >
-                  {showMyReviews ? "Show All Reviews" : "Show My Reviews"}
+                  {"Order by Title"}
                 </Button>
               </Grid>
               <Grid item>
@@ -128,27 +142,22 @@ const Reviews = () => {
                 </Button>
               </Grid>
             </Grid>
+            <Grid container alignItems="center">
+              <Grid item xs={12} md={6} lg={4}>
+                {reviews.map((review, idx) => {
+                  return (
+                    <ReviewCard
+                      key={idx}
+                      review={review}
+                      category={review.category}
+                    />
+                  );
+                })}
+              </Grid>
+            </Grid>
           </div>
         </div>
       </main>
-      <div
-        style={{
-          flexGrow: 1,
-        }}
-      ></div>
-      <Grid container alignItems="center">
-        <Grid item xs={12} md={6} lg={4}>
-          {reviews.map((review, idx) => {
-            return (
-              <ReviewCard
-                key={idx}
-                review={review}
-                category={review.category}
-              />
-            );
-          })}
-        </Grid>
-      </Grid>
       <footer className={classes.footer}>
         <Typography variant="h6" align="center" gutterBottom>
           End of Reviews

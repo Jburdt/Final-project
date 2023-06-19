@@ -7,7 +7,6 @@ export const loadReviews = () => {
     fetch("/reviews")
       .then((r) => r.json())
       .then((data) => {
-        console.log(data);
         const action = { type: "LOAD_REVIEWS", payload: data };
         dispatch(action);
       });
@@ -42,7 +41,6 @@ export const editReviews = (id, formData, navigate) => {
       .then((data) => {
         if (data.errors) {
           dispatch(setErrors(data.errors));
-          console.log(data.errors);
         } else {
           const action = {
             type: "EDIT_REVIEW",
@@ -82,7 +80,10 @@ export const addComment = (review_id, comment, setErrors) => {
     fetch("/comments", {
       method: "POST",
       headers,
-      body: JSON.stringify({ comment, review_id }),
+      body: JSON.stringify({
+        comment,
+        review_id,
+      }),
     })
       .then((r) => r.json())
       .then((data) => {

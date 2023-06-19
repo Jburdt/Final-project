@@ -69,7 +69,6 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const user = { username, password, name };
-    console.log(user, "new user");
     dispatch(signupUser(user, navigate));
   };
 
@@ -147,11 +146,26 @@ const SignUp = () => {
             </Grid>
           </form>
         </div>
-        <div style={{ color: "red" }}>{errors}</div>
         <Box mt={5}>
           <Copyright />
         </Box>
       </Container>
+      <div id="errors-container">
+        <ul>
+          {errors.map((error) => (
+            <li
+              style={{
+                color: "red",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {error}
+            </li>
+          ))}
+        </ul>
+      </div>
     </>
   );
 };

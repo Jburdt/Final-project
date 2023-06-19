@@ -69,7 +69,6 @@ const NewReviewForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // debugger
     dispatch(addReview(formData, navigate));
   };
 
@@ -150,7 +149,18 @@ const NewReviewForm = () => {
           </CardContent>
         </Card>
       </div>
-      <div style={{ color: "red" }}>{errors}</div>
+      <div>
+        <div
+          style={{
+            color: "red",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          {errors}
+        </div>
+      </div>
       <Box mt={8}>
         <Copyright />
       </Box>

@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
-  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
   skip_before_action :authorize, only: :index
+  before_action :find_comment, only: [:show, :update, :delete]
 
   # GETS ALL COMMENTS
   def index
@@ -10,29 +10,24 @@ class CommentsController < ApplicationController
 
   # SHOWS ONE COMMENT
   def show
-    comment = Comment.all.find_by(id: params[:id])
-    render json: comment, status: :ok
+    render json: @comment, status: :ok
   end
 
   # CREATES NEW COMMENT
-  # def create
-  #   comment = Comment.create!(comment_params)
-  #   render json: comment, status: :created
-  # end
-
   def create
-    # byebug
-    comment = Comment.find_or_create_by(comments: params["comment"])
-    new_comment = Review.create!(comment_params.merge(comment: comment))
-    render json: new_comment, status: :created
+    new_comment = @current_user.comments.build(comment_params)
+    if new_comment.save
+      render json: new_comment, status: :created
+    else
+      render json: { errors: new_comment.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   # UPDATES ONE COMMENT
   def update
-    comment = @current_user.comments.find_by(id: params[:id])
-      if comment
-        comment.update!(comment_params)
-        render json: comment, status: :ok
+      if @comment
+        @comment.update!(comment_params)
+        render json: @comment, status: :ok
       else
         render json: { errors: ["Not authorized"] }, status: :unauthorized
       end
@@ -40,9 +35,8 @@ class CommentsController < ApplicationController
 
   # DELETES ONE COMMENT
   def destroy
-    deleted_comment = @current_user.comments.find_by(id: params[:id])
-    if deleted_comment
-      deleted_comment.destroy
+    if @comment
+      @comment.destroy
       head :no_content
     else
       render json: { errors: ["Not authorized"] }, status: :unauthorized
@@ -54,12 +48,11 @@ class CommentsController < ApplicationController
   # COMMENT PARAMS
   def comment_params
     params.permit(:comment, :user_id, :review_id)
-    # params.require(:comment).permit(:comment, :user_id, :review_id)
   end
 
   # FINDS ONE COMMENT
   def find_comment
-    comment = Comment.all.find(params[:id])
+    @comment = @current_user.comments.find(params[:id])
   end
 
   # INVALID DATA RESPONSE

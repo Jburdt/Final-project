@@ -18,20 +18,10 @@ import { deleteReviews } from "./actions/Reviews";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { addComment } from "./actions/Reviews";
+import { setErrors } from "./actions/Errors";
 
 // STYLES
 const useStyles = makeStyles((theme) => ({
-  icon: {
-    marginRight: theme.spacing(2),
-  },
-  heroContent: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
-  },
-  cardGrid: {
-    paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(2),
-  },
   card: {
     height: "100%",
     display: "flex",
@@ -46,28 +36,12 @@ const useStyles = makeStyles((theme) => ({
   cardContent: {
     flexGrow: 1,
   },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
-  },
   paper: {
     position: "absolute",
     backgroundColor: theme.palette.background.paper,
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
-  },
-  root: {
-    width: "100%",
-  },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    flexBasis: "33.33%",
-    flexShrink: 0,
-  },
-  secondaryHeading: {
-    fontSize: theme.typography.pxToRem(15),
-    color: theme.palette.text.secondary,
   },
 }));
 
@@ -78,7 +52,7 @@ const ReviewCard = ({ review }) => {
   const [open, setOpen] = useState(false);
   const [modalStyle] = useState(getModalStyle);
   const [comment, setComment] = useState("");
-  // const errors = useSelector(state => state.errorsReducer);
+  const errors = useSelector((store) => store.errorsReducer);
 
   // DELETE REQUEST
   const handleDelete = (id) => {
@@ -113,7 +87,7 @@ const ReviewCard = ({ review }) => {
   // ADD COMMENT
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addComment(review.id, comment));
+    dispatch(addComment(review.id, comment, setErrors));
     setComment("");
   };
 
@@ -125,10 +99,16 @@ const ReviewCard = ({ review }) => {
         title="Image title"
       />
       <CardContent className={classes.cardContent}>
-        <Typography variant="h5" component="h2" style={{ textDecoration: 'underline' }}>
+        <Typography
+          variant="h5"
+          component="h2"
+          style={{ textDecoration: "underline" }}
+        >
           {review.title}
         </Typography>
-        <Typography style={{ color: "blue" }}>Category: {review.category.category}</Typography>
+        <Typography style={{ color: "blue" }}>
+          Category: {review.category.category}
+        </Typography>
         <Typography>
           {review.content.split("").slice(0, 150).join("") + "..."}
         </Typography>
@@ -171,6 +151,7 @@ const ReviewCard = ({ review }) => {
                 return (
                   <Typography key={idx} variant="subtitle2">
                     {comment.user.name}- {comment.comment}
+                    <Divider />
                   </Typography>
                 );
               })}
@@ -197,7 +178,7 @@ const ReviewCard = ({ review }) => {
       <Divider />
       <form
         onSubmit={handleSubmit}
-        className="comment-section"
+        id="comment-section"
         style={{
           display: "flex",
           justifyContent: "center",
@@ -226,6 +207,18 @@ const ReviewCard = ({ review }) => {
           submit
         </Button>
       </form>
+      <div>
+        <div
+          style={{
+            color: "red",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          {errors}
+        </div>
+      </div>
     </Card>
   );
 };

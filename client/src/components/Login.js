@@ -125,7 +125,18 @@ const Login = () => {
           </Grid>
         </form>
       </div>
-      <div style={{ color: "red" }}>{errors}</div>
+      <div id="errors-container">
+        <div id="errors"
+          style={{
+            color: "red",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          {errors}
+        </div>
+      </div>
       <Box mt={8}>
         <Copyright />
       </Box>
