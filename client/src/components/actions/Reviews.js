@@ -10,7 +10,7 @@ export const loadReviews = () => {
         const action = { type: "LOAD_REVIEWS", payload: data };
         dispatch(action);
       });
-  };
+    };
 };
 
 // Delete Action
@@ -47,7 +47,7 @@ export const editReviews = (id, formData, navigate) => {
             payload: data,
           };
           dispatch(action);
-          dispatch(clearErrors());
+          // dispatch(clearErrors());
           navigate("/reviews");
         }
       });
@@ -64,18 +64,22 @@ export const addReview = (formData, navigate) => {
     })
       .then((r) => r.json())
       .then((data) => {
-        const action = {
-          type: "ADD_REVIEW",
-          payload: data,
-        };
-        dispatch(action);
-        navigate("/reviews");
+        if (data.errors) {
+          dispatch(setErrors(data.errors));
+        } else {
+          const action = {
+            type: "ADD_REVIEW",
+            payload: data,
+          };
+          dispatch(action);
+          navigate("/reviews");
+        }
       });
   };
 };
 
 // ADD COMMENT
-export const addComment = (review_id, comment, setErrors) => {
+export const addComment = (review_id, comment) => {
   return (dispatch) => {
     fetch("/comments", {
       method: "POST",
@@ -87,15 +91,11 @@ export const addComment = (review_id, comment, setErrors) => {
     })
       .then((r) => r.json())
       .then((data) => {
-        if (data.errors) {
-          setErrors(data.errors);
-        } else {
           const action = {
             type: "ADD_COMMENT",
             payload: data,
           };
           dispatch(action);
-        }
       });
   };
 };

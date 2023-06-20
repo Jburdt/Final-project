@@ -21,9 +21,8 @@ const initialState = {
 };
 
 const EditReviewForm = () => {
-  const {reviews} = useSelector((store) => store.reviewsReducer);
+  const { reviews } = useSelector((store) => store.reviewsReducer);
   const [formData, setFormData] = useState(initialState);
-  // const errors = useSelector(store => store.reviewsReducer);
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -54,73 +53,76 @@ const EditReviewForm = () => {
   };
 
   return (
-    <div className="ReviewEditForm">
-      <Typography gutterBottom variant="h3" align="center">
-        Edit Review
-      </Typography>
-      <Card
-        style={{ maxWidth: 450, margin: "0 auto", padding: "20px 5px" }}
-        variant="outlined"
-      >
-        <CardContent align="center">
-          <form onSubmit={handleSubmit}>
-            <Grid spaceing={1}>
-              <Grid item style={{ margin: "10px" }}>
-                <TextField
-                  onChange={handleChange}
-                  name="title"
-                  value={formData.title}
-                  variant="outlined"
-                  fullWidth
-                />
+    <>
+      <div className="ReviewEditForm">
+        <Typography gutterBottom variant="h3" align="center">
+          Edit Review
+        </Typography>
+        <Card
+          style={{ maxWidth: 450, margin: "0 auto", padding: "20px 5px" }}
+          variant="outlined"
+        >
+          <CardContent align="center">
+            <form onSubmit={handleSubmit}>
+              <Grid spaceing={1}>
+                <Grid item style={{ margin: "10px" }}>
+                  <TextField
+                    onChange={handleChange}
+                    name="title"
+                    value={formData.title}
+                    variant="outlined"
+                    fullWidth
+                    required
+                  />
+                </Grid>
+                <Grid item style={{ margin: "10px" }}>
+                  <TextField
+                    onChange={handleChange}
+                    name="category"
+                    value={formData.category}
+                    variant="outlined"
+                    fullWidth
+                    required
+                  />
+                </Grid>
+                <Grid item style={{ margin: "10px" }}>
+                  <TextField
+                    onChange={handleChange}
+                    name="image"
+                    value={formData.image}
+                    variant="outlined"
+                    fullWidth
+                    required
+                  />
+                </Grid>
+                <Grid item style={{ margin: "10px" }}>
+                  <TextField
+                    onChange={handleChange}
+                    name="content"
+                    value={formData.content}
+                    variant="outlined"
+                    fullWidth
+                    required
+                    multiline
+                    minRows={10}
+                  />
+                </Grid>
+                <Grid item style={{ margin: "10px" }}>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    fullWidth
+                  >
+                    Submit
+                  </Button>
+                </Grid>
               </Grid>
-              <Grid item style={{ margin: "10px" }}>
-                <TextField
-                  onChange={handleChange}
-                  name="category"
-                  value={formData.category}
-                  variant="outlined"
-                  fullWidth
-                />
-              </Grid>
-              <Grid item style={{ margin: "10px" }}>
-                <TextField
-                  onChange={handleChange}
-                  name="image"
-                  value={formData.image}
-                  variant="outlined"
-                  fullWidth
-                />
-              </Grid>
-              <Grid item style={{ margin: "10px" }}>
-                <TextField
-                  onChange={handleChange}
-                  name="content"
-                  value={formData.content}
-                  variant="outlined"
-                  fullWidth
-                  multiline
-                  minRows={10}
-                />
-              </Grid>
-              <Grid item style={{ margin: "10px" }}>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  fullWidth
-                >
-                  Submit
-                </Button>
-              </Grid>
-            </Grid>
-          </form>
-        </CardContent>
-        {/* <div style={{ color: "red" }}>
-           {errors}
-      </div> */}
-      </Card>
-    </div>
+            </form>
+          </CardContent>
+        </Card>
+      </div>
+    </>
   );
 };
 

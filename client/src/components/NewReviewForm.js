@@ -95,7 +95,6 @@ const NewReviewForm = () => {
                     placeholder="Enter Title"
                     variant="outlined"
                     fullWidth
-                    required
                   />
                 </Grid>
                 <Grid xs={12} sm={6} item>
@@ -106,7 +105,6 @@ const NewReviewForm = () => {
                     label="Image link"
                     variant="outlined"
                     fullWidth
-                    required
                   />
                 </Grid>
                 <Grid xs={12} item>
@@ -119,7 +117,6 @@ const NewReviewForm = () => {
                     minRows={10}
                     variant="outlined"
                     fullWidth
-                    required
                   />
                 </Grid>
                 <Grid xs={12} item>
@@ -131,7 +128,6 @@ const NewReviewForm = () => {
                     multiline
                     variant="outlined"
                     fullWidth
-                    required
                   />
                 </Grid>
                 <Grid xs={12} item>
@@ -149,17 +145,22 @@ const NewReviewForm = () => {
           </CardContent>
         </Card>
       </div>
-      <div>
-        <div
-          style={{
-            color: "red",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          {errors}
-        </div>
+      <div id="errors-container">
+        <ul>
+          {errors.map((error, idx) => (
+            <li
+              key={idx}
+              style={{
+                color: "red",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {error}
+            </li>
+          ))}
+        </ul>
       </div>
       <Box mt={8}>
         <Copyright />
