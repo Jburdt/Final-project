@@ -10,7 +10,7 @@ export const loadReviews = () => {
         const action = { type: "LOAD_REVIEWS", payload: data };
         dispatch(action);
       });
-    };
+  };
 };
 
 // Delete Action
@@ -47,7 +47,7 @@ export const editReviews = (id, formData, navigate) => {
             payload: data,
           };
           dispatch(action);
-          // dispatch(clearErrors());
+          dispatch(clearErrors());
           navigate("/reviews");
         }
       });
@@ -91,11 +91,15 @@ export const addComment = (review_id, comment) => {
     })
       .then((r) => r.json())
       .then((data) => {
+        if (data.errors) {
+          dispatch(setErrors(data.errors));
+        } else {
           const action = {
             type: "ADD_COMMENT",
             payload: data,
           };
           dispatch(action);
+        }
       });
   };
 };

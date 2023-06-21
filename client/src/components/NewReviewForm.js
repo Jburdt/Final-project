@@ -66,6 +66,7 @@ const NewReviewForm = () => {
       [name]: value,
     });
   };
+  console.log(errors)
 
   const handleSubmit = (e) => {
     e.preventDefault();
