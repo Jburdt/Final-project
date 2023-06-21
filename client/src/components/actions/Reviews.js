@@ -73,6 +73,7 @@ export const addReview = (formData, navigate) => {
           };
           dispatch(action);
           navigate("/reviews");
+          dispatch(clearErrors());
         }
       });
   };

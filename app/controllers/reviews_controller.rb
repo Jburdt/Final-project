@@ -41,7 +41,6 @@ class ReviewsController < ApplicationController
     review = @current_user.reviews.find_by(id: params[:id])
     if review 
       category = Category.find_or_create_by(category: params["category"])
-      # byebug
       category.valid?
       review.update!(review_params.merge(category: category))
       render json: review, status: :ok

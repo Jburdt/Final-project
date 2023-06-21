@@ -59,6 +59,12 @@ const NewReviewForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const errorsLi = errors.map((error, i) => (
+    <li style={{ color: "red" }} key={i}>
+      {error}{" "}
+    </li>
+  ));
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -66,7 +72,6 @@ const NewReviewForm = () => {
       [name]: value,
     });
   };
-  console.log(errors)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -147,21 +152,7 @@ const NewReviewForm = () => {
         </Card>
       </div>
       <div id="errors-container">
-        <ul>
-          {errors.map((error, idx) => (
-            <li
-              key={idx}
-              style={{
-                color: "red",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              {error}
-            </li>
-          ))}
-        </ul>
+        <ul id="Errors-list">{errorsLi}</ul>
       </div>
       <Box mt={8}>
         <Copyright />
