@@ -9,6 +9,7 @@ export const loadReviews = () => {
       .then((data) => {
         const action = { type: "LOAD_REVIEWS", payload: data };
         dispatch(action);
+        dispatch(clearErrors())
       });
   };
 };
