@@ -21,7 +21,7 @@ class ReviewsController < ApplicationController
     if review.valid?
       render json: review, status: :created
     else
-      render json: { errors: [review.errors.full_messages] }, status: :unprocessable_entity
+      render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -45,7 +45,7 @@ class ReviewsController < ApplicationController
       review.update!(review_params.merge(category: category))
       render json: review, status: :ok
     else
-      render json: { errors: ["Invalid data"] }, status: :unprocessable_entity
+      render json: { errors: ["Invalid data, or not original owner of the review"] }, status: :unprocessable_entity
     end
   end
 
@@ -63,7 +63,7 @@ class ReviewsController < ApplicationController
 
   # INVALID DATA RESPONSE
   def render_unprocessable_entity_response(invalid)
-    render json: { errors: [invalid.record.errors.full_messages ]}, status: :unprocessable_entity
+    render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
   end
 
 end

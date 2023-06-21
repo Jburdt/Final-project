@@ -61,7 +61,7 @@ const NewReviewForm = () => {
 
   const errorsLi = errors.map((error, i) => (
     <li style={{ color: "red" }} key={i}>
-      {error}{" "}
+      {error}
     </li>
   ));
 

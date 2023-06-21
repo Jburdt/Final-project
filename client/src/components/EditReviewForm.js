@@ -23,6 +23,7 @@ const initialState = {
 const EditReviewForm = () => {
   const { reviews } = useSelector((store) => store.reviewsReducer);
   const [formData, setFormData] = useState(initialState);
+  const errors = useSelector((store) => store.errorsReducer);
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -121,6 +122,14 @@ const EditReviewForm = () => {
             </form>
           </CardContent>
         </Card>
+      </div>
+      <div style={{
+            color: "red",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}>
+        {errors}
       </div>
     </>
   );

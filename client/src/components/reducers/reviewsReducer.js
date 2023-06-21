@@ -31,15 +31,19 @@ const reviewsReducer = (state = initialState, action) => {
         (review) => review.id === action.payload.review_id
       );
       const updatedComments = [...review.comments, action.payload];
-      const updatedReview = { ...review, comment: updatedComments };
+      const updatedReview = { ...review, comments: updatedComments };
 
-      return state.reviews.map((rev) => {
+      const updatedReviews = state.reviews.map((rev) => {
         if (rev.id === review.id) {
           return updatedReview;
         } else {
           return rev;
         }
       });
+      return {
+        ...state,
+        reviews: updatedReviews,
+      };
     default:
       return state;
   }

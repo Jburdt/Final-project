@@ -97,16 +97,10 @@ const Reviews = () => {
       }
     });
   };
-  
+
   const reviewCards = reviews.map((review, idx) => {
-    return (
-      <ReviewCard
-        key={idx}
-        review={review}
-        category={review.category}
-      />
-    );
-  })
+    return <ReviewCard key={idx} review={review} category={review.category} />;
+  });
 
   return (
     <>
@@ -155,15 +149,6 @@ const Reviews = () => {
             <Grid container alignItems="center">
               <Grid item xs={12} md={6} lg={4}>
                 {reviewCards}
-                {/* {reviews.map((review, idx) => {
-                  return (
-                    <ReviewCard
-                      key={idx}
-                      review={review}
-                      category={review.category}
-                    />
-                  );
-                })} */}
               </Grid>
             </Grid>
           </div>
