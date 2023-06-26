@@ -26,7 +26,6 @@ const App = () => {
   return (
     <Router>
       <Navbar />
-      {/* <Errors /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/reviews" element={<Reviews />} />

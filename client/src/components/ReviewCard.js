@@ -93,7 +93,7 @@ const ReviewCard = ({ review }) => {
   };
 
   return (
-    <Grid item xs={3}>
+    <Grid lg={3} md={6} sm={12} xs={24}>
       <Card className={classes.card}>
         <CardMedia
           className={classes.cardMedia}
