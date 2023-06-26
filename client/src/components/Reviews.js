@@ -146,10 +146,8 @@ const Reviews = () => {
                 </Button>
               </Grid>
             </Grid>
-            <Grid container alignItems="center">
-              <Grid item xs={12} md={6} lg={4}>
-                {reviewCards}
-              </Grid>
+            <Grid container spacing={3} alignItems="center">
+              {reviewCards}
             </Grid>
           </div>
         </div>
