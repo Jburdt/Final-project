@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import ReviewCard from "./ReviewCard";
 import { useSelector } from "react-redux";
 import { useState } from "react";
-import { Grid } from "@material-ui/core";
+import { Grid, TextField } from "@material-ui/core";
 
 const Copyright = () => {
   return (
@@ -83,6 +83,7 @@ const Reviews = () => {
   const classes = useStyles();
   const reviews = useSelector((store) => store.reviewsReducer.reviews);
   const [orderByTitle, setOrderByTitle] = useState(false);
+  // const [searchTerm, setSearchTerm] = useState();
 
   // Sorts reviews by title
   const handleButtonClick = () => {
@@ -135,6 +136,12 @@ const Reviews = () => {
                   {"Order by Title"}
                 </Button>
               </Grid>
+              <TextField
+                id="outlined-search"
+                label="Search field"
+                type="search"
+                variant="outlined"
+              />
               <Grid item>
                 <Button
                   component={Link}
