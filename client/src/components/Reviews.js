@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import ReviewCard from "./ReviewCard";
 import { useSelector } from "react-redux";
 import { useState } from "react";
-import { Grid, TextField } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 
 const Copyright = () => {
   return (
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   footer: {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: "Lightgray",
     padding: theme.spacing(6),
   },
   paper: {
@@ -83,7 +83,6 @@ const Reviews = () => {
   const classes = useStyles();
   const reviews = useSelector((store) => store.reviewsReducer.reviews);
   const [orderByTitle, setOrderByTitle] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
 
   // Sorts reviews by title
   const handleButtonClick = () => {
@@ -102,14 +101,6 @@ const Reviews = () => {
   const reviewCards = reviews.map((review, idx) => {
     return <ReviewCard key={idx} review={review} category={review.category} />;
   });
-
-  // const displayPlants = plants.filter((plant) => {
-  //   return plant.name.toLowerCase().includes(searchTerm.toLowerCase())
-  // })
-
-  // const filterSearchedReviews = reviews.filter((review) => {
-  //   return review.title.toLowerCase().includes(searchTerm.toLowerCase())
-  // })
 
   return (
     <>
@@ -152,8 +143,8 @@ const Reviews = () => {
                   {"Order by Title"}
                 </Button>
               </Grid>
-           
-              <Grid item >
+
+              <Grid item>
                 <Button
                   component={Link}
                   to="/reviews/new"
@@ -163,16 +154,6 @@ const Reviews = () => {
                   Create Review
                 </Button>
               </Grid>
-              <TextField
-                size="small"
-                id="outlined-search"
-                type="search"
-                variant="outlined"
-                value={searchTerm}
-                onChange={(e) => {
-                  setSearchTerm(e.target.value);
-                }}
-              />
             </Grid>
             <Grid container spacing={2} alignItems="center">
               {reviewCards}

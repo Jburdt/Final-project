@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     padding: "10px",
-    margin: "5px"
+    margin: "5px",
   },
   cardMedia: {
     height: "450",
@@ -120,7 +120,13 @@ const ReviewCard = ({ review }) => {
             </em>
           </Typography>
         </CardContent>
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <CardActions>
             <Button
               onClick={handleOpen}
@@ -145,7 +151,11 @@ const ReviewCard = ({ review }) => {
                   {review.content}
                 </Typography>
                 <div
-                  style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
                 ></div>
                 <Divider />
                 <Typography variant="body1" color="primary">
