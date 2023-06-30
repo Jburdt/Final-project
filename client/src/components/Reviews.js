@@ -83,7 +83,7 @@ const Reviews = () => {
   const classes = useStyles();
   const reviews = useSelector((store) => store.reviewsReducer.reviews);
   const [orderByTitle, setOrderByTitle] = useState(false);
-  // const [searchTerm, setSearchTerm] = useState();
+  const [searchTerm, setSearchTerm] = useState("");
 
   // Sorts reviews by title
   const handleButtonClick = () => {
@@ -102,6 +102,14 @@ const Reviews = () => {
   const reviewCards = reviews.map((review, idx) => {
     return <ReviewCard key={idx} review={review} category={review.category} />;
   });
+
+  // const displayPlants = plants.filter((plant) => {
+  //   return plant.name.toLowerCase().includes(searchTerm.toLowerCase())
+  // })
+
+  // const filterSearchedReviews = reviews.filter((review) => {
+  //   return review.title.toLowerCase().includes(searchTerm.toLowerCase())
+  // })
 
   return (
     <>
@@ -125,8 +133,16 @@ const Reviews = () => {
             Don't be afraid to speak your mind. These reviews are judgement
             free!
           </Typography>
-          <div className={classes.heroButtons}>
-            <Grid item container spacing={2} justifyContent="center">
+          <div id="review-container">
+            <Grid
+              container
+              spacing={2}
+              style={{
+                justifyContent: "center",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
               <Grid item>
                 <Button
                   variant="contained"
@@ -136,13 +152,8 @@ const Reviews = () => {
                   {"Order by Title"}
                 </Button>
               </Grid>
-              <TextField
-                id="outlined-search"
-                label="Search field"
-                type="search"
-                variant="outlined"
-              />
-              <Grid item>
+           
+              <Grid item >
                 <Button
                   component={Link}
                   to="/reviews/new"
@@ -152,8 +163,18 @@ const Reviews = () => {
                   Create Review
                 </Button>
               </Grid>
+              <TextField
+                size="small"
+                id="outlined-search"
+                type="search"
+                variant="outlined"
+                value={searchTerm}
+                onChange={(e) => {
+                  setSearchTerm(e.target.value);
+                }}
+              />
             </Grid>
-            <Grid container spacing={3} alignItems="center">
+            <Grid container spacing={2} alignItems="center">
               {reviewCards}
             </Grid>
           </div>

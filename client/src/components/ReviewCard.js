@@ -93,7 +93,7 @@ const ReviewCard = ({ review }) => {
   };
 
   return (
-    <Grid lg={3} md={6} sm={12} xs={24}>
+    <Grid item lg={3} md={6} sm={12} xs={12}>
       <Card className={classes.card}>
         <CardMedia
           className={classes.cardMedia}
@@ -120,7 +120,7 @@ const ReviewCard = ({ review }) => {
             </em>
           </Typography>
         </CardContent>
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
           <CardActions>
             <Button
               onClick={handleOpen}
@@ -145,7 +145,7 @@ const ReviewCard = ({ review }) => {
                   {review.content}
                 </Typography>
                 <div
-                  style={{ display: "flex", justifyContent: "center" }}
+                  style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
                 ></div>
                 <Divider />
                 <Typography variant="body1" color="primary">
